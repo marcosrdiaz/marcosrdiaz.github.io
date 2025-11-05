@@ -1,0 +1,96 @@
+<!-- index.html -->
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tu Nombre — Portafolio</title>
+  <meta name="description" content="Portafolio de último curso de Ingeniería Informática — Desarrollo web, ciberseguridad y software.">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand fade-up delay-1">
+        <div class="avatar">TN</div>
+        <div>
+          <h1>Marcos Rodrigo Díaz — Estudiante de Ingeniería Informática (último año)</h1>
+          <div class="role">Interés: Desarrollo web · Ciberseguridad · Desarrollo de software</div>
+        </div>
+      </div>
+      <nav class="fade-up delay-2">
+        <a href="#proyectos">Proyectos</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#contacto" class="primary">Contactar</a>
+      </nav>
+    </header>
+
+    <main>
+      <section>
+        <div class="card intro fade-up delay-3">
+          <h2>Hola — soy Tu Nombre</h2>
+          <p>Estudiante de último año de Ingeniería Informática con experiencia construyendo aplicaciones web, automatizaciones y ejercitando buenas prácticas de seguridad. Busco prácticas donde pueda aprender y aportar en desarrollo web y ciberseguridad.</p>
+          <div class="cta-row">
+            <a class="btn" href="/cv.pdf" download>Descargar CV</a>
+            <a class="btn primary" href="#proyectos">Ver proyectos destacados</a>
+          </div>
+        </div>
+
+        <div id="sobre-mi" class="card fade-up">
+          <h3>Sobre mí</h3>
+          <p>Me centro en crear software limpio y seguro. Me gusta aprender sobre arquitectura de aplicaciones, pruebas automatizadas y conceptos de ciberseguridad aplicados a proyectos reales. Trabajo bien en equipo y me adapto rápido.</p>
+          <div class="softskills">
+            <strong>Soft skills</strong>
+            <div class="skills">
+              <span class="skill">Trabajo en equipo</span>
+              <span class="skill">Comunicación</span>
+              <span class="skill">Resolución de problemas</span>
+              <span class="skill">Autonomía</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="proyectos" class="card fade-up">
+          <h3>Proyectos destacados</h3>
+          <p>(Se extraen automáticamente de GitHub — añade tu usuario abajo.)</p>
+          <div id="projectsGrid" class="projects-grid"></div>
+        </div>
+
+        <div class="card fade-up">
+          <h3>Habilidades técnicas</h3>
+          <ul>
+            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React (conceptos), Responsive Design</li>
+            <li><strong>Backend:</strong> Node.js, Express, bases de datos SQL/NoSQL, APIs REST</li>
+            <li><strong>Ciberseguridad:</strong> OWASP, testing básico, nmap, burp, etc.</li>
+            <li><strong>Otros:</strong> Git, Docker, CI/CD básico</li>
+          </ul>
+        </div>
+      </section>
+
+      <aside>
+        <div class="card fade-up">
+          <h3>Contacto & redes</h3>
+          <div class="contact-list">
+            <a id="githubLink" href="#" target="_blank">GitHub</a>
+            <a id="linkedinLink" href="#" target="_blank">LinkedIn</a>
+            <a id="emailLink" href="mailto:tu.email@ejemplo.com">tu.email@ejemplo.com</a>
+          </div>
+          <a id="downloadCvBtn" class="download-cv" href="/cv.pdf" download>Descargar CV</a>
+        </div>
+
+        <div class="card fade-up">
+          <h3>Información para empresas</h3>
+          <p>Disponible para prácticas a tiempo parcial/medio tiempo o proyectos de fin de grado. Puedo facilitar carta de presentación y disponibilidad por semanas.</p>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Hecho con ❤️ — Última actualización: <span id="updatedDate"></span>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
