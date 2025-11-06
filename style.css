@@ -271,3 +271,37 @@ footer {
 @keyframes fadeUp {
   to { opacity: 1; transform: none; }
 }
+
+
+
+/* --- LAYOUT PRINCIPAL --- */
+main {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* contenido + aside */
+  gap: 2rem;
+  align-items: start;
+}
+
+/* --- ASIDE FIJO --- */
+aside {
+  position: relative;
+}
+
+.aside-content {
+  position: sticky;
+  top: 100px; /* distancia desde el top antes de que se fije */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Asegurarse de que las tarjetas dentro no rompan sticky */
+aside .card {
+  position: static;
+  width: 100%;
+}
+
+/* Si el contenedor padre (body o main) tiene overflow, quítalo */
+body, html, main {
+  overflow: visible;
+}
