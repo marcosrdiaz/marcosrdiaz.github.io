@@ -32,17 +32,19 @@ async function fetchRepos() {
   try {
     const resp = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
     if (!resp.ok) throw new Error('No se pudo obtener repositorios');
-    let repos = await resp.json();
+    const repos = await resp.json();
 
-    // Ordenamos por fecha de actualización reciente
-    repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+    // Solo los que están en FEATURED_REPOS y en el mismo orden
+    const featured = FEATURED_REPOS.map(name =>
+      repos.find(r => r.name === name)
+    ).filter(Boolean); // elimina los que no existan realmente
 
-    // Filtramos destacados
-    const featured = repos.filter(r => FEATURED_REPOS.includes(r.name));
-    const others = repos.filter(r => !FEATURED_REPOS.includes(r.name));
-
-    // Mostramos máximo 6
-    renderProjects([...featured, ...others].slice(0, 6));
+    // Si no hay resultados, mostramos placeholder
+    if (featured.length === 0) {
+      showPlaceholderProjects();
+    } else {
+      renderProjects(featured);
+    }
   } catch (e) {
     console.error(e);
     showPlaceholderProjects();
@@ -56,12 +58,6 @@ function showPlaceholderProjects() {
       description: 'Descripción breve del proyecto y lo que aporta.',
       html_url: '#',
       language: 'JavaScript'
-    },
-    {
-      name: 'web-portfolio',
-      description: 'Portfolio personal estático con animaciones suaves.',
-      html_url: '#',
-      language: 'HTML/CSS'
     }
   ];
   renderProjects(demo);
