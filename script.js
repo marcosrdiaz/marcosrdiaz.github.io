@@ -7,7 +7,7 @@ const CV_URL = '/sources/cv.pdf';
 // -----------------------------------
 
 document.getElementById('githubLink').href = `https://github.com/${GITHUB_USERNAME}`;
-document.getElementById('githubLink').textContent = `GitHub — ${GITHUB_USERNAME}`;
+document.getElementById('githubLink').textContent = `${GITHUB_USERNAME}`;
 document.getElementById('linkedinLink').href = LINKEDIN_URL;
 document.getElementById('downloadCvBtn').href = CV_URL;
 document.getElementById('emailLink').href = `mailto:${EMAIL}`;
