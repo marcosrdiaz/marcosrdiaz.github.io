@@ -171,7 +171,7 @@ aside {
 
 aside .card {
   position: sticky;
-  top: 100px; /* altura desde la parte superior de la pantalla */
+  top: 320px; /* altura desde la parte superior de la pantalla */
 }
 
 
