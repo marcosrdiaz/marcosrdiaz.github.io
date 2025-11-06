@@ -171,7 +171,7 @@ aside {
 /* Contenedor completo que se moverá con el scroll */
 .aside-content {
   position: sticky;
-  top: 30px; /* Ajusta según tu diseño: margen superior desde donde se fija */
+  top: 15px; /* Ajusta según tu diseño: margen superior desde donde se fija */
   display: flex;
   flex-direction: column;
   gap: 20px;
