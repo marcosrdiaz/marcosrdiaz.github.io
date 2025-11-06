@@ -85,7 +85,7 @@ function renderProjects(list) {
       </div>
     `;
     grid.appendChild(el);
-  });
+  }); 
 }
 
 function escapeHtml(s) {
