@@ -211,10 +211,12 @@ aside .card {
 }
 
 .contact-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   color: white;
-  transition: color 0.3s ease, transform 0.2s ease;
+  width: 24px;
+  text-align: center;
 }
+
 
 .contact-list a:hover .contact-icon {
   color: var(--accent);
