@@ -166,11 +166,11 @@ main { display: grid; grid-template-columns: 1fr 360px; gap: 28px; }
 aside {
   display: flex;
   flex-direction: column;
+  position: sticky;
   gap: 16px;
 }
 
 aside .card {
-  position: sticky;
   top: 320px; /* altura desde la parte superior de la pantalla */
 }
 
