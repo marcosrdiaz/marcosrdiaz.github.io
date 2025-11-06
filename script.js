@@ -2,11 +2,12 @@
 const GITHUB_USERNAME = 'marcosrdiaz';
 const FEATURED_REPOS = ['Web-de-apuestas-cifrada', 'Web-Interactiva-Navidad', 'AEKI-Prototipo-interactivo-para-tiendas-fisicas', 'Programacion-Concurrente-en-C'];
 const LINKEDIN_URL = 'https://linkedin.com/in/marcos-rodrigo-diaz';
+const GITHUB_URL = `https://github.com/marcosrdiaz`;
 const EMAIL = 'marcosrodrigodiaz@gmail.com';
 const CV_URL = '/sources/cv.pdf';
 // -----------------------------------
 
-document.getElementById('githubLink').href = `https://github.com/${GITHUB_USERNAME}`;
+document.getElementById('githubLink').href = GITHUB_URL;;
 document.getElementById('githubLink').textContent = `${GITHUB_USERNAME}`;
 document.getElementById('linkedinLink').href = LINKEDIN_URL;
 document.getElementById('downloadCvBtn').href = CV_URL;
@@ -21,7 +22,7 @@ async function fetchRepos() {
   }
 
   try {
-    const resp = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
+    const resp = await fetch(`https://api.github.com/users/marcosrdiaz/repos?per_page=100`);
     if (!resp.ok) throw new Error('No se pudo obtener repositorios');
     let repos = await resp.json();
 
