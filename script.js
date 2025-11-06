@@ -34,8 +34,8 @@ async function fetchRepos() {
     if (!resp.ok) throw new Error('No se pudo obtener repositorios');
     let repos = await resp.json();
 
-    // Ordenamos por estrellas
-    repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
+    // Ordenamos por fecha de actualización reciente
+    repos.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
 
     // Filtramos destacados
     const featured = repos.filter(r => FEATURED_REPOS.includes(r.name));
@@ -55,15 +55,13 @@ function showPlaceholderProjects() {
       name: 'proyecto-ejemplo',
       description: 'Descripción breve del proyecto y lo que aporta.',
       html_url: '#',
-      language: 'JavaScript',
-      stargazers_count: 12
+      language: 'JavaScript'
     },
     {
       name: 'web-portfolio',
       description: 'Portfolio personal estático con animaciones suaves.',
       html_url: '#',
-      language: 'HTML/CSS',
-      stargazers_count: 8
+      language: 'HTML/CSS'
     }
   ];
   renderProjects(demo);
@@ -79,13 +77,11 @@ function renderProjects(list) {
       <h3><a href="${p.html_url}" target="_blank" style="color:inherit;text-decoration:none">${escapeHtml(p.name)}</a></h3>
       <p>${escapeHtml(p.description || 'Sin descripción')}</p>
       <div class="meta">
-        <span>⭐ ${p.stargazers_count || 0}</span>
-        <span>•</span>
         <span>${p.language || '—'}</span>
       </div>
     `;
     grid.appendChild(el);
-  }); 
+  });
 }
 
 function escapeHtml(s) {
