@@ -1,42 +1,48 @@
 // ---------- CONFIGURACIÓN ----------
 const GITHUB_USERNAME = 'marcosrdiaz';
-const FEATURED_REPOS = ['Web-de-apuestas-cifrada', 'Web-Interactiva-Navidad', 'AEKI-Prototipo-interactivo-para-tiendas-fisicas', 'Programacion-Concurrente-en-C'];
+const FEATURED_REPOS = [
+  'Web-de-apuestas-cifrada',
+  'Web-Interactiva-Navidad',
+  'AEKI-Prototipo-interactivo-para-tiendas-fisicas',
+  'Programacion-Concurrente-en-C'
+];
 const LINKEDIN_URL = 'https://linkedin.com/in/marcos-rodrigo-diaz';
-const GITHUB_URL = `https://github.com/marcosrdiaz`;
+const GITHUB_URL = `https://github.com/${GITHUB_USERNAME}`;
 const EMAIL = 'marcosrodrigodiaz@gmail.com';
 const CV_URL = '/sources/cv.pdf';
 // -----------------------------------
 
-document.getElementById('githubLink').href = GITHUB_URL;;
-document.getElementById('githubLink').textContent = `${GITHUB_USERNAME}`;
-document.getElementById('linkedinLink').href = LINKEDIN_URL;
-document.getElementById('downloadCvBtn').href = CV_URL;
-document.getElementById('emailLink').href = `mailto:${EMAIL}`;
-document.getElementById('emailLink').textContent = EMAIL;
-document.getElementById('updatedDate').textContent = new Date().toLocaleDateString('es-ES');
+// 🧩 Actualizamos solo los atributos href sin borrar iconos
+document.getElementById('githubLink').setAttribute('href', GITHUB_URL);
+document.getElementById('linkedinLink').setAttribute('href', LINKEDIN_URL);
+document.getElementById('emailLink').setAttribute('href', `mailto:${EMAIL}`);
+document.getElementById('phoneLink').setAttribute('href', 'tel:+34626912083');
+document.getElementById('downloadCvBtn').setAttribute('href', CV_URL);
 
+// 🧩 Actualizamos solo el texto después del icono
+document.getElementById('githubLink').lastChild.textContent = ' ' + GITHUB_USERNAME;
+document.getElementById('emailLink').lastChild.textContent = ' ' + EMAIL;
+
+// 🗓️ Fecha de actualización (si existe el elemento)
+const updated = document.getElementById('updatedDate');
+if (updated) updated.textContent = new Date().toLocaleDateString('es-ES');
+
+// ---------- GESTIÓN DE REPOSITORIOS ----------
 async function fetchRepos() {
-  if (!GITHUB_USERNAME || GITHUB_USERNAME === 'marcosrdiaz') {
-    showPlaceholderProjects();
-    return;
-  }
-
   try {
-    const resp = await fetch(`https://api.github.com/users/marcosrdiaz/repos?per_page=100`);
+    const resp = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100`);
     if (!resp.ok) throw new Error('No se pudo obtener repositorios');
     let repos = await resp.json();
 
+    // Ordenamos por estrellas
     repos.sort((a, b) => b.stargazers_count - a.stargazers_count);
 
-    const featured = [];
-    const rest = [];
-    repos.forEach(r => {
-      if (FEATURED_REPOS.includes(r.name)) featured.push(r);
-      else rest.push(r);
-    });
+    // Filtramos destacados
+    const featured = repos.filter(r => FEATURED_REPOS.includes(r.name));
+    const others = repos.filter(r => !FEATURED_REPOS.includes(r.name));
 
-    const toShow = [...featured, ...rest].slice(0, 6);
-    renderProjects(toShow);
+    // Mostramos máximo 6
+    renderProjects([...featured, ...others].slice(0, 6));
   } catch (e) {
     console.error(e);
     showPlaceholderProjects();
@@ -88,4 +94,5 @@ function escapeHtml(s) {
   })[c]);
 }
 
+// Ejecutamos
 fetchRepos();
