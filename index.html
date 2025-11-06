@@ -55,38 +55,94 @@
           <div id="projectsGrid" class="projects-grid"></div>
         </div>
 
-        <div class="card fade-up">
-          <h3>Habilidades técnicas</h3>
-          <ul>
-            <li><strong>Frontend:</strong> HTML, CSS, JavaScript, Responsive Design</li>
-            <li><strong>Backend:</strong> Node.js, Express, bases de datos SQL/NoSQL, APIs REST</li>
-            <li><strong>Desarrollo de software:</strong> Python, Java, C, estructuras de datos, algoritmos</li>
-            <li><strong>Ciberseguridad:</strong> Cifrado, firma digital (AES-GCM, RSA/SHA-256, Flask...)</li>
-            <li><strong>Otros:</strong> Git, Docker, CI/CD básico</li>
-          </ul>
-        </div>
+        <!-- HABILIDADES -->
+        <section class="skills-section fade-up">
+          <!-- HABILIDADES TÉCNICAS -->
+          <div class="card" id="habilidades-tecnicas">
+            <h3>🧠 Habilidades Técnicas</h3>
+
+            <div class="skills-group">
+              <h4>💻 Lenguajes de programación</h4>
+              <p>C, C++, Python, SQL</p>
+            </div>
+
+            <div class="skills-group">
+              <h4>🌐 Diseño y Desarrollo Web</h4>
+              <p>HTML, CSS, JavaScript</p>
+            </div>
+
+            <div class="skills-group">
+              <h4>⚙️ Desarrollo</h4>
+              <p>Desarrollo web completo (frontend y backend)</p>
+            </div>
+
+            <div class="skills-group">
+              <h4>📊 Hojas de cálculo</h4>
+              <p>Microsoft Excel — nivel avanzado</p>
+            </div>
+
+            <div class="skills-group">
+              <h4>🔐 Otros conocimientos</h4>
+              <p>Gestión de bases de datos, criptografía, inteligencia artificial, aprendizaje automático</p>
+            </div>
+          </div>
+
+          <!-- SOFT SKILLS -->
+          <div class="card" id="soft-skills">
+            <h3>💬 Soft Skills</h3>
+            <div class="soft-skills-container">
+              <span class="soft-skill">🤝 Trabajo en equipo</span>
+              <span class="soft-skill">🗣️ Comunicación empática</span>
+              <span class="soft-skill">🧩 Resolución de problemas</span>
+              <span class="soft-skill">🏁 Competitividad sana</span>
+              <span class="soft-skill">🚀 Ambición y ganas de aprender</span>
+              <span class="soft-skill">🔄 Adaptabilidad</span>
+            </div>
+          </div>
+        </section>
       </section>
 
       <aside>
-        <div class="card fade-up">
-          <h3>Contacto & redes</h3>
+        <div class="card fade-up" id="contacto">
+          <h3>Contacto & Redes</h3>
           <div class="contact-list">
-            <a id="githubLink" href="#" target="_blank">GitHub</a>
-            <a id="linkedinLink" href="#" target="_blank">LinkedIn</a>
-            <a id="emailLink" href="mailto:marcosrodrigodiaz@gmail.com">marcosrodrigodiaz@gmail.com</a>
+
+            <a id="githubLink" href="https://github.com/marcosrdiaz" target="_blank">
+              <img src="sources/github.svg" alt="GitHub" class="contact-icon">
+              GitHub
+            </a>
+
+            <a id="linkedinLink" href="https://linkedin.com/in/marcos-rodrigo-diaz" target="_blank">
+              <img src="sources/linkedin.svg" alt="LinkedIn" class="contact-icon">
+              LinkedIn
+            </a>
+
+            <a id="emailLink" href="mailto:marcosrodrigodiaz@gmail.com">
+              <img src="sources/mail.svg" alt="Email" class="contact-icon">
+              marcosrodrigodiaz@gmail.com
+            </a>
+
+            <a id="phoneLink" href="tel:+34626912083">
+              <img src="sources/telf.svg" alt="Teléfono" class="contact-icon">
+              +34 626912083
+            </a>
+
           </div>
+
           <a id="downloadCvBtn" class="download-cv" href="/sources/cv.pdf" download>Descargar CV</a>
         </div>
 
-        <div class="card fade-up">
-          <h3>Información para empresas</h3>
-          <p>Disponible para prácticas a tiempo parcial/medio tiempo o proyectos de fin de grado. Puedo facilitar carta de presentación y disponibilidad por semanas.</p>
+
+        <div class="card fade-up" id="info-empresas">
+          <h3><strong>Información para empresas:</strong></h3>
+          <p>Disponible para prácticas en febrero de 2026. Puedo facilitar carta de presentación y disponibilidad.</p>
+          <p>Dispongo de carnet de conducir con coche propio.</p>
         </div>
       </aside>
     </main>
 
     <footer>
-      Hecho con ❤️ — Última actualización: <span id="updatedDate"></span>
+      Conocedme! — Última actualización: <span id="updatedDate"></span>
     </footer>
   </div>
   <script src="script.js"></script>

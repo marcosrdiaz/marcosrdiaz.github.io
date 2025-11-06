@@ -92,13 +92,55 @@ main { display: grid; grid-template-columns: 1fr 360px; gap: 28px; }
   border: none;
 }
 
-.skills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
-.skill {
-  background: rgba(255,255,255,0.03);
-  padding: 8px 12px;
-  border-radius: 999px;
-  color: var(--muted);
+.skills-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* --- Habilidades técnicas --- */
+.skills-group {
+  margin-bottom: 12px;
+}
+
+.skills-group h4 {
   font-weight: 600;
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.skills-group p {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* --- Soft Skills --- */
+.soft-skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.soft-skill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  transition: all 0.3s ease;
+}
+
+.soft-skill:hover {
+  background: var(--accent);
+  color: #06202a;
+  transform: translateY(-2px);
+  cursor: default;
 }
 
 .projects-grid {
@@ -121,18 +163,47 @@ main { display: grid; grid-template-columns: 1fr 360px; gap: 28px; }
 .proj p { margin: 0; color: var(--muted); font-size: 13px; }
 .proj .meta { display: flex; gap: 8px; margin-top: 10px; color: var(--muted); font-size: 12px; }
 
-aside .card { position: sticky; top: 32px; }
+aside {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-.contact-list { display: flex; flex-direction: column; gap: 8px; }
+aside .card {
+  position: sticky;
+  top: 100px; /* altura desde la parte superior de la pantalla */
+}
+
+
+
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 .contact-list a {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
-  padding: 8px;
-  border-radius: 8px;
+  color: var(--text);
   text-decoration: none;
-  color: inherit;
+  transition: all 0.2s ease;
 }
+
+.contact-list a:hover {
+  text-decoration: underline;
+  color: var(--accent);
+}
+
+.contact-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--accent);
+  flex-shrink: 0;
+  opacity: 0.9;
+}
+
 
 .download-cv {
   display: block;
