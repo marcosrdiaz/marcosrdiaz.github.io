@@ -3,7 +3,7 @@ const GITHUB_USERNAME = 'marcosrdiaz';
 const FEATURED_REPOS = ['Web-de-apuestas-cifrada', 'Web-Interactiva-Navidad', 'AEKI-Prototipo-interactivo-para-tiendas-fisicas', 'Programacion-Concurrente-en-C'];
 const LINKEDIN_URL = 'https://linkedin.com/in/marcos-rodrigo-diaz';
 const EMAIL = 'marcosrodrigodiaz@gmail.com';
-const CV_URL = '/cv.pdf';
+const CV_URL = '/sources/cv.pdf';
 // -----------------------------------
 
 document.getElementById('githubLink').href = `https://github.com/${GITHUB_USERNAME}`;

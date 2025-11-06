@@ -37,14 +37,11 @@ header {
 .avatar {
   width: 64px;
   height: 64px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--accent), #60a5fa);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: #06202a;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px var(--accent);
 }
+
 
 h1 { font-size: 20px; margin: 0; }
 .role { color: var(--muted); font-size: 13px; }
