@@ -70,11 +70,13 @@ function renderProjects(list) {
     const el = document.createElement('article');
     el.className = 'proj';
     el.innerHTML = `
-      <h3><a href="${p.html_url}" target="_blank" style="color:inherit;text-decoration:none">${escapeHtml(p.name)}</a></h3>
-      <p>${escapeHtml(p.description || 'Sin descripción')}</p>
-      <div class="meta">
-        <span>${p.language || '—'}</span>
-      </div>
+      <a class="proj-link" href="${p.html_url}" target="_blank" rel="noopener noreferrer">
+        <h3>${escapeHtml(p.name)}</h3>
+        <p>${escapeHtml(p.description || 'Sin descripción')}</p>
+        <div class="meta">
+          <span>${p.language || '—'}</span>
+        </div>
+      </a>
     `;
     grid.appendChild(el);
   });
