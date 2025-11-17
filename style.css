@@ -79,6 +79,7 @@ main { display: grid; grid-template-columns: 1fr 360px; gap: 28px; }
   padding: 20px;
   margin-bottom: 18px;
   box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  position: relative;
 }
 
 .intro { display: flex; flex-direction: column; gap: 12px; }
@@ -299,3 +300,222 @@ footer {
 @keyframes fadeUp {
   to { opacity: 1; transform: none; }
 }
+
+
+/* ----- MODO MÓVIL ----- */
+.mobile-header {
+  display: none;
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background: var(--card);
+  padding: 12px;
+  border-radius: var(--radius);
+  margin-top: 10px;
+}
+
+.mobile-menu a {
+  padding: 10px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mobile-menu a:hover {
+  color: var(--accent);
+}
+
+.hamburger {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 32px;
+  cursor: pointer;
+}
+
+.mobile-info h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.mobile-info .role {
+  margin: 2px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* Mostrar solo en móvil */
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+}
+
+.practicas-header {
+  display: flex;
+  justify-content: space-between; /* empuja el logo a la derecha */
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.practicas-img-side {
+  width: 90px;          /* ajusta el tamaño que prefieras */
+  height: 90px;
+  object-fit: contain;
+  filter: brightness(1.15);
+}
+
+#particles-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* detrás de todo */
+  background: linear-gradient(180deg, #071025 0%, #0b1220 60%);
+}
+
+.skills-icons img:hover {
+  transform: scale(1.3);
+}
+
+.curiosidades .flip-cards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.curiosidades .flip-card {
+  background-color: transparent;
+  width: 140px;
+  height: 140px;
+  perspective: 1000px;
+}
+
+.curiosidades .flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.curiosidades .flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.curiosidades .flip-card-front,
+.curiosidades .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius);
+  background-color: var(--card);
+  color: var(--accent);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  backface-visibility: hidden;
+  box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+  font-size: 0.9rem;
+}
+
+.curiosidades .flip-card-back {
+  transform: rotateY(180deg);
+  color: var(--muted);
+}
+
+.slide-left { 
+  opacity: 0; 
+  transform: translateX(-30px); 
+  transition: all 0.6s ease-out;
+}
+
+.slide-right { 
+  opacity: 0; 
+  transform: translateX(30px); 
+  transition: all 0.6s ease-out;
+}
+
+.slide-left.visible, 
+.slide-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 2px solid var(--accent);
+  border-radius: var(--radius);
+  transform: scale(0);
+  transform-origin: center;
+  transition: transform 0.6s ease-out;
+  pointer-events: none;
+}
+
+.card.visible::before {
+  transform: scale(1);
+}
+
+.proj:hover {
+  box-shadow: 0 0 20px 4px rgba(125,211,252,0.4), 0 12px 30px rgba(2,6,23,0.6);
+  transform: translateY(-6px);
+}
+
+.konami-mode {
+  background: linear-gradient(180deg, #1f1f3a 0%, #2c2c4a 100%);
+  color: #ffd700;
+}
+
+.konami-mode .btn {
+  background: #ffd700;
+  color: #0a0a0a;
+}
+
+.brand .avatar:hover {
+  transform: rotate(360deg);
+  transition: transform 0.6s ease-in-out;
+}
+
+#konamiHint {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(125, 211, 252, 0.3);
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background 0.3s, transform 0.3s;
+}
+
+#konamiHint:hover {
+  background-color: rgba(125, 211, 252, 0.6);
+  transform: scale(1.2);
+}
+
+#konamiHint i {
+  pointer-events: none; /* El icono no interfiere con el click */
+}
+

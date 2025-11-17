@@ -12,16 +12,37 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
+  <canvas id="particles-bg"></canvas>
   <div class="container">
     <header>
-      <div class="brand fade-up delay-1">
-        <img src="/sources/foto.jpg" alt="Foto de perfil de Marcos Rodrigo Díaz" class="avatar">
+      <div class="mobile-header">
+        <div class="mobile-info">
+          <h1>Marcos Rodrigo Díaz</h1>
+          <div class="role">Ingeniería Informática · Web · Software · Videojuegos</div>
+        </div>
+
+        <button id="menuToggle" class="hamburger">
+          <i class='bx bx-menu'></i>
+        </button>
+      </div>
+
+      <!-- menú móvil -->
+      <nav id="mobileMenu" class="mobile-menu">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#contacto">Contactar</a>
+      </nav>
+
+      <!-- header versión escritorio (NO lo tocamos) -->
+      <div class="brand fade-up delay-1 desktop-only">
+        <img src="/sources/foto.jpg" alt="Foto" class="avatar">
         <div>
           <h1>Marcos Rodrigo Díaz — Estudiante de Ingeniería Informática</h1>
-          <div class="role">Interés: Desarrollo web · Desarrollo de software · Desarrollo de videojuegos · Criptografía</div>
+          <div class="role">Interés: Desarrollo web · Desarrollo software · Videojuegos · Criptografía</div>
         </div>
       </div>
-      <nav class="fade-up delay-2">
+
+      <nav class="fade-up delay-2 desktop-only">
         <a href="#sobre-mi">Sobre mí</a>
         <a href="#proyectos">Proyectos</a>
         <a href="#contacto">Contactar</a>
@@ -39,7 +60,6 @@
           </p>
           <p>
             Soy un apasionado de los <strong>videojuegos</strong> y los <strong>deportes</strong>, especialmente los de <strong>motor</strong>.  
-            El mundo del <strong>automovilismo</strong> siempre ha despertado en mí una gran curiosidad por la tecnología y la precisión, valores que intento aplicar también en mis proyectos.
           </p>
           <p>
             Me considero una persona <strong>competitiva</strong>, <strong>ambiciosa</strong> y <strong>trabajadora</strong>, pero también <strong>empática</strong> y con un fuerte <strong>sentido del trabajo en equipo</strong>.  
@@ -49,12 +69,50 @@
             <a class="btn" href="/sources/cv.pdf" download>Descargar CV</a>
             <a class="btn" href="#proyectos">Ver proyectos destacados</a>
           </div>
+
+          <div class="card curiosidades fade-up delay-4">
+            <h3>🎲 Curiosidades sobre mí</h3>
+            <div class="flip-cards">
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <i class='bx bxl-html5' style="font-size: 2rem;"></i>
+                    <span>Programador</span>
+                  </div>
+                  <div class="flip-card-back">Me encanta experimentar con nuevos lenguajes y frameworks por diversión.</div>
+                </div>
+              </div>
+
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <i class='bx bx-game' style="font-size: 2rem;"></i>
+                    <span>Gamer</span>
+                  </div>
+                  <div class="flip-card-back">Aprendo mucho sobre lógica y estrategia jugando videojuegos competitivos.</div>
+                </div>
+              </div>
+
+              <div class="flip-card">
+                <div class="flip-card-inner">
+                  <div class="flip-card-front">
+                    <i class='bx bx-car' style="font-size: 2rem;"></i>
+                    <span>Automovilismo</span>
+                  </div>
+                  <div class="flip-card-back">Sigo la tecnología en coches y me inspira a aplicar precisión en mis proyectos.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </section>
 
         <div id="proyectos" class="card fade-up delay-3">
           <h3>Proyectos destacados</h3>
           <div id="projectsGrid" class="projects-grid"></div>
         </div>
+
+        
 
         <!-- HABILIDADES -->
           <section class="skills-section fade-up delay-3">
@@ -127,11 +185,28 @@
             <h3><strong>Información rápida:</strong></h3>
             <ul>
               <li><strong>Edad:</strong> 21 años</li>
-              <li><strong>Ubicación:</strong> Madrid, España</li>
-              <li><strong>Disponibilidad:</strong> Prácticas en febrero de 2026</li>
+              <li><strong>Ubicación:</strong> Ugena, Toledo</li>
+              <li><strong>Prácticas:</strong> Confirmadas en <strong>SENSIA</strong> (Q2 2026)</li>
               <li><strong>Carnet de conducir:</strong> Sí, con coche propio</li>
             </ul>
           </div>
+
+          <div class="card fade-up delay-3" id="practicas">
+            <div class="practicas-header">
+              <h3>Prácticas actuales</h3>
+              <img src="/sources/sensia.png" alt="Logo de SENSIA" class="practicas-img-side">
+            </div>
+
+            <p>
+              Realizaré mis prácticas del segundo cuatrimestre en <strong>SENSIA</strong>, 
+              donde participaré en proyectos de software y tecnología aplicada. 
+              Esta experiencia me permitirá seguir creciendo profesionalmente y aportar mis habilidades 
+              en un entorno real.
+            </p>
+          </div>
+
+
+
           <div class="card fade-up delay-3" id="contacto">
             <h3>Contacto & Redes</h3>
 
@@ -162,12 +237,6 @@
               Descargar CV
             </a>
           </div>
-          
-          <div class="card fade-up delay-3" id="info-empresas">
-            <h3><strong>Información para empresas:</strong></h3>
-            <p>Disponible para prácticas en febrero de 2026. Puedo facilitar carta de presentación y disponibilidad.</p>
-            <p>Dispongo de carnet de conducir con coche propio.</p>
-          </div>
         </div>
       </aside>
     </main>
@@ -176,6 +245,9 @@
       Conocedme! — Última actualización: <span id="updatedDate"></span>
     </footer>
   </div>
+  <button id="konamiHint" title="¿Un secreto?" aria-label="Easter Egg">
+    <i class='bx bx-low-vision' style="font-size: 14px; color: white;"></i>
+  </button>
   <script src="script.js"></script>
 </body>
 </html>
