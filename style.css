@@ -519,3 +519,14 @@ footer {
   pointer-events: none; /* El icono no interfiere con el click */
 }
 
+/* Por defecto oculto en móviles */
+#konamiHint {
+  display: none;
+}
+
+/* Solo se muestra en pantallas ≥ 900px */
+@media (min-width: 900px) {
+  #konamiHint {
+    display: flex;
+  }
+}
