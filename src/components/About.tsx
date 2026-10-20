@@ -45,7 +45,7 @@ export default function About() {
               <img src={profile.photo} alt="" className="h-12 w-12 rounded-full object-cover ring-2 ring-blue-500/40" />
               <div>
                 <p className="font-display font-semibold text-white">{profile.name}</p>
-                <p className="text-sm text-slate-400">{t(ui.about.degree)} · 2022 — 2026</p>
+                <p className="text-sm text-slate-400">{t(ui.about.degree)} · UC3M · 2022 — 2026</p>
               </div>
             </div>
           </div>

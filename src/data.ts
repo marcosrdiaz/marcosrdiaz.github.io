@@ -142,7 +142,7 @@ export const experience: Experience[] = [
   {
     role: { es: 'Prácticas de desarrollo de software', en: 'Software Development Intern' },
     org: 'SENSIA',
-    period: { es: '2026', en: '2026' },
+    period: { es: 'Feb 2026 — Jul 2026', en: 'Feb 2026 — Jul 2026' },
     kind: 'work',
     desc: {
       es: 'Prácticas del segundo cuatrimestre. Perfeccioné e implanté la Wiki corporativa del departamento de Software, el punto central de información sobre todas las áreas, productos y proyectos de la empresa.',
@@ -152,7 +152,7 @@ export const experience: Experience[] = [
   },
   {
     role: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
-    org: { es: 'Formación universitaria', en: 'University degree' },
+    org: 'Universidad Carlos III de Madrid',
     period: { es: '2022 — 2026', en: '2022 — 2026' },
     kind: 'edu',
     desc: {
