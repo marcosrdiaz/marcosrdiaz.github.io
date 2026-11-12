@@ -72,10 +72,10 @@ export default function About() {
           <div className="flex items-start justify-between gap-4">
             <div>
               <p className="font-mono text-xs tracking-widest text-slate-500 uppercase">{t(ui.about.now)}</p>
-              <p className="mt-3 font-display text-xl font-semibold text-white">SENSIA</p>
+              <p className="mt-3 font-display text-xl font-semibold text-white">Sensia</p>
               <p className="mt-1 text-sm text-slate-400">{t(ui.about.nowText)}</p>
             </div>
-            <img src="/sources/sensia.png" alt="SENSIA" className="h-14 w-14 rounded-2xl bg-white object-contain p-2" />
+            <img src="/sources/sensia.png" alt="Sensia" className="h-14 w-14 rounded-2xl bg-white object-contain p-2" />
           </div>
         </Cell>
 

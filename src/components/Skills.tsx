@@ -5,6 +5,11 @@ import { Icon } from '../icons'
 import { Reveal, Section, spotlightMove } from './ui'
 
 const icon = (id: string) => `/icons/${id}.svg`
+/** Keeps the tooltip inside the box: grid has 4 columns on mobile and 6 from `sm`. */
+const tipPos = (i: number) => [
+  i % 4 === 0 ? 'left-0' : i % 4 === 3 ? 'right-0' : 'left-1/2 -translate-x-1/2',
+  i % 6 === 0 ? 'sm:left-0 sm:right-auto sm:translate-x-0' : i % 6 === 5 ? 'sm:right-0 sm:left-auto sm:translate-x-0' : 'sm:left-1/2 sm:right-auto sm:-translate-x-1/2',
+].join(' ')
 const all = skillGroups.flatMap(g => g.items)
 
 function Marquee({ items, reverse = false }: { items: [string, string][]; reverse?: boolean }) {
@@ -33,12 +38,12 @@ export default function Skills() {
         <Marquee items={all.slice(half)} reverse />
       </div>
 
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-2">
         {skillGroups.map((g, gi) => (
           <Reveal key={gi} delay={gi * 0.08}>
             <div onMouseMove={spotlightMove} className="spotlight glass h-full rounded-3xl p-6">
               <h3 className="font-display text-lg font-semibold text-white">{t(g.title)}</h3>
-              <div className="mt-5 grid grid-cols-4 gap-3">
+              <div className="mt-5 grid grid-cols-4 gap-x-3 gap-y-5 sm:grid-cols-6">
                 {g.items.map(([id, name], i) => (
                   <motion.div
                     key={id}
@@ -52,7 +57,7 @@ export default function Skills() {
                     data-cursor
                   >
                     <img src={icon(id)} alt={name} title={name} className="h-12 w-12 drop-shadow-[0_6px_14px_rgba(59,130,246,0.25)]" loading="lazy" />
-                    <span className={`pointer-events-none absolute -bottom-8 z-10 rounded-md bg-ink-2 px-2 py-1 text-[11px] whitespace-nowrap text-slate-200 opacity-0 shadow-lg ring-1 ring-white/10 transition group-hover:opacity-100 group-focus-visible:opacity-100 ${i % 4 === 0 ? 'left-0' : i % 4 === 3 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}>
+                    <span className={`pointer-events-none absolute -bottom-8 z-10 rounded-md bg-ink-2 px-2 py-1 text-[11px] whitespace-nowrap text-slate-200 opacity-0 shadow-lg ring-1 ring-white/10 transition group-hover:opacity-100 group-focus-visible:opacity-100 ${tipPos(i)}`}>
                       {name}
                     </span>
                   </motion.div>

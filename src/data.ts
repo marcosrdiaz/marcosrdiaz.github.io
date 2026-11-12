@@ -24,16 +24,16 @@ export const ui = {
     contact: { es: 'Contacto', en: 'Contact' },
   },
   hero: {
-    badge: { es: 'Software Developer en SENSIA', en: 'Software Developer at SENSIA' },
+    badge: { es: 'Software Developer en Sensia', en: 'Software Developer at Sensia' },
     hello: { es: 'Hola, soy', en: "Hi, I'm" },
     iBuild: { es: 'Construyo', en: 'I build' },
     roles: {
-      es: ['experiencias web', 'apps móviles', 'arquitectura de software', 'C++ de alto rendimiento'],
-      en: ['web experiences', 'mobile apps', 'software architecture', 'high-performance C++'],
+      es: ['experiencias web', 'apps móviles', 'paneles web para cámaras con IA', 'arquitectura de software', 'C++ de alto rendimiento'],
+      en: ['web experiences', 'mobile apps', 'web panels for AI cameras', 'software architecture', 'high-performance C++'],
     },
     blurb: {
-      es: 'Ingeniero Informático. Diseño, desarrollo e implanto software en los equipos de Arquitectura de Sistemas y Next-Design de SENSIA.',
-      en: "Computer Engineer. I design, build and ship software on SENSIA's Systems Architecture and Next-Design teams.",
+      es: 'Ingeniero Informático. Diseño, desarrollo e implanto software en los equipos de Web Panel, Arquitectura de Sistemas y Next-Design de Sensia.',
+      en: "Computer Engineer. I design, build and ship software on Sensia's Web Panel, Systems Architecture and Next-Design teams.",
     },
     ctaProjects: { es: 'Ver proyectos', en: 'See projects' },
     ctaCv: { es: 'Descargar CV', en: 'Download CV' },
@@ -43,8 +43,8 @@ export const ui = {
     kicker: { es: 'Sobre mí', en: 'About me' },
     title: { es: 'Código limpio, interfaces que se sienten vivas.', en: 'Clean code, interfaces that feel alive.' },
     p1: {
-      es: 'Soy Marcos, Ingeniero Informático (2022 – 2026) y desarrollador de software en SENSIA. Lo que más disfruto es el desarrollo web y de apps: llevar una idea desde la arquitectura hasta un producto rápido, cuidado y agradable de usar.',
-      en: "I'm Marcos, a Computer Engineer (2022 – 2026) and software developer at SENSIA. What I enjoy most is web and app development: taking an idea from architecture all the way to a fast, polished product people enjoy using.",
+      es: 'Soy Marcos, Ingeniero Informático (2022 – 2026) y desarrollador de software en Sensia. Lo que más disfruto es el desarrollo web y de apps: llevar una idea desde la arquitectura hasta un producto rápido, cuidado y agradable de usar.',
+      en: "I'm Marcos, a Computer Engineer (2022 – 2026) and software developer at Sensia. What I enjoy most is web and app development: taking an idea from architecture all the way to a fast, polished product people enjoy using.",
     },
     p2: {
       es: 'Me considero competitivo, ambicioso y trabajador, pero también empático y muy de equipo. Fuera del código: videojuegos y deportes de motor.',
@@ -55,7 +55,7 @@ export const ui = {
     basedIn: { es: 'Desde', en: 'Based in' },
     localTime: { es: 'hora local', en: 'local time' },
     now: { es: 'Ahora mismo', en: 'Right now' },
-    nowText: { es: 'Software Developer · Arquitectura de Sistemas & Next-Design', en: 'Software Developer · Systems Architecture & Next-Design' },
+    nowText: { es: 'Software Developer · Web Panel, Arquitectura de Sistemas y Next-Design', en: 'Software Developer · Web Panel, Systems Architecture and Next-Design' },
     languages: { es: 'Idiomas', en: 'Languages' },
     spanish: { es: 'Español · Nativo', en: 'Spanish · Native' },
     english: { es: 'Inglés · B2 First (Cambridge)', en: 'English · B2 First (Cambridge)' },
@@ -129,26 +129,48 @@ export type Experience = {
 export const experience: Experience[] = [
   {
     role: { es: 'Software Developer', en: 'Software Developer' },
-    org: 'SENSIA',
+    org: 'Sensia',
     period: { es: 'Sep 2026 — Actualidad', en: 'Sep 2026 — Present' },
     current: true,
     kind: 'work',
     desc: {
-      es: 'Equipos de Arquitectura de Sistemas y Next-Design. Diseño, desarrollo e implantación de soluciones software con C++ y tecnologías web. Defino patrones de arquitectura y trabajo en la optimización estructural y el rendimiento continuo de las aplicaciones de la empresa.',
-      en: "Systems Architecture and Next-Design teams. I design, build and ship software solutions with C++ and web technologies, define architecture patterns and work on the structural optimisation and ongoing performance of the company's applications.",
+      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel construyo el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing), y trabajo en servirlo por HTTPS y en llevar el vídeo a WebRTC. En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con C++ y tecnologías web.',
+      en: 'I work across three teams: Web Panel, Systems Architecture and Next-Design. On Web Panel I build the web panel to configure and monitor AI thermal cameras (edge computing), and work on serving it over HTTPS and moving video to WebRTC. On the other two I define architecture patterns and tune application performance with C++ and web technologies.',
     },
-    tags: ['C++', 'HTML', 'CSS', 'JavaScript', 'Software architecture', 'Performance'],
+    tags: ['Web Panel', 'C++', 'JavaScript', 'HTML', 'CSS', 'HTTPS', 'Edge computing'],
+  },
+  {
+    role: { es: 'Participante · Hack Finance 2026', en: 'Participant · Hack Finance 2026' },
+    org: 'BEST UC3M',
+    period: { es: '8 — 11 nov 2026', en: '8 — 11 Nov 2026' },
+    kind: 'award',
+    desc: {
+      es: 'Hackathon de 72 horas en equipo de cinco. Desarrollamos KAIROS, un copiloto que traduce eventos financieros (BCE, petróleo, resultados, divisas) a su impacto en euros sobre la cartera de un inversor particular. Un motor determinista calcula las cifras y un guardián valida cada texto que redacta la IA.',
+      en: "A 72-hour hackathon with a team of five. We built KAIROS, a copilot that translates financial events (ECB decisions, oil, earnings, currencies) into their euro impact on a retail investor's portfolio. A deterministic engine computes every figure and a guardian validates each sentence the AI writes.",
+    },
+    tags: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Claude', 'ElevenLabs'],
   },
   {
     role: { es: 'Prácticas de desarrollo de software', en: 'Software Development Intern' },
-    org: 'SENSIA',
+    org: 'Sensia',
     period: { es: 'Feb 2026 — Jul 2026', en: 'Feb 2026 — Jul 2026' },
     kind: 'work',
     desc: {
-      es: 'Prácticas del segundo cuatrimestre. Perfeccioné e implanté la Wiki corporativa del departamento de Software, el punto central de información sobre todas las áreas, productos y proyectos de la empresa.',
-      en: "Final-semester internship. I refined and rolled out the Software department's corporate wiki, the single source of truth for every area, product and project in the company.",
+      es: 'Implanté con Wiki.js la wiki corporativa del departamento de Software, el punto central de información sobre áreas, productos y proyectos. Desarrollé un servicio web que detecta enlaces rotos en la wiki (Node.js y Express sobre wikijs-cli, con un plan de 41 casos de prueba), base de mi TFG.',
+      en: "I rolled out the Software department's corporate wiki on Wiki.js, the central hub for information on areas, products and projects. I built a web service that detects broken links in the wiki (Node.js and Express on top of wikijs-cli, with a 41-case test plan), which became the basis of my thesis.",
     },
-    tags: ['Wiki', 'Documentation', 'Web'],
+    tags: ['Wiki.js', 'Node.js', 'Express', 'Documentación', 'Testing'],
+  },
+  {
+    role: { es: 'Participante', en: 'Participant' },
+    org: 'BE.HACKATHON',
+    period: { es: 'Abr 2026', en: 'Apr 2026' },
+    kind: 'award',
+    desc: {
+      es: 'Hackathon en el que desarrollé una solución en equipo y contrarreloj, desde la idea hasta un prototipo funcional.',
+      en: 'A hackathon where I built a solution as a team against the clock, from idea to working prototype.',
+    },
+    tags: ['Teamwork', 'Prototyping'],
   },
   {
     role: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
@@ -156,32 +178,21 @@ export const experience: Experience[] = [
     period: { es: '2022 — 2026', en: '2022 — 2026' },
     kind: 'edu',
     desc: {
-      es: 'Desarrollo web y de software, programación orientada a objetos, sistemas operativos y concurrencia, bases de datos, redes y criptografía.',
-      en: 'Web and software development, object-oriented programming, operating systems and concurrency, databases, networking and cryptography.',
+      es: 'Formación en desarrollo de software, programación orientada a objetos, sistemas operativos y concurrencia, bases de datos, redes y criptografía. TFG: «Implantación de un sistema de gestión del conocimiento en el área de software de una scale-up tecnológica».',
+      en: 'Training in software development, object-oriented programming, operating systems and concurrency, databases, networking and cryptography. Thesis: "Implementing a knowledge-management system in the software area of a tech scale-up".',
     },
     tags: ['C', 'C++', 'Python', 'SQL', 'OOP', 'Crypto'],
   },
   {
     role: { es: 'B2 First · Cambridge English', en: 'B2 First · Cambridge English' },
     org: 'Cambridge',
-    period: { es: 'Certificación', en: 'Certification' },
+    period: { es: 'Jun 2023', en: 'Jun 2023' },
     kind: 'award',
     desc: {
       es: 'Certificado oficial de inglés de nivel B2.',
       en: 'Official B2-level English certificate.',
     },
     tags: ['English'],
-  },
-  {
-    role: { es: 'Participante', en: 'Participant' },
-    org: 'BE.HACKATHON',
-    period: { es: 'Hackathon', en: 'Hackathon' },
-    kind: 'award',
-    desc: {
-      es: 'Desarrollo de una solución en equipo y contrarreloj.',
-      en: 'Building a solution as a team, against the clock.',
-    },
-    tags: ['Teamwork', 'Prototyping'],
   },
 ]
 
@@ -194,49 +205,73 @@ export type Project = {
   repo?: string
   private?: boolean
   featured?: boolean
+  /** Real screenshot (webp in public/projects/<id>/). Without it, featured cards show the PhoneMock placeholder. */
+  image?: { src: string; width: number; height: number; alt: T }
   icon: IconKey
   accent: string
 }
 
 export const projects: Project[] = [
   {
+    id: 'kairos',
+    title: 'KAIROS · Hack Finance 2026',
+    desc: {
+      es: 'Copiloto financiero que traduce eventos de mercado (BCE, petróleo, resultados, divisas) a su impacto en euros sobre la cartera de un inversor particular, con rango, nivel de confianza y la traza de cada cifra. Proyecto de equipo (5 personas, 72 h).',
+      en: "Financial copilot that translates market events (ECB decisions, oil, earnings, currencies) into their euro impact on a retail investor's portfolio, with a range, a confidence level and the trace of every figure. Team project (5 people, 72 h).",
+    },
+    highlights: [
+      { es: 'Las cifras las calcula un motor determinista; la IA solo redacta', en: 'A deterministic engine computes every figure; the AI only writes' },
+      { es: 'Un guardián valida cada texto y bloquea recomendaciones', en: 'A guardian validates every text and blocks recommendations' },
+      { es: 'FastAPI + PostgreSQL, React + TypeScript, voz con ElevenLabs', en: 'FastAPI + PostgreSQL, React + TypeScript, voice with ElevenLabs' },
+    ],
+    tags: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Vite', 'Tailwind', 'Claude', 'Docker'],
+    repo: 'https://github.com/marcosrdiaz/kairos',
+    featured: true,
+    image: {
+      src: '/projects/kairos/home.webp', width: 1600, height: 900,
+      alt: { es: 'Pantalla de inicio de KAIROS con la evolución de la cartera, el estado actual, las noticias que más la mueven y el asistente', en: 'KAIROS home screen with portfolio evolution, current status, the news that move it most and the assistant' },
+    },
+    icon: 'trending',
+    accent: '#f5b82e',
+  },
+  {
+    id: 'wiki',
+    title: 'Wiki corporativa · Sensia',
+    desc: {
+      es: 'Implanté con Wiki.js la wiki del departamento de Software de Sensia, punto central de información sobre áreas, productos y proyectos. Desarrollé además un servicio web que detecta enlaces rotos en la wiki, base de mi TFG.',
+      en: "Rolled out the Software department's wiki at Sensia on Wiki.js, the central hub for information on areas, products and projects. I also built a web service that detects broken links in the wiki, the basis of my thesis.",
+    },
+    tags: ['Wiki.js', 'Node.js', 'Express', 'Documentación', 'Testing'],
+    private: true,
+    icon: 'book',
+    accent: '#22d3ee',
+  },
+  {
     id: 'training',
     title: 'Training Tracker App',
     desc: {
-      es: 'App personal de seguimiento de entrenamientos: rutinas, calendario, progresión y estadísticas, logros y amigos.',
-      en: 'Personal workout-tracking app: routines, calendar, progress and stats, achievements and friends.',
+      es: 'App de entrenamiento para registrar cada serie a pantalla completa, con récords personales automáticos y sugerencia de peso según tu histórico. Incluye rutinas, calendario, estadísticas, logros y amigos.',
+      en: 'Workout app that logs every set full-screen, with automatic personal records and weight suggestions based on your history. Includes routines, calendar, stats, achievements and friends.',
     },
     highlights: [
-      { es: 'Modo offline real para el entreno activo', en: 'True offline mode for active workouts' },
-      { es: 'Supabase: Postgres + Auth + Row Level Security', en: 'Supabase: Postgres + Auth + Row Level Security' },
+      { es: 'Funciona offline con SQLite: el entreno activo no depende de la red', en: 'Works offline with SQLite: an active workout never depends on the network' },
+      { es: 'Rutinas compartidas con Row Level Security en Supabase', en: 'Shared routines with Row Level Security on Supabase' },
       { es: 'React Native + Expo (SDK 57)', en: 'React Native + Expo (SDK 57)' },
     ],
-    tags: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Postgres', 'Offline-first'],
+    tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Supabase', 'PostgreSQL', 'Offline-first'],
     private: true,
     featured: true,
     icon: 'dumbbell',
     accent: '#3b82f6',
   },
   {
-    id: 'wiki',
-    title: 'Wiki corporativa · SENSIA',
-    desc: {
-      es: 'Perfeccioné e implanté la Wiki del departamento de Software: el punto central de información sobre las áreas, productos y proyectos de SENSIA.',
-      en: "Refined and rolled out the Software department's wiki: the central hub for information on SENSIA's areas, products and projects.",
-    },
-    tags: ['Web', 'Knowledge base', 'UX'],
-    private: true,
-    icon: 'book',
-    accent: '#22d3ee',
-  },
-  {
     id: 'bets',
     title: 'Web de apuestas cifrada',
     desc: {
-      es: 'Web de apuestas deportivas con varias capas de cifrado: SHA-256 y bcrypt para contraseñas, y AES y RSA para proteger datos y comunicaciones.',
-      en: 'Sports-betting site with layered cryptography: SHA-256 and bcrypt for passwords, AES and RSA to protect data and communications.',
+      es: 'Plataforma web de apuestas deportivas con criptografía aplicada: derivación de claves con Scrypt, cifrado AES-GCM de datos sensibles, firma digital RSA y certificados X.509 gestionados con OpenSSL. Backend en Flask.',
+      en: 'Sports-betting web platform with applied cryptography: Scrypt key derivation, AES-GCM encryption of sensitive data, RSA digital signatures and X.509 certificates managed with OpenSSL. Flask backend.',
     },
-    tags: ['JavaScript', 'AES', 'RSA', 'bcrypt', 'SHA-256'],
+    tags: ['Python', 'Flask', 'AES-GCM', 'RSA', 'Scrypt', 'OpenSSL'],
     repo: 'https://github.com/marcosrdiaz/Web-de-apuestas-cifrada',
     icon: 'lock',
     accent: '#6366f1',
@@ -245,22 +280,22 @@ export const projects: Project[] = [
     id: 'aeki',
     title: 'AEKI · Prototipo para tiendas',
     desc: {
-      es: 'App web/móvil que mejora la experiencia de compra en tienda física con gestos, voz y NFC. Integración de APIs, rutas y arquitectura cliente-servidor.',
-      en: 'Web/mobile app that improves the in-store shopping experience with gestures, voice and NFC. API integration, routing and client-server architecture.',
+      es: 'Prototipo para mejorar la compra en tienda física: catálogo y carrito controlables por voz, gestos con los sensores del móvil y NFC, más un mapa interactivo del almacén con rutas calculadas con A*. Tiempo real con Socket.IO sobre Node.js y Express.',
+      en: 'Prototype to improve in-store shopping: catalogue and cart controlled by voice, phone-sensor gestures and NFC, plus an interactive warehouse map with A* routes. Real time with Socket.IO on Node.js and Express.',
     },
-    tags: ['JavaScript', 'NFC', 'Voice', 'Gestures', 'Node.js'],
+    tags: ['JavaScript', 'Node.js', 'Express', 'Socket.IO', 'Leaflet', 'Web NFC'],
     repo: 'https://github.com/marcosrdiaz/AEKI-Prototipo-interactivo-para-tiendas-fisicas',
     icon: 'shopping',
     accent: '#0ea5e9',
   },
   {
     id: 'xmas',
-    title: 'Web interactiva de Navidad',
+    title: 'Santa Tracker · Web de Navidad',
     desc: {
-      es: 'Experiencia navideña con animaciones, música, efectos visuales y minijuegos, hecha con HTML, CSS y JavaScript.',
-      en: 'Festive experience with animations, music, visual effects and mini-games, built with HTML, CSS and JavaScript.',
+      es: 'Sitio navideño con registro de usuarios, cartas a Papá Noel, reserva de viajes, juegos, recetas, villancicos y un mapa con la ruta de Papá Noel (Leaflet). Prototipado en Figma, datos en LocalStorage y atención a contraste y usabilidad.',
+      en: "Christmas site with user sign-up, letters to Santa, trip booking, games, recipes, carols and a map with Santa's route (Leaflet). Prototyped in Figma, data in LocalStorage, with attention to contrast and usability.",
     },
-    tags: ['HTML', 'CSS', 'JavaScript', 'Animations'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'Figma', 'LocalStorage'],
     repo: 'https://github.com/marcosrdiaz/Web-Interactiva-Navidad',
     icon: 'snowflake',
     accent: '#60a5fa',
@@ -270,15 +305,19 @@ export const projects: Project[] = [
 export const skillGroups: { title: T; items: [string, string][] }[] = [
   {
     title: { es: 'Lenguajes', en: 'Languages' },
-    items: [['c', 'C'], ['cpp', 'C++'], ['py', 'Python'], ['js', 'JavaScript'], ['ts', 'TypeScript'], ['postgres', 'SQL']],
+    items: [['c', 'C'], ['cpp', 'C++'], ['py', 'Python'], ['js', 'JavaScript'], ['ts', 'TypeScript'], ['bash', 'Bash / PowerShell'], ['postgres', 'SQL']],
   },
   {
-    title: { es: 'Web & apps', en: 'Web & apps' },
-    items: [['html', 'HTML5'], ['css', 'CSS3'], ['react', 'React / React Native'], ['nodejs', 'Node.js'], ['flask', 'Flask'], ['supabase', 'Supabase'], ['mongodb', 'MongoDB']],
+    title: { es: 'Frontend y apps', en: 'Frontend & apps' },
+    items: [['html', 'HTML5'], ['css', 'CSS3'], ['react', 'React / React Native'], ['vue', 'Vue'], ['vite', 'Vite'], ['tailwind', 'Tailwind CSS'], ['expo', 'Expo']],
+  },
+  {
+    title: { es: 'Backend y datos', en: 'Backend & data' },
+    items: [['nodejs', 'Node.js'], ['express', 'Express'], ['fastapi', 'FastAPI'], ['flask', 'Flask'], ['postgres', 'PostgreSQL'], ['sqlite', 'SQLite'], ['mongodb', 'MongoDB'], ['supabase', 'Supabase']],
   },
   {
     title: { es: 'Herramientas', en: 'Tooling' },
-    items: [['git', 'Git'], ['github', 'GitHub'], ['docker', 'Docker'], ['figma', 'Figma'], ['vscode', 'VS Code'], ['clion', 'CLion'], ['cmake', 'CMake'], ['linux', 'Linux'], ['kali', 'Kali Linux']],
+    items: [['git', 'Git'], ['github', 'GitHub'], ['docker', 'Docker'], ['figma', 'Figma'], ['vscode', 'VS Code'], ['clion', 'CLion'], ['cmake', 'CMake'], ['linux', 'Linux'], ['kali', 'Kali Linux'], ['wikijs', 'Wiki.js']],
   },
 ]
 

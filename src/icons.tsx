@@ -1,12 +1,13 @@
 import {
   Award, BookOpen, Briefcase, Cpu, Dumbbell, Gamepad2, GraduationCap, Globe, Handshake,
   Lightbulb, Lock, MessageCircle, Puzzle, RefreshCw, Rocket, ShoppingBag, Smartphone,
-  Snowflake, Swords, Terminal, Timer, Trophy, Zap, type LucideIcon,
+  Snowflake, Swords, Terminal, Timer, TrendingUp, Trophy, Zap, type LucideIcon,
 } from 'lucide-react'
 
 /** Icon keys used in data.ts, mapped to lucide components (single icon set for the UI). */
 export const iconMap = {
   dumbbell: Dumbbell,
+  trending: TrendingUp,
   book: BookOpen,
   lock: Lock,
   shopping: ShoppingBag,

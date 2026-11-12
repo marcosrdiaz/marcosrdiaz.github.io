@@ -37,7 +37,7 @@ function PhoneMock() {
   )
 }
 
-function ProjectCard({ p, index }: { p: Project; index: number }) {
+function ProjectCard({ p, index, span }: { p: Project; index: number; span: string }) {
   const { t } = useLang()
   const ref = useRef<HTMLDivElement>(null)
   const rx = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 })
@@ -63,7 +63,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      className={`[perspective:1200px] ${p.featured ? 'md:col-span-2' : ''}`}
+      className={`[perspective:1200px] ${span}`}
     >
       <Wrapper
         ref={ref as never}
@@ -74,7 +74,7 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
         className="group glass relative flex h-full flex-col overflow-hidden rounded-3xl p-6 transition-colors hover:border-blue-400/30"
       >
         <motion.div style={{ background: glow }} className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <div className={`relative flex h-full gap-6 ${p.featured ? 'flex-col sm:flex-row sm:items-center' : 'flex-col'}`} style={{ transform: 'translateZ(30px)' }}>
+        <div className={`relative flex h-full gap-6 ${p.featured ? 'flex-col lg:flex-row lg:items-center' : 'flex-col'}`} style={{ transform: 'translateZ(30px)' }}>
           <div className="flex flex-1 flex-col">
             <div className="flex items-start justify-between gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
@@ -99,7 +99,17 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
             )}
             <div className="mt-5 flex flex-wrap gap-1.5">{p.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
           </div>
-          {p.featured && <PhoneMock />}
+          {p.featured && (p.image ? (
+            <img
+              src={p.image.src}
+              width={p.image.width}
+              height={p.image.height}
+              alt={t(p.image.alt)}
+              loading="lazy"
+              decoding="async"
+              className="w-full rounded-xl border border-white/10 shadow-2xl shadow-black/40 lg:w-[48%] lg:shrink-0"
+            />
+          ) : <PhoneMock />)}
         </div>
       </Wrapper>
     </motion.div>
@@ -110,8 +120,13 @@ export default function Projects() {
   const { t } = useLang()
   return (
     <Section id="projects" kicker={t(ui.projects.kicker)} title={t(ui.projects.title)}>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {projects.map((p, i) => <ProjectCard key={p.id} p={p} index={i} />)}
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-6">
+        {projects.map((p, i) => {
+          // featured cards take 4/6; the next two regular cards fill the row (2/6), the rest share rows in halves
+          const regular = projects.slice(0, i).filter(x => !x.featured).length
+          const span = p.featured ? 'md:col-span-4' : regular < 2 ? 'md:col-span-2' : 'md:col-span-3'
+          return <ProjectCard key={p.id} p={p} index={i} span={span} />
+        })}
       </div>
       <div className="mt-10 text-center">
         <a href={profile.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 font-mono text-sm text-slate-400 transition hover:text-white">
