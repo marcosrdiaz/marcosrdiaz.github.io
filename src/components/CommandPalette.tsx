@@ -1,12 +1,14 @@
-import { Briefcase, Copy, FileText, FolderGit2, GitBranch, Languages, Layers, Contact, Mail, Search, Sparkles, Timer, User, type LucideIcon } from 'lucide-react'
+import type { ComponentType } from 'react'
+import { Briefcase, Copy, FileText, FolderGit2, Languages, Layers, Mail, Search, Sparkles, Timer, User } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { profile, ui } from '../data'
 import { useLang } from '../i18n'
+import { GithubIcon, LinkedinIcon } from '../icons'
 import { useCopyEmail } from './Contact'
 import { sections } from './Navbar'
 
-type Cmd = { id: string; label: string; hint: string; icon: LucideIcon; run: () => void }
+type Cmd = { id: string; label: string; hint: string; icon: ComponentType<{ size?: number; strokeWidth?: number; className?: string }>; run: () => void }
 
 export default function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const { t, toggle } = useLang()
@@ -28,13 +30,13 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
 
   const cmds = useMemo<Cmd[]>(() => {
     const go = (id: string) => () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    const icons: Record<string, LucideIcon> = { about: User, experience: Briefcase, projects: FolderGit2, skills: Layers, fun: Sparkles, contact: Mail }
+    const icons: Record<string, Cmd['icon']> = { about: User, experience: Briefcase, projects: FolderGit2, skills: Layers, fun: Sparkles, contact: Mail }
     return [
       ...sections.map(id => ({ id, label: `${t(ui.palette.goTo)} ${t(ui.nav[id])}`, hint: '↵', icon: icons[id], run: go(id) })),
       { id: 'copy', label: t(ui.contact.copy), hint: profile.email, icon: Copy, run: copy },
       { id: 'cv', label: t(ui.hero.ctaCv), hint: 'PDF', icon: FileText, run: () => { const a = document.createElement('a'); a.href = profile.cv; a.download = ''; a.click() } },
-      { id: 'gh', label: 'GitHub', hint: profile.githubUser, icon: GitBranch, run: () => window.open(profile.github, '_blank', 'noopener') },
-      { id: 'li', label: 'LinkedIn', hint: '↗', icon: Contact, run: () => window.open(profile.linkedin, '_blank', 'noopener') },
+      { id: 'gh', label: 'GitHub', hint: profile.githubUser, icon: GithubIcon, run: () => window.open(profile.github, '_blank', 'noopener') },
+      { id: 'li', label: 'LinkedIn', hint: '↗', icon: LinkedinIcon, run: () => window.open(profile.linkedin, '_blank', 'noopener') },
       { id: 'lang', label: t(ui.palette.lang), hint: 'ES / EN', icon: Languages, run: toggle },
       { id: 'race', label: t(ui.palette.race), hint: 'F1', icon: Timer, run: () => window.dispatchEvent(new Event('start-race')) },
     ]

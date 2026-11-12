@@ -1,4 +1,5 @@
-import { ArrowRight, Download, GitBranch, Contact } from 'lucide-react'
+import { ArrowRight, Download } from 'lucide-react'
+import { GithubIcon, LinkedinIcon } from '../icons'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { animate, stagger } from 'animejs'
@@ -136,10 +137,10 @@ export default function Hero() {
               {t(ui.hero.ctaCv)} <Download size={16} aria-hidden />
             </Magnetic>
             <Magnetic href={profile.github} external className="glass text-white hover:border-blue-400/40" >
-              <GitBranch size={16} aria-hidden /> GitHub
+              <GithubIcon size={16} /> GitHub
             </Magnetic>
             <Magnetic href={profile.linkedin} external className="glass text-white hover:border-blue-400/40">
-              <Contact size={16} aria-hidden /> LinkedIn
+              <LinkedinIcon size={16} /> LinkedIn
             </Magnetic>
           </motion.div>
         </div>
@@ -163,7 +164,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            className="glass absolute -left-10 top-8 hidden sm:block rounded-2xl px-3 py-2 text-xs text-white"
+            className="glass absolute -top-8 left-2 hidden rounded-2xl px-3 py-2 text-xs whitespace-nowrap text-white sm:block"
           >
             <span className="font-mono">React · TypeScript · C++</span>
           </motion.div>
