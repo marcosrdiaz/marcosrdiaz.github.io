@@ -1,10 +1,11 @@
+import { Award, Briefcase, GraduationCap } from 'lucide-react'
 import { useRef } from 'react'
 import { motion, useScroll, useSpring } from 'motion/react'
 import { experience, ui } from '../data'
 import { useLang } from '../i18n'
 import { Section, Tag, spotlightMove } from './ui'
 
-const icons = { work: '💼', edu: '🎓', award: '🏅' }
+const icons = { work: Briefcase, edu: GraduationCap, award: Award }
 
 export default function Experience() {
   const { t } = useLang()
@@ -31,7 +32,7 @@ export default function Experience() {
                   transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                   className="absolute top-5 left-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full border border-blue-400/40 bg-ink-2 text-lg md:left-1/2"
                 >
-                  {icons[e.kind]}
+                  {(() => { const K = icons[e.kind]; return <K size={18} strokeWidth={1.6} className="text-blue-200" aria-hidden /> })()}
                   {e.current && <span className="absolute inset-0 animate-ping rounded-full border border-brand-2/60" />}
                 </motion.span>
 

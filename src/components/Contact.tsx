@@ -1,3 +1,4 @@
+import { Copy, FileText, GitBranch, Contact as ContactIcon } from 'lucide-react'
 import { motion } from 'motion/react'
 import { profile, ui } from '../data'
 import { useLang } from '../i18n'
@@ -37,10 +38,10 @@ export default function Contact() {
         </a>
 
         <div className="relative mt-10 flex flex-wrap justify-center gap-3">
-          <Magnetic onClick={copy} className="bg-brand text-white shadow-lg shadow-blue-500/30 hover:bg-blue-500">📋 {t(ui.contact.copy)}</Magnetic>
-          <Magnetic href={profile.linkedin} external className="glass text-white hover:border-blue-400/40">LinkedIn ↗</Magnetic>
-          <Magnetic href={profile.github} external className="glass text-white hover:border-blue-400/40">GitHub ↗</Magnetic>
-          <Magnetic href={profile.cv} download className="glass text-white hover:border-blue-400/40">CV ↓</Magnetic>
+          <Magnetic onClick={copy} className="bg-brand text-white shadow-lg shadow-blue-500/30 hover:bg-blue-500"><Copy size={16} aria-hidden /> {t(ui.contact.copy)}</Magnetic>
+          <Magnetic href={profile.linkedin} external className="glass text-white hover:border-blue-400/40"><ContactIcon size={16} aria-hidden /> LinkedIn</Magnetic>
+          <Magnetic href={profile.github} external className="glass text-white hover:border-blue-400/40"><GitBranch size={16} aria-hidden /> GitHub</Magnetic>
+          <Magnetic href={profile.cv} download className="glass text-white hover:border-blue-400/40"><FileText size={16} aria-hidden /> CV</Magnetic>
         </div>
       </motion.div>
     </Section>

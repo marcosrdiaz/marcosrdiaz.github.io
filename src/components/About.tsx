@@ -1,3 +1,4 @@
+import { Cpu, Globe, Smartphone, Zap } from 'lucide-react'
 import { useEffect, useState, type ReactNode } from 'react'
 import { motion } from 'motion/react'
 import { profile, ui } from '../data'
@@ -54,7 +55,7 @@ export default function About() {
         <Cell className="md:col-span-2" delay={0.05}>
           <p className="font-mono text-xs tracking-widest text-slate-500 uppercase">{t(ui.about.focus)}</p>
           <p className="mt-3 font-display text-2xl leading-tight font-bold text-gradient">{t(ui.about.focusText)}</p>
-          <div className="mt-4 flex gap-2 text-2xl"><span>🌐</span><span>📱</span><span>⚙️</span></div>
+          <div className="mt-4 flex gap-3 text-brand-2"><Globe size={24} strokeWidth={1.5} aria-hidden /><Smartphone size={24} strokeWidth={1.5} aria-hidden /><Cpu size={24} strokeWidth={1.5} aria-hidden /></div>
         </Cell>
 
         <Cell className="md:col-span-2" delay={0.1}>
@@ -87,7 +88,7 @@ export default function About() {
         </Cell>
 
         <Cell className="md:col-span-1 flex flex-col items-center justify-center text-center" delay={0.15}>
-          <span className="text-3xl">⚡</span>
+          <Zap size={28} strokeWidth={1.5} className="text-brand-2" aria-hidden />
           <p className="mt-2 text-[11px] text-slate-500">{t(ui.about.hackathon)}</p>
           <p className="font-display text-sm font-bold text-white">BE.HACKATHON</p>
         </Cell>

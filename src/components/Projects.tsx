@@ -1,7 +1,9 @@
+import { ArrowUpRight, Flame, Lock, Trophy, Users } from 'lucide-react'
 import { useRef, type MouseEvent } from 'react'
 import { motion, useMotionTemplate, useMotionValue, useSpring } from 'motion/react'
 import { profile, projects, ui, type Project } from '../data'
 import { useLang } from '../i18n'
+import { Icon } from '../icons'
 import { Section, Tag } from './ui'
 
 /** Mini animated "stats" visual for the featured app card. */
@@ -25,9 +27,9 @@ function PhoneMock() {
         ))}
       </div>
       <div className="mt-3 space-y-1.5">
-        {['🔥 7', '🏆 12', '👥 5'].map(s => (
-          <div key={s} className="flex items-center justify-between rounded-lg bg-white/5 px-2 py-1 text-[10px] text-slate-300">
-            <span>{s.split(' ')[0]}</span><span className="font-mono">{s.split(' ')[1]}</span>
+        {([[Flame, '7'], [Trophy, '12'], [Users, '5']] as const).map(([I, n]) => (
+          <div key={n} className="flex items-center justify-between rounded-lg bg-white/5 px-2 py-1 text-[10px] text-slate-300">
+            <I size={12} strokeWidth={1.6} aria-hidden /><span className="font-mono">{n}</span>
           </div>
         ))}
       </div>
@@ -76,13 +78,13 @@ function ProjectCard({ p, index }: { p: Project; index: number }) {
           <div className="flex flex-1 flex-col">
             <div className="flex items-start justify-between gap-3">
               <span className="flex h-12 w-12 items-center justify-center rounded-2xl text-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
-                {p.icon}
+                <Icon name={p.icon} size={24} style={{ color: p.accent }} />
               </span>
               {p.private ? (
-                <span className="rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-400 ring-1 ring-white/10">🔒 {t(ui.projects.private)}</span>
+                <span className="flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-400 ring-1 ring-white/10"><Lock size={12} aria-hidden /> {t(ui.projects.private)}</span>
               ) : (
                 <span className="flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10 transition group-hover:bg-brand group-hover:text-white">
-                  {t(ui.projects.code)} <span className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span>
+                  {t(ui.projects.code)} <ArrowUpRight size={12} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden />
                 </span>
               )}
             </div>

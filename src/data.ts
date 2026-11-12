@@ -1,3 +1,5 @@
+import type { IconKey } from './icons'
+
 export type Lang = 'es' | 'en'
 export type T = Record<Lang, string>
 
@@ -88,19 +90,19 @@ export const ui = {
     start: { es: 'Empezar', en: 'Start' },
     wait: { es: 'Espera…', en: 'Wait…' },
     go: { es: '¡YA!', en: 'GO!' },
-    jump: { es: '¡Salida en falso! 🚩', en: 'Jump start! 🚩' },
+    jump: { es: '¡Salida en falso!', en: 'Jump start!' },
     again: { es: 'Otra vez', en: 'Try again' },
     best: { es: 'Mejor', en: 'Best' },
-    verdictPro: { es: 'Nivel piloto de F1 🏆', en: 'F1 driver level 🏆' },
-    verdictGood: { es: 'Muy buenos reflejos 🔥', en: 'Great reflexes 🔥' },
-    verdictOk: { es: 'Nada mal, ¡sigue entrenando! 🏎️', en: 'Not bad, keep training! 🏎️' },
+    verdictPro: { es: 'Nivel piloto de F1', en: 'F1 driver level' },
+    verdictGood: { es: 'Muy buenos reflejos', en: 'Great reflexes' },
+    verdictOk: { es: 'Nada mal, ¡sigue entrenando!', en: 'Not bad, keep training!' },
   },
   contact: {
     kicker: { es: 'Contacto', en: 'Contact' },
     title: { es: '¿Hablamos?', en: "Let's talk" },
     text: { es: 'Siempre abierto a conocer gente, ideas y proyectos interesantes. Escríbeme y te respondo.', en: "Always happy to meet people and hear about interesting ideas and projects. Drop me a line." },
     copy: { es: 'Copiar email', en: 'Copy email' },
-    copied: { es: 'Email copiado 📋', en: 'Email copied 📋' },
+    copied: { es: 'Email copiado', en: 'Email copied' },
   },
   footer: {
     made: { es: 'Hecho con React, Motion y anime.js', en: 'Built with React, Motion and anime.js' },
@@ -113,7 +115,7 @@ export const ui = {
     lang: { es: 'Switch to English', en: 'Cambiar a español' },
     race: { es: 'Arrancar el test de reacción F1', en: 'Start the F1 reaction test' },
   },
-  konami: { es: '🏁 ¡Código Konami! Modo carrera activado', en: '🏁 Konami code! Race mode on' },
+  konami: { es: '¡Código Konami! Modo carrera activado', en: 'Konami code! Race mode on' },
 } satisfies Record<string, unknown>
 
 export type Experience = {
@@ -194,7 +196,7 @@ export type Project = {
   repo?: string
   private?: boolean
   featured?: boolean
-  icon: string
+  icon: IconKey
   accent: string
 }
 
@@ -214,7 +216,7 @@ export const projects: Project[] = [
     tags: ['React Native', 'Expo', 'TypeScript', 'Supabase', 'Postgres', 'Offline-first'],
     private: true,
     featured: true,
-    icon: '🏋️',
+    icon: 'dumbbell',
     accent: '#3b82f6',
   },
   {
@@ -226,7 +228,7 @@ export const projects: Project[] = [
     },
     tags: ['Web', 'Knowledge base', 'UX'],
     private: true,
-    icon: '📚',
+    icon: 'book',
     accent: '#22d3ee',
   },
   {
@@ -238,7 +240,7 @@ export const projects: Project[] = [
     },
     tags: ['JavaScript', 'AES', 'RSA', 'bcrypt', 'SHA-256'],
     repo: 'https://github.com/marcosrdiaz/Web-de-apuestas-cifrada',
-    icon: '🔐',
+    icon: 'lock',
     accent: '#6366f1',
   },
   {
@@ -250,7 +252,7 @@ export const projects: Project[] = [
     },
     tags: ['JavaScript', 'NFC', 'Voice', 'Gestures', 'Node.js'],
     repo: 'https://github.com/marcosrdiaz/AEKI-Prototipo-interactivo-para-tiendas-fisicas',
-    icon: '🛍️',
+    icon: 'shopping',
     accent: '#0ea5e9',
   },
   {
@@ -262,7 +264,7 @@ export const projects: Project[] = [
     },
     tags: ['HTML', 'CSS', 'JavaScript', 'Animations'],
     repo: 'https://github.com/marcosrdiaz/Web-Interactiva-Navidad',
-    icon: '🎄',
+    icon: 'snowflake',
     accent: '#60a5fa',
   },
 ]
@@ -282,28 +284,28 @@ export const skillGroups: { title: T; items: [string, string][] }[] = [
   },
 ]
 
-export const softSkills: T[] = [
-  { es: '🤝 Trabajo en equipo', en: '🤝 Teamwork' },
-  { es: '🗣️ Comunicación empática', en: '🗣️ Empathetic communication' },
-  { es: '🧩 Resolución de problemas', en: '🧩 Problem solving' },
-  { es: '🏁 Competitividad sana', en: '🏁 Healthy competitiveness' },
-  { es: '🚀 Ambición y ganas de aprender', en: '🚀 Ambition and eagerness to learn' },
-  { es: '🔄 Adaptabilidad', en: '🔄 Adaptability' },
+export const softSkills: { icon: IconKey; label: T }[] = [
+  { icon: 'handshake', label: { es: 'Trabajo en equipo', en: 'Teamwork' } },
+  { icon: 'message', label: { es: 'Comunicación empática', en: 'Empathetic communication' } },
+  { icon: 'puzzle', label: { es: 'Resolución de problemas', en: 'Problem solving' } },
+  { icon: 'swords', label: { es: 'Competitividad sana', en: 'Healthy competitiveness' } },
+  { icon: 'rocket', label: { es: 'Ambición y ganas de aprender', en: 'Ambition and eagerness to learn' } },
+  { icon: 'refresh', label: { es: 'Adaptabilidad', en: 'Adaptability' } },
 ]
 
-export const funFacts: { icon: string; front: T; back: T }[] = [
+export const funFacts: { icon: IconKey; front: T; back: T }[] = [
   {
-    icon: '💻',
+    icon: 'code',
     front: { es: 'Programador', en: 'Developer' },
     back: { es: 'Me encanta experimentar con nuevos lenguajes y frameworks por pura diversión.', en: 'I love experimenting with new languages and frameworks just for fun.' },
   },
   {
-    icon: '🎮',
+    icon: 'gamepad',
     front: { es: 'Gamer', en: 'Gamer' },
     back: { es: 'Los juegos competitivos me enseñan lógica, estrategia y a decidir bajo presión.', en: 'Competitive games teach me logic, strategy and deciding under pressure.' },
   },
   {
-    icon: '🏎️',
+    icon: 'engine',
     front: { es: 'Motor', en: 'Motorsport' },
     back: { es: 'Sigo la tecnología del motor; su obsesión por la precisión y el rendimiento me inspira al programar.', en: "I follow motorsport tech; its obsession with precision and performance inspires how I code." },
   },

@@ -1,3 +1,4 @@
+import { Briefcase, Copy, FileText, FolderGit2, GitBranch, Languages, Layers, Contact, Mail, Search, Sparkles, Timer, User, type LucideIcon } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { profile, ui } from '../data'
@@ -5,7 +6,7 @@ import { useLang } from '../i18n'
 import { useCopyEmail } from './Contact'
 import { sections } from './Navbar'
 
-type Cmd = { id: string; label: string; hint: string; icon: string; run: () => void }
+type Cmd = { id: string; label: string; hint: string; icon: LucideIcon; run: () => void }
 
 export default function CommandPalette({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => void }) {
   const { t, toggle } = useLang()
@@ -27,15 +28,15 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
 
   const cmds = useMemo<Cmd[]>(() => {
     const go = (id: string) => () => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    const icons: Record<string, string> = { about: '👋', experience: '💼', projects: '🚀', skills: '🧰', fun: '🎲', contact: '✉️' }
+    const icons: Record<string, LucideIcon> = { about: User, experience: Briefcase, projects: FolderGit2, skills: Layers, fun: Sparkles, contact: Mail }
     return [
       ...sections.map(id => ({ id, label: `${t(ui.palette.goTo)} ${t(ui.nav[id])}`, hint: '↵', icon: icons[id], run: go(id) })),
-      { id: 'copy', label: t(ui.contact.copy), hint: profile.email, icon: '📋', run: copy },
-      { id: 'cv', label: t(ui.hero.ctaCv), hint: 'PDF', icon: '📄', run: () => { const a = document.createElement('a'); a.href = profile.cv; a.download = ''; a.click() } },
-      { id: 'gh', label: 'GitHub', hint: profile.githubUser, icon: '🐙', run: () => window.open(profile.github, '_blank', 'noopener') },
-      { id: 'li', label: 'LinkedIn', hint: '↗', icon: '💼', run: () => window.open(profile.linkedin, '_blank', 'noopener') },
-      { id: 'lang', label: t(ui.palette.lang), hint: 'ES / EN', icon: '🌍', run: toggle },
-      { id: 'race', label: t(ui.palette.race), hint: '🏁', icon: '🏎️', run: () => window.dispatchEvent(new Event('start-race')) },
+      { id: 'copy', label: t(ui.contact.copy), hint: profile.email, icon: Copy, run: copy },
+      { id: 'cv', label: t(ui.hero.ctaCv), hint: 'PDF', icon: FileText, run: () => { const a = document.createElement('a'); a.href = profile.cv; a.download = ''; a.click() } },
+      { id: 'gh', label: 'GitHub', hint: profile.githubUser, icon: GitBranch, run: () => window.open(profile.github, '_blank', 'noopener') },
+      { id: 'li', label: 'LinkedIn', hint: '↗', icon: Contact, run: () => window.open(profile.linkedin, '_blank', 'noopener') },
+      { id: 'lang', label: t(ui.palette.lang), hint: 'ES / EN', icon: Languages, run: toggle },
+      { id: 'race', label: t(ui.palette.race), hint: 'F1', icon: Timer, run: () => window.dispatchEvent(new Event('start-race')) },
     ]
   }, [t, toggle, copy])
 
@@ -58,7 +59,7 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
             aria-modal="true"
           >
             <div className="flex items-center gap-3 border-b border-white/10 px-4">
-              <span className="text-slate-500">⌕</span>
+              <Search size={16} className="text-slate-500" aria-hidden />
               <input
                 ref={inputRef}
                 value={q}
@@ -83,7 +84,7 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
                     className={`relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm ${i === sel ? 'text-white' : 'text-slate-300'}`}
                   >
                     {i === sel && <motion.span layoutId="cmd-sel" className="absolute inset-0 rounded-xl bg-blue-500/15 ring-1 ring-blue-400/25" transition={{ type: 'spring', stiffness: 500, damping: 35 }} />}
-                    <span className="relative">{c.icon}</span>
+                    <c.icon size={16} strokeWidth={1.6} className="relative text-brand-2" aria-hidden />
                     <span className="relative flex-1">{c.label}</span>
                     <span className="relative truncate font-mono text-[11px] text-slate-500">{c.hint}</span>
                   </button>

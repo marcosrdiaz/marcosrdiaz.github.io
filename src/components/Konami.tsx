@@ -6,6 +6,16 @@ import { useToast } from '../toast'
 
 const CODE = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a']
 
+/** Simple single-seater silhouette, facing right. */
+const CAR_SVG = `<svg viewBox="0 0 160 48" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <path d="M6 30h26l10-12h30l8 8h22l14-4 14 4v8H6z" fill="#ef4444"/>
+  <path d="M60 18l8-6h14l6 6z" fill="#fecaca"/>
+  <rect x="2" y="14" width="8" height="18" rx="1" fill="#facc15"/>
+  <rect x="140" y="26" width="16" height="4" rx="1" fill="#facc15"/>
+  <circle cx="38" cy="36" r="9" fill="#0a1128" stroke="#e2e8f0" stroke-width="2"/>
+  <circle cx="122" cy="36" r="9" fill="#0a1128" stroke="#e2e8f0" stroke-width="2"/>
+</svg>`
+
 /** ↑↑↓↓←→←→BA toggles "race mode": red/yellow theme, a car crossing the screen and a burst of flags. */
 export default function Konami() {
   const { t } = useLang()
@@ -21,15 +31,17 @@ export default function Konami() {
       const root = layer.current
       root.innerHTML = ''
       const car = document.createElement('div')
-      car.textContent = '🏎️'
-      car.style.cssText = 'position:absolute;top:55%;left:0;font-size:72px;transform:scaleX(-1)'
+      car.innerHTML = CAR_SVG
+      car.style.cssText = 'position:absolute;top:55%;left:0;width:150px'
       root.appendChild(car)
-      animate(car, { x: [-120, window.innerWidth + 120], duration: 1400, ease: 'inQuad', onComplete: () => car.remove() })
+      animate(car, { x: [-200, window.innerWidth + 200], duration: 1400, ease: 'inQuad', onComplete: () => car.remove() })
 
       const flags = Array.from({ length: 28 }, () => {
         const f = document.createElement('span')
-        f.textContent = Math.random() > 0.5 ? '🏁' : '🏆'
-        f.style.cssText = `position:absolute;left:50%;top:50%;font-size:${20 + Math.random() * 22}px`
+        const w = 22 + Math.random() * 22
+        f.style.cssText = `position:absolute;left:50%;top:50%;width:${w}px;height:${w * 0.7}px;border:1px solid #fff`
+        f.className = 'checkered'
+        f.style.backgroundSize = `${w / 4}px ${w / 4}px`
         root.appendChild(f)
         return f
       })

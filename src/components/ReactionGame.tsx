@@ -1,3 +1,4 @@
+import { Flag } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs'
 import { ui } from '../data'
@@ -59,7 +60,7 @@ export default function ReactionGame() {
     <div ref={rootRef} id="race" className="glass relative overflow-hidden rounded-3xl p-6">
       <div className="checkered absolute inset-x-0 top-0 h-2 opacity-60" />
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h3 className="font-display text-xl font-semibold text-white">🏁 {t(ui.game.title)}</h3>
+        <h3 className="flex items-center gap-2 font-display text-xl font-semibold text-white"><Flag size={20} className="text-brand-2" aria-hidden /> {t(ui.game.title)}</h3>
         {best && <span className="font-mono text-xs text-slate-400">{t(ui.game.best)}: <span className="text-brand-2">{best} ms</span></span>}
       </div>
       <p className="mt-1 text-sm text-slate-400">{t(ui.game.intro)}</p>

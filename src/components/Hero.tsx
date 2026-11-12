@@ -1,3 +1,4 @@
+import { ArrowRight, Download, GitBranch, Contact } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { animate, stagger } from 'animejs'
@@ -129,16 +130,16 @@ export default function Hero() {
             className="mt-9 flex flex-wrap justify-center gap-3 lg:justify-start"
           >
             <Magnetic href="#projects" className="bg-brand text-white shadow-lg shadow-blue-500/30 hover:bg-blue-500">
-              {t(ui.hero.ctaProjects)} <span aria-hidden>→</span>
+              {t(ui.hero.ctaProjects)} <ArrowRight size={16} aria-hidden />
             </Magnetic>
             <Magnetic href={profile.cv} download className="glass text-white hover:border-blue-400/40">
-              {t(ui.hero.ctaCv)} <span aria-hidden>↓</span>
+              {t(ui.hero.ctaCv)} <Download size={16} aria-hidden />
             </Magnetic>
             <Magnetic href={profile.github} external className="glass text-white hover:border-blue-400/40" >
-              GitHub
+              <GitBranch size={16} aria-hidden /> GitHub
             </Magnetic>
             <Magnetic href={profile.linkedin} external className="glass text-white hover:border-blue-400/40">
-              LinkedIn
+              <Contact size={16} aria-hidden /> LinkedIn
             </Magnetic>
           </motion.div>
         </div>
@@ -164,7 +165,7 @@ export default function Hero() {
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
             className="glass absolute -left-10 top-8 hidden sm:block rounded-2xl px-3 py-2 text-xs text-white"
           >
-            🏎️ C++ · React
+            <span className="font-mono">React · TypeScript · C++</span>
           </motion.div>
         </motion.div>
       </motion.div>

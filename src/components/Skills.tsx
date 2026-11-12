@@ -1,9 +1,10 @@
 import { motion } from 'motion/react'
 import { skillGroups, softSkills, ui } from '../data'
 import { useLang } from '../i18n'
+import { Icon } from '../icons'
 import { Reveal, Section, spotlightMove } from './ui'
 
-const icon = (id: string) => `https://skillicons.dev/icons?i=${id}`
+const icon = (id: string) => `/icons/${id}.svg`
 const all = skillGroups.flatMap(g => g.items)
 
 function Marquee({ items, reverse = false }: { items: [string, string][]; reverse?: boolean }) {
@@ -68,9 +69,9 @@ export default function Skills() {
             <motion.span
               key={i}
               whileHover={{ scale: 1.06, y: -2 }}
-              className="glass cursor-default rounded-full px-4 py-2 text-sm text-slate-200 transition-colors hover:border-blue-400/40"
+              className="glass flex cursor-default items-center gap-2 rounded-full px-4 py-2 text-sm text-slate-200 transition-colors hover:border-blue-400/40"
             >
-              {t(s)}
+              <Icon name={s.icon} size={16} className="text-brand-2" />{t(s.label)}
             </motion.span>
           ))}
         </div>
