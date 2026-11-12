@@ -1,4 +1,4 @@
-import { Cpu, Globe, Smartphone, Zap } from 'lucide-react'
+import { Cpu, Globe, Smartphone } from 'lucide-react'
 import { useEffect, useState, type ReactNode } from 'react'
 import { motion } from 'motion/react'
 import { profile, ui } from '../data'
@@ -79,7 +79,7 @@ export default function About() {
           </div>
         </Cell>
 
-        <Cell className="md:col-span-2" delay={0.1}>
+        <Cell className="md:col-span-3" delay={0.1}>
           <p className="font-mono text-xs tracking-widest text-slate-500 uppercase">{t(ui.about.languages)}</p>
           <ul className="mt-3 space-y-2 text-sm text-slate-200">
             <li className="flex items-center gap-2"><span className="rounded bg-blue-500/15 px-1.5 py-0.5 font-mono text-[10px] text-blue-200 ring-1 ring-blue-400/30">ES</span>{t(ui.about.spanish)}</li>
@@ -87,11 +87,6 @@ export default function About() {
           </ul>
         </Cell>
 
-        <Cell className="md:col-span-1 flex flex-col items-center justify-center text-center" delay={0.15}>
-          <Zap size={28} strokeWidth={1.5} className="text-brand-2" aria-hidden />
-          <p className="mt-2 text-[11px] text-slate-500">{t(ui.about.hackathon)}</p>
-          <p className="font-display text-sm font-bold text-white">BE.HACKATHON</p>
-        </Cell>
       </div>
     </Section>
   )

@@ -46,11 +46,7 @@ export default function Experience() {
                 >
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="font-mono text-xs text-brand-2">{t(e.period)}</span>
-                    {e.current && (
-                      <span className="rounded-full bg-emerald-400/10 px-2 py-0.5 text-[11px] font-medium text-emerald-300 ring-1 ring-emerald-400/30">
-                        {t(ui.experience.present)}
-                      </span>
-                    )}
+                    {e.current && <span aria-hidden className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />}
                   </div>
                   <h3 className="mt-2 font-display text-xl font-semibold text-white">{t(e.role)}</h3>
                   <p className="text-sm font-medium text-blue-300">{t(e.org)}</p>

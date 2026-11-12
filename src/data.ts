@@ -59,13 +59,11 @@ export const ui = {
     languages: { es: 'Idiomas', en: 'Languages' },
     spanish: { es: 'Español · Nativo', en: 'Spanish · Native' },
     english: { es: 'Inglés · B2 First (Cambridge)', en: 'English · B2 First (Cambridge)' },
-    hackathon: { es: 'Participante en', en: 'Participant at' },
     degree: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
   },
   experience: {
     kicker: { es: 'Trayectoria', en: 'Journey' },
-    title: { es: 'Experiencia & formación', en: 'Experience & education' },
-    present: { es: 'Actualidad', en: 'Present' },
+    title: { es: 'Experiencia y formación', en: 'Experience and education' },
   },
   projects: {
     kicker: { es: 'Trabajo seleccionado', en: 'Selected work' },

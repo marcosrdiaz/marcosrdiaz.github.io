@@ -47,11 +47,12 @@ export default function Skills() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.1 + i * 0.04, type: 'spring', stiffness: 300, damping: 18 }}
                     whileHover={{ y: -6, rotate: -6, scale: 1.12 }}
-                    className="group relative flex justify-center"
+                    className="group relative z-0 flex justify-center hover:z-30 focus-visible:z-30"
+                    tabIndex={0}
                     data-cursor
                   >
                     <img src={icon(id)} alt={name} title={name} className="h-12 w-12 drop-shadow-[0_6px_14px_rgba(59,130,246,0.25)]" loading="lazy" />
-                    <span className="pointer-events-none absolute -bottom-7 z-10 rounded-md bg-ink-2 px-2 py-0.5 text-[10px] whitespace-nowrap text-slate-200 opacity-0 ring-1 ring-white/10 transition group-hover:opacity-100">
+                    <span className={`pointer-events-none absolute -bottom-8 z-10 rounded-md bg-ink-2 px-2 py-1 text-[11px] whitespace-nowrap text-slate-200 opacity-0 shadow-lg ring-1 ring-white/10 transition group-hover:opacity-100 group-focus-visible:opacity-100 ${i % 4 === 0 ? 'left-0' : i % 4 === 3 ? 'right-0' : 'left-1/2 -translate-x-1/2'}`}>
                       {name}
                     </span>
                   </motion.div>

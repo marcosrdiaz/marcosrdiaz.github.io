@@ -43,6 +43,16 @@ try {
       await page.waitForTimeout(1200)
       await page.screenshot({ path: `screenshots/${lang}-${name}-${id}.png` })
     }
+    // Stack tooltips: hover icons in the first row of each box (they must paint above the next row)
+    await page.evaluate(() => document.getElementById('skills')?.scrollIntoView({ behavior: 'instant' as ScrollBehavior }))
+    await page.waitForTimeout(800)
+    const boxes = page.locator('#skills .spotlight')
+    for (const [bi, ii] of [[0, 0], [1, 3], [2, 2]]) {
+      await boxes.nth(bi).scrollIntoViewIfNeeded()
+      await boxes.nth(bi).locator('[data-cursor]').nth(ii).hover()
+      await page.waitForTimeout(400)
+      await page.screenshot({ path: `screenshots/${lang}-${name}-tooltip-${bi}.png` })
+    }
     await page.screenshot({ path: `screenshots/${lang}-${name}-full.png`, fullPage: true })
 
     if (name === 'desktop') {

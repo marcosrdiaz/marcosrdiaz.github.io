@@ -10,7 +10,7 @@ import { Section, Tag } from './ui'
 function PhoneMock() {
   const bars = [40, 65, 52, 80, 70, 95, 88]
   return (
-    <div className="relative mx-auto h-64 w-36 shrink-0 rounded-[2rem] border border-white/15 bg-ink-2 p-3 shadow-2xl shadow-blue-500/20">
+    <div className="relative mx-auto w-36 shrink-0 rounded-[2rem] border border-white/15 bg-ink-2 p-3 pb-4 shadow-2xl shadow-blue-500/20">
       <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-white/15" />
       <p className="font-mono text-[9px] text-slate-500">PROGRESS</p>
       <p className="font-display text-lg font-bold text-white">+18%</p>
