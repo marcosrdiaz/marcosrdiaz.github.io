@@ -359,8 +359,8 @@ export const projects: Project[] = [
     layout: 'strip',
     title: 'Wiki corporativa · Sensia',
     desc: {
-      es: 'Implanté con Wiki.js la wiki del departamento de Software de Sensia, punto central de información sobre áreas, productos y proyectos. Desarrollé además un servicio web que detecta enlaces rotos en la wiki, base de mi TFG.',
-      en: "Rolled out the Software department's wiki at Sensia on Wiki.js, the central hub for information on areas, products and projects. I also built a web service that detects broken links in the wiki, the basis of my thesis.",
+      es: 'Wiki corporativa del departamento de Software sobre Wiki.js, punto central de información de áreas, productos y proyectos de Sensia. Incluye un servicio web de detección de enlaces rotos, base del TFG.',
+      en: "Corporate wiki of the Software department on Wiki.js, the central hub for information on Sensia's areas, products and projects. It includes a web service that detects broken links, the basis of the thesis.",
     },
     tags: ['Wiki.js', 'Node.js', 'Express', 'Documentación', 'Testing'],
     private: true,
@@ -370,8 +370,8 @@ export const projects: Project[] = [
         en: 'The Software department needed a central hub for information on its areas, products and projects, and a way to detect the broken links that build up in a wiki over time.',
       },
       role: {
-        es: 'Implanté la wiki con Wiki.js durante mis prácticas y desarrollé el servicio de detección de enlaces rotos. Fue la base de mi TFG: «Implantación de un sistema de gestión del conocimiento en el área de software de una scale-up tecnológica».',
-        en: 'I rolled out the wiki on Wiki.js during my internship and built the broken-link detection service. It was the basis of my thesis: "Implementing a knowledge-management system in the software area of a tech scale-up".',
+        es: 'Proyecto de las prácticas en Sensia: wiki corporativa en Wiki.js y servicio de detección de enlaces rotos. Fue la base del TFG: «Implantación de un sistema de gestión del conocimiento en el área de software de una scale-up tecnológica».',
+        en: 'Project from the internship at Sensia: a corporate wiki on Wiki.js and a broken-link detection service. It was the basis of the thesis: "Implementing a knowledge-management system in the software area of a tech scale-up".',
       },
       decisions: [
         { es: 'Servicio web en Node.js y Express construido sobre wikijs-cli.', en: 'Web service in Node.js and Express built on top of wikijs-cli.' },
