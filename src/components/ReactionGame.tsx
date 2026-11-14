@@ -2,25 +2,11 @@ import { Copy, Flag } from 'lucide-react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs'
 import { ui } from '../data'
+import { buildGrid } from '../f1grid'
 import { useLang } from '../i18n'
 import { useToast } from '../toast'
 
 type State = 'idle' | 'lights' | 'go' | 'result' | 'jump'
-type Tier = keyof typeof ui.game.tiers
-
-/** Reference grid: indicative reaction times per grid level (no real drivers). */
-const GRID: { tier: Tier; ms: number }[] = [
-  { tier: 'pole', ms: 175 },
-  { tier: 'podium', ms: 200 },
-  { tier: 'podium', ms: 220 },
-  { tier: 'points', ms: 245 },
-  { tier: 'points', ms: 270 },
-  { tier: 'midfield', ms: 300 },
-  { tier: 'midfield', ms: 335 },
-  { tier: 'back', ms: 400 },
-  { tier: 'safety', ms: 600 },
-]
-
 const HISTORY_KEY = 'f1-history'
 const BEST_KEY = 'f1-best'
 
@@ -85,9 +71,10 @@ export default function ReactionGame({ autoStart = false }: { autoStart?: boolea
     }
   }
 
-  const position = time == null ? 0 : GRID.filter(g => g.ms < time).length + 1
-  const tier: Tier = time == null ? 'pole' : (GRID[position - 1] ?? GRID[GRID.length - 1]).tier
-  const rows = time == null ? [] : [...GRID.map(g => ({ ...g, you: false })), { tier, ms: time, you: true }].sort((a, b) => a.ms - b.ms || (a.you ? 1 : -1))
+  const grid = time == null ? null : buildGrid(time)
+  const position = grid?.position ?? 0
+  const tier = grid?.tier ?? 'pole'
+  const rows = grid?.rows ?? []
   const average = history.length ? Math.round(history.reduce((a, b) => a + b, 0) / history.length) : null
 
   const share = async () => {

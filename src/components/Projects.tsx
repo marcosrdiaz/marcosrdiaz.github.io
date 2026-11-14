@@ -9,32 +9,42 @@ import { Section, Tag } from './ui'
 // The detail dialog is only fetched the first time a card is opened
 const ProjectModal = lazy(() => import('./ProjectModal'))
 
-/** Mini animated "stats" visual: placeholder for a feature card until it has real screenshots (see `images` in data.ts). */
+/**
+ * Mini animated "stats" visual: placeholder for a feature card until it has real screenshots (see `images` in data.ts).
+ * It keeps a 9:19 phone ratio and sizes everything in `em` relative to its own width (6.2cqw), so it scales
+ * proportionally: normal size on mobile, full card height (within the card padding) from `lg`.
+ */
 function PhoneMock() {
   const bars = [40, 65, 52, 80, 70, 95, 88]
   return (
-    <div aria-hidden className="relative mx-auto w-36 shrink-0 rounded-[2rem] border border-white/15 bg-ink-2 p-3 pb-4 shadow-2xl shadow-blue-500/20">
-      <div className="mx-auto mb-3 h-1.5 w-10 rounded-full bg-white/15" />
-      <p className="font-mono text-[9px] text-slate-400">PROGRESS</p>
-      <p className="font-display text-lg font-bold text-white">+18%</p>
-      <div className="mt-3 flex h-24 items-end gap-1.5">
-        {bars.map((b, i) => (
-          <motion.span
-            key={i}
-            initial={{ height: 0 }}
-            whileInView={{ height: `${b}%` }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 120, damping: 14 }}
-            className="flex-1 rounded-t bg-gradient-to-t from-brand to-brand-2"
-          />
-        ))}
-      </div>
-      <div className="mt-3 space-y-1.5">
-        {([[Flame, '7'], [Trophy, '12'], [Users, '5']] as const).map(([I, n]) => (
-          <div key={n} className="flex items-center justify-between rounded-lg bg-white/5 px-2 py-1 text-[10px] text-slate-300">
-            <I size={12} strokeWidth={1.6} aria-hidden /><span className="font-mono">{n}</span>
-          </div>
-        ))}
+    <div
+      aria-hidden
+      className="relative mx-auto aspect-[9/19] w-36 shrink-0 rounded-[14%/6.6%] border border-white/15 bg-ink-2 shadow-2xl shadow-blue-500/20 [container-type:inline-size] lg:absolute lg:inset-y-0 lg:left-1/2 lg:mx-0 lg:w-auto lg:-translate-x-1/2"
+    >
+      <div className="flex h-full flex-col" style={{ fontSize: '6.2cqw', padding: '1.5em 1.3em' }}>
+        <div className="mx-auto rounded-full bg-white/15" style={{ height: '0.4em', width: '4.2em', marginBottom: '1em' }} />
+        <p className="font-mono text-slate-400" style={{ fontSize: '0.95em', lineHeight: 1.2 }}>PROGRESS</p>
+        <p className="font-display font-bold text-white" style={{ fontSize: '1.9em', lineHeight: 1.15 }}>+18%</p>
+        <div className="flex min-h-0 flex-1 items-end" style={{ margin: '0.8em 0', gap: '0.35em' }}>
+          {bars.map((b, i) => (
+            <motion.span
+              key={i}
+              initial={{ height: 0 }}
+              whileInView={{ height: `${b}%` }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 120, damping: 14 }}
+              className="flex-1 bg-gradient-to-t from-brand to-brand-2"
+              style={{ borderRadius: '0.3em 0.3em 0 0' }}
+            />
+          ))}
+        </div>
+        <div className="grid" style={{ gap: '0.5em' }}>
+          {([[Flame, '7'], [Trophy, '12'], [Users, '5']] as const).map(([I, n]) => (
+            <div key={n} className="flex items-center justify-between bg-white/5 text-slate-300" style={{ padding: '0.4em 0.6em', borderRadius: '0.55em', fontSize: '0.95em' }}>
+              <I size="1.1em" strokeWidth={1.6} aria-hidden /><span className="font-mono">{n}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -74,7 +84,6 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
   }
   const leave = () => { rx.set(0); ry.set(0) }
   const cover = p.images?.[0]
-  const visual = cover ? <Shot img={cover} className="shadow-2xl shadow-black/40" /> : <PhoneMock />
 
   const iconBox = (
     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
@@ -83,6 +92,14 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
   )
   const privateBadge = p.private && (
     <span className="flex shrink-0 items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10"><Lock size={12} aria-hidden /> {t(ui.projects.private)}</span>
+  )
+  /** icon and title on the same row, vertically centred; the Private badge stays at the right end */
+  const headerRow = (titleClass: string) => (
+    <div className="flex items-center gap-4">
+      {iconBox}
+      <h3 className={`min-w-0 flex-1 font-display leading-tight font-semibold break-words text-white ${titleClass}`}>{p.title}</h3>
+      {privateBadge}
+    </div>
   )
   const highlights = p.highlights && (
     <ul className="space-y-1.5">
@@ -100,39 +117,36 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
 
   let body: ReactNode
   if (p.layout === 'feature') {
-    // text 3/4 + visual top-right 1/4; highlights, tags and "details" run full width underneath.
-    // On mobile the visual goes last (order-last), as before.
+    // All the text lives in the left column. The visual sits top-right: a screenshot takes ~5/12 of the card
+    // (top-aligned), the phone placeholder 3/12 and stretches to the full card height. On mobile it goes last.
     body = (
-      <div className="grid gap-x-6 gap-y-5 lg:grid-cols-4">
-        <div className="flex flex-col lg:col-span-3 lg:row-start-1">
-          <div className="flex items-start justify-between gap-3">{iconBox}{privateBadge}</div>
-          <h3 className="mt-5 font-display text-2xl font-semibold text-white sm:text-3xl">{p.title}</h3>
-          <p className="mt-2 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
-          {/* the phone placeholder is tall: the highlights fill the text column beside it instead of leaving a gap */}
-          {!cover && <div className="mt-4">{highlights}</div>}
+      <div className={`grid gap-x-8 gap-y-6 ${cover ? 'lg:grid-cols-[minmax(0,1fr)_42%]' : 'lg:grid-cols-12'}`}>
+        <div className={`flex min-w-0 flex-col ${cover ? '' : 'lg:col-span-9'}`}>
+          {headerRow('text-2xl sm:text-3xl')}
+          <p className="mt-4 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+          {highlights && <div className="mt-5">{highlights}</div>}
+          <div className="mt-5">{tags}</div>
+          <div className="mt-5">{more}</div>
         </div>
-        <div className="order-last mx-auto w-full max-w-sm lg:order-none lg:col-start-4 lg:row-start-1 lg:max-w-none lg:self-start">{visual}</div>
-        <div className="space-y-5 lg:col-span-4 lg:row-start-2">
-          {cover && highlights}
-          {tags}
-          {more}
-        </div>
+        {cover ? (
+          <div className="order-last mx-auto w-full max-w-sm lg:order-none lg:max-w-none lg:self-start"><Shot img={cover} className="shadow-2xl shadow-black/40" /></div>
+        ) : (
+          <div className="relative order-last flex justify-center lg:order-none lg:col-span-3 lg:block lg:min-h-80"><PhoneMock /></div>
+        )}
       </div>
     )
   } else if (p.layout === 'strip') {
-    // compact full-width row: it only takes the height of its content
+    // compact full-width row: it only takes the height of its content. Header spans the card (badge at the far right).
     body = (
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-6">
-        <div className="flex items-start justify-between gap-3 lg:block">{iconBox}<span className="lg:hidden">{privateBadge}</span></div>
-        <div className="flex-1">
-          <div className="flex items-center gap-3">
-            <h3 className="font-display text-xl font-semibold text-white">{p.title}</h3>
-            <span className="hidden lg:block">{privateBadge}</span>
+      <div className="flex flex-col gap-4">
+        {headerRow('text-xl')}
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:gap-8">
+          <div className="min-w-0 flex-1">
+            <p className="text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+            <div className="mt-3">{more}</div>
           </div>
-          <p className="mt-2 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
-          <div className="mt-3">{more}</div>
+          <div className="lg:w-80 lg:shrink-0">{tags}</div>
         </div>
-        <div className="lg:w-72 lg:shrink-0">{tags}</div>
       </div>
     )
   } else {
@@ -140,9 +154,8 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
       <div className="flex h-full flex-col gap-6">
         {cover && <Shot img={cover} className="aspect-[16/10] object-cover object-top" />}
         <div className="flex flex-1 flex-col">
-          <div className="flex items-start justify-between gap-3">{iconBox}{privateBadge}</div>
-          <h3 className="mt-5 font-display text-xl font-semibold text-white">{p.title}</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+          {headerRow('text-xl')}
+          <p className="mt-4 flex-1 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
           <div className="mt-5">{tags}</div>
           <div className="mt-5">{more}</div>
         </div>

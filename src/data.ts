@@ -45,7 +45,7 @@ export const ui = {
       en: "I'm Marcos, a Computer Engineer from UC3M (2022–2026). I did my internship at Sensia, a company that designs and manufactures infrared and thermal-imaging cameras with AI, and since September 2026 I work there full time on the Web Panel, Systems Architecture and Next-Design teams.",
     },
     p2: {
-      es: 'Fuera del trabajo construyo apps y webs propias, apoyándome en las herramientas que existen hoy en día. La más reciente es R17, una app de seguimiento de entrenamientos: rutinas, progreso y estadísticas. También me gustan los hackathons y, lejos del código, los videojuegos competitivos y el motor.',
+      es: 'Fuera del trabajo construyo apps y webs propias, apoyándome en las herramientas que existen hoy en día. La más reciente es R17, una app de seguimiento de entrenamientos: rutinas, progreso y estadísticas. También me gustan los hackathons y, lejos del código, los videojuegos competitivos y el mundo del motor.',
       en: 'Outside work I build my own apps and websites, leaning on the tools available today. The latest is R17, a workout-tracking app: routines, progress and stats. I also enjoy hackathons and, away from code, competitive video games and motorsport.',
     },
     line: { es: 'Software Developer en Sensia · Ingeniero Informático (UC3M)', en: 'Software Developer at Sensia · Computer Engineer (UC3M)' },
@@ -180,10 +180,10 @@ export const experience: Experience[] = [
     date: '2026-09',
     kind: 'work',
     desc: {
-      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel trabajo en el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing). En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con C++ y tecnologías web.',
+      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel trabajo en el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing). En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con python, C++ y tecnologías web.',
       en: 'I work across three teams: Web Panel, Systems Architecture and Next-Design. On Web Panel I work on the web panel to configure and monitor AI thermal cameras (edge computing). On the other two I define architecture patterns and tune application performance with C++ and web technologies.',
     },
-    tags: ['Web Panel', 'C++', 'JavaScript', 'HTML', 'CSS', 'Edge computing'],
+    tags: ['C++', 'JavaScript', 'HTML', 'CSS', 'Edge computing'],
   },
   {
     role: { es: 'Participante · Hack Finance 2026', en: 'Participant · Hack Finance 2026' },
@@ -498,32 +498,32 @@ export const softSkills: { icon: IconKey; title: T; text: T }[] = [
   {
     icon: 'handshake',
     title: { es: 'Trabajo en equipo', en: 'Teamwork' },
-    text: { es: 'Hackathon de 72 h en equipo de cinco: KAIROS se construyó entre todos, repartiendo tareas y fases.', en: 'A 72-hour hackathon in a team of five: KAIROS was built by all of us, splitting tasks and phases.' },
+    text: { es: 'Hack Finance 2026', en: 'Hack Finance 2026' },
   },
   {
     icon: 'message',
     title: { es: 'Comunicación', en: 'Communication' },
-    text: { es: 'Implanté la wiki del departamento de Software de Sensia, un trabajo cuyo objetivo es que otros equipos encuentren la información.', en: "I rolled out the Software department's wiki at Sensia, a job whose goal is for other teams to find the information they need." },
+    text: { es: 'Wiki corporativa de Sensia', en: 'Sensia corporate wiki' },
   },
   {
     icon: 'puzzle',
     title: { es: 'Resolución de problemas', en: 'Problem solving' },
-    text: { es: 'Un detector de enlaces rotos con 41 casos de prueba, fruto de un problema real de la wiki.', en: 'A broken-link detector with 41 test cases, born from a real wiki problem.' },
+    text: { es: 'Detector de enlaces rotos', en: 'Broken-link detector' },
   },
   {
     icon: 'swords',
     title: { es: 'Competitividad sana', en: 'Healthy competitiveness' },
-    text: { es: 'Videojuegos competitivos y hackathons: me motiva medirme, y aprendo de ello.', en: 'Competitive games and hackathons: I am driven by measuring myself, and I learn from it.' },
+    text: { es: 'Videojuegos y hackathons', en: 'Video games and hackathons' },
   },
   {
     icon: 'rocket',
     title: { es: 'Ambición y ganas de aprender', en: 'Ambition and eagerness to learn' },
-    text: { es: 'Las prácticas se convirtieron en contrato; hoy trabajo en tres equipos y sigo con proyectos propios.', en: 'My internship turned into a contract; today I work on three teams and keep building my own projects.' },
+    text: { es: 'De prácticas a contrato en Sensia', en: 'From internship to contract at Sensia' },
   },
   {
     icon: 'refresh',
     title: { es: 'Adaptabilidad', en: 'Adaptability' },
-    text: { es: 'Web, apps y C++ en la misma etapa: de Web Panel a Arquitectura de Sistemas y Next-Design.', en: 'Web, apps and C++ in the same stage: from Web Panel to Systems Architecture and Next-Design.' },
+    text: { es: 'Tres equipos en Sensia', en: 'Three teams at Sensia' },
   },
 ]
 
@@ -532,7 +532,7 @@ export const funFacts: { icon: IconKey; accent: string; title: T; text: T }[] = 
     icon: 'engine',
     accent: '#ef4444',
     title: { es: 'Motor y F1', en: 'Motorsport and F1' },
-    text: { es: 'Mi piloto favorito es Fernando Alonso y el circuito que quiero visitar es Suzuka.', en: 'My favourite driver is Fernando Alonso and the circuit I most want to visit is Suzuka.' },
+    text: { es: 'Mi referente como piloto es Fernando Alonso y Suzuka es uno de los circuitos en los que me gustaría presenciar una carrera.', en: 'My role model as a driver is Fernando Alonso, and Suzuka is one of the circuits where I would like to watch a race.' },
   },
   {
     icon: 'gamepad',
@@ -544,7 +544,7 @@ export const funFacts: { icon: IconKey; accent: string; title: T; text: T }[] = 
     icon: 'lightbulb',
     accent: '#22d3ee',
     title: { es: 'Proyectos con IA', en: 'Projects with AI' },
-    text: { es: 'Hago apps y webs propias con IA. La última es R17.', en: 'I build my own apps and websites with AI. The latest is R17.' },
+    text: { es: 'Hago apps y webs propias apoyandome con los avances de la IA. La última es R17.', en: 'I build my own apps and websites with the help of the AI. The latest is R17.' },
   },
   {
     icon: 'globe',

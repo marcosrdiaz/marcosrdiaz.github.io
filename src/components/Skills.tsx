@@ -73,13 +73,13 @@ export default function Skills() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {softSkills.map((sk, i) => (
             <Reveal key={sk.title.en} delay={(i % 3) * 0.06} className="h-full">
-              <div onMouseMove={spotlightMove} className="spotlight glass flex h-full gap-4 rounded-2xl p-5">
+              <div onMouseMove={spotlightMove} className="spotlight glass flex h-full items-center gap-4 rounded-2xl p-5">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 ring-1 ring-blue-400/25">
                   <Icon name={sk.icon} size={20} className="text-brand-2" />
                 </span>
                 <div>
                   <h4 className="font-display font-semibold text-white">{t(sk.title)}</h4>
-                  <p className="mt-1 text-sm leading-relaxed text-slate-300">{t(sk.text)}</p>
+                  <p className="mt-0.5 text-sm text-slate-400">{t(sk.text)}</p>
                 </div>
               </div>
             </Reveal>
