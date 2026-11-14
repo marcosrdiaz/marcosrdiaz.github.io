@@ -43,6 +43,32 @@ try {
       await page.waitForTimeout(1200)
       await page.screenshot({ path: `screenshots/${lang}-${name}-${id}.png` })
     }
+    // Soft skills cards (below the stack boxes)
+    await page.locator('#skills h4').first().scrollIntoViewIfNeeded()
+    await page.evaluate(() => window.scrollBy(0, 250))
+    await page.waitForTimeout(1200)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-softskills.png` })
+
+    // Timeline filter
+    await page.evaluate(() => document.getElementById('experience')?.scrollIntoView({ behavior: 'instant' as ScrollBehavior }))
+    await page.locator('#experience [role=group] button').nth(3).click()
+    await page.waitForTimeout(1200)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-experience-filter.png` })
+    await page.locator('#experience [role=group] button').nth(0).click()
+
+    // Reaction game: wait for lights out, react, capture the grid
+    const game = page.locator('#race')
+    await game.scrollIntoViewIfNeeded()
+    const pad = game.locator('button').first()
+    await pad.click()
+    await page.waitForFunction(() => document.querySelector('#race button')?.className.includes('emerald'), null, { timeout: 15000 })
+    await page.waitForTimeout(230)
+    await pad.click()
+    await page.waitForTimeout(1200)
+    await page.evaluate(() => document.getElementById('race')?.scrollIntoView({ behavior: 'instant' as ScrollBehavior, block: 'start' }))
+    await page.waitForTimeout(400)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-game.png` })
+
     // Stack tooltips: hover icons in the first row of each box (they must paint above the next row)
     await page.evaluate(() => document.getElementById('skills')?.scrollIntoView({ behavior: 'instant' as ScrollBehavior }))
     await page.waitForTimeout(800)

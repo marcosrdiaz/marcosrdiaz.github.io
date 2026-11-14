@@ -1,36 +1,29 @@
-import { useState } from 'react'
+import { motion } from 'motion/react'
 import { funFacts, ui } from '../data'
 import { useLang } from '../i18n'
-import { Icon, type IconKey } from '../icons'
+import { Icon } from '../icons'
 import ReactionGame from './ReactionGame'
 import { Reveal, Section } from './ui'
-
-function FlipCard({ icon, front, back }: { icon: IconKey; front: string; back: string }) {
-  const [flipped, setFlipped] = useState(false)
-  return (
-    <button onClick={() => setFlipped(f => !f)} className={`flip h-48 w-full text-left ${flipped ? 'flipped' : ''}`} aria-pressed={flipped}>
-      <div className="flip-inner relative h-full w-full">
-        <div className="flip-face glass absolute inset-0 flex flex-col items-center justify-center gap-3 rounded-3xl">
-          <Icon name={icon} size={44} strokeWidth={1.3} className="text-brand-2" />
-          <span className="font-display text-lg font-semibold text-white">{front}</span>
-        </div>
-        <div className="flip-face flip-back absolute inset-0 flex items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-6 text-center text-sm leading-relaxed text-white">
-          {back}
-        </div>
-      </div>
-    </button>
-  )
-}
 
 export default function Fun() {
   const { t } = useLang()
   return (
     <Section id="fun" kicker={t(ui.fun.kicker)} title={t(ui.fun.title)}>
-      <p className="-mt-8 mb-8 font-mono text-xs text-slate-500">{t(ui.fun.flipHint)}</p>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {funFacts.map((f, i) => (
-          <Reveal key={i} delay={i * 0.08}>
-            <FlipCard icon={f.icon} front={t(f.front)} back={t(f.back)} />
+          <Reveal key={f.title.en} delay={i * 0.08} className="h-full">
+            <motion.article
+              whileHover={{ y: -4 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="group glass relative h-full overflow-hidden rounded-3xl p-6"
+            >
+              <div aria-hidden className="absolute -top-10 -right-10 h-32 w-32 rounded-full opacity-20 blur-2xl transition-opacity group-hover:opacity-40" style={{ background: f.accent }} />
+              <span className="relative flex h-12 w-12 items-center justify-center rounded-2xl" style={{ background: `${f.accent}22`, boxShadow: `inset 0 0 0 1px ${f.accent}55` }}>
+                <Icon name={f.icon} size={24} style={{ color: f.accent }} className="transition-transform group-hover:-rotate-6 group-hover:scale-110" />
+              </span>
+              <h3 className="relative mt-4 font-display text-lg font-semibold text-white">{t(f.title)}</h3>
+              <p className="relative mt-2 text-sm leading-relaxed text-slate-300">{t(f.text)}</p>
+            </motion.article>
           </Reveal>
         ))}
       </div>

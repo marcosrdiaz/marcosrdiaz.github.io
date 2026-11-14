@@ -1,10 +1,11 @@
-import { Copy, FileText } from 'lucide-react'
-import { GithubIcon, LinkedinIcon } from '../icons'
+import { ArrowUpRight, Copy, Download, FileText, Mail, MapPin } from 'lucide-react'
+import type { ComponentType, ReactNode } from 'react'
 import { motion } from 'motion/react'
 import { profile, ui } from '../data'
 import { useLang } from '../i18n'
+import { GithubIcon, LinkedinIcon } from '../icons'
 import { useToast } from '../toast'
-import { Magnetic, Section } from './ui'
+import { Section, spotlightMove } from './ui'
 
 export function useCopyEmail() {
   const { t } = useLang()
@@ -15,9 +16,39 @@ export function useCopyEmail() {
   }
 }
 
+type IconType = ComponentType<{ size?: number; className?: string }>
+
+function Card({ href, icon: I, label, handle, external, download, trailing, action }: {
+  href: string; icon: IconType; label: string; handle: string; external?: boolean; download?: boolean; trailing: ReactNode; action?: ReactNode
+}) {
+  return (
+    <div onMouseMove={spotlightMove} className="spotlight group glass relative flex min-w-0 items-center gap-4 rounded-2xl p-4 transition-colors hover:border-blue-400/30">
+      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-blue-500/10 text-brand-2 ring-1 ring-blue-400/25">
+        <I size={20} />
+      </span>
+      <div className="min-w-0 flex-1">
+        <p className="text-xs text-slate-400">{label}</p>
+        {/* the link stretches over the whole card; the copy button sits above it */}
+        <a
+          href={href}
+          download={download || undefined}
+          target={external ? '_blank' : undefined}
+          rel={external ? 'noopener noreferrer' : undefined}
+          className="block truncate font-mono text-sm text-white after:absolute after:inset-0 after:rounded-2xl"
+        >
+          {handle}
+        </a>
+      </div>
+      {action}
+      <span className="text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-white">{trailing}</span>
+    </div>
+  )
+}
+
 export default function Contact() {
   const { t } = useLang()
   const copy = useCopyEmail()
+  const linkedinHandle = profile.linkedin.replace(/^https?:\/\/(www\.)?/, '')
 
   return (
     <Section id="contact" kicker={t(ui.contact.kicker)}>
@@ -26,23 +57,41 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.7 }}
-        className="glass relative overflow-hidden rounded-[2rem] px-6 py-16 text-center sm:px-12"
+        className="glass relative overflow-hidden rounded-[2rem] p-6 sm:p-10"
       >
-        <div className="absolute -top-24 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-blue-600/25 blur-3xl" />
-        <h2 className="relative font-display text-5xl font-bold tracking-tight text-white sm:text-7xl">
-          <span className="text-gradient">{t(ui.contact.title)}</span>
-        </h2>
-        <p className="relative mx-auto mt-5 max-w-lg text-slate-400">{t(ui.contact.text)}</p>
+        <div aria-hidden className="absolute -top-24 left-0 h-64 w-[36rem] rounded-full bg-blue-600/20 blur-3xl" />
+        <div className="relative grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="min-w-0">
+            <h2 className="font-display text-5xl font-bold tracking-tight text-white sm:text-6xl">
+              <span className="text-gradient">{t(ui.contact.title)}</span>
+            </h2>
+            <p className="mt-5 max-w-md text-slate-300">{t(ui.contact.text)}</p>
+            <ul className="mt-6 space-y-2.5 text-sm text-slate-200">
+              <li className="flex items-center gap-3">
+                <span className="relative flex h-2.5 w-2.5 shrink-0"><span className="absolute h-full w-full animate-ping rounded-full bg-emerald-400 opacity-70" /><span className="relative h-2.5 w-2.5 rounded-full bg-emerald-400" /></span>
+                {t(ui.about.available)}
+              </li>
+              <li className="flex items-center gap-3 text-slate-300">
+                <MapPin size={14} aria-hidden className="-ml-0.5 shrink-0 text-brand-2" />
+                {t(ui.about.locationValue)} · {t(ui.about.hybrid)}
+              </li>
+            </ul>
+          </div>
 
-        <a href={`mailto:${profile.email}`} className="relative mt-8 inline-block font-mono text-base break-all text-white underline decoration-blue-500/50 underline-offset-8 transition hover:decoration-brand-2 sm:text-xl">
-          {profile.email}
-        </a>
-
-        <div className="relative mt-10 flex flex-wrap justify-center gap-3">
-          <Magnetic onClick={copy} className="bg-brand text-white shadow-lg shadow-blue-500/30 hover:bg-blue-500"><Copy size={16} aria-hidden /> {t(ui.contact.copy)}</Magnetic>
-          <Magnetic href={profile.linkedin} external className="glass text-white hover:border-blue-400/40"><LinkedinIcon size={16} /> LinkedIn</Magnetic>
-          <Magnetic href={profile.github} external className="glass text-white hover:border-blue-400/40"><GithubIcon size={16} /> GitHub</Magnetic>
-          <Magnetic href={profile.cv} download className="glass text-white hover:border-blue-400/40"><FileText size={16} aria-hidden /> CV</Magnetic>
+          <div className="grid min-w-0 grid-cols-1 gap-3">
+            <Card
+              href={`mailto:${profile.email}`} icon={Mail} label="Email" handle={profile.email}
+              trailing={<ArrowUpRight size={16} aria-hidden />}
+              action={
+                <button onClick={copy} aria-label={t(ui.contact.copy)} title={t(ui.contact.copy)} className="relative z-10 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-300 ring-1 ring-white/15 transition hover:bg-brand hover:text-white hover:ring-brand">
+                  <Copy size={15} aria-hidden />
+                </button>
+              }
+            />
+            <Card href={profile.linkedin} external icon={LinkedinIcon} label="LinkedIn" handle={linkedinHandle} trailing={<ArrowUpRight size={16} aria-hidden />} />
+            <Card href={profile.github} external icon={GithubIcon} label="GitHub" handle={`github.com/${profile.githubUser}`} trailing={<ArrowUpRight size={16} aria-hidden />} />
+            <Card href={profile.cv} download icon={FileText} label="CV" handle={t(ui.contact.cvHandle)} trailing={<Download size={16} aria-hidden />} />
+          </div>
         </div>
       </motion.div>
     </Section>

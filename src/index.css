@@ -97,13 +97,6 @@ body {
 }
 .spotlight:hover::before, .spotlight:hover::after { opacity: 1; }
 
-/* Flip cards */
-.flip { perspective: 1000px; }
-.flip-inner { transition: transform 0.7s cubic-bezier(.2,.8,.2,1); transform-style: preserve-3d; }
-.flip:hover .flip-inner, .flip.flipped .flip-inner { transform: rotateY(180deg); }
-.flip-face { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
-.flip-back { transform: rotateY(180deg); }
-
 /* Race mode (Konami) */
 .race-mode {
   --color-brand: #ef4444;

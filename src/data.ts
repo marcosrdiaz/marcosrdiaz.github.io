@@ -11,7 +11,6 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/marcos-rodrigo-diaz',
   cv: '/sources/cv.pdf',
   photo: '/sources/foto.jpg',
-  location: 'Ugena, Toledo',
 }
 
 export const ui = {
@@ -32,8 +31,8 @@ export const ui = {
       en: ['web experiences', 'mobile apps', 'web panels for AI cameras', 'software architecture', 'high-performance C++'],
     },
     blurb: {
-      es: 'Ingeniero Informático. Diseño, desarrollo e implanto software en los equipos de Web Panel, Arquitectura de Sistemas y Next-Design de Sensia.',
-      en: "Computer Engineer. I design, build and ship software on Sensia's Web Panel, Systems Architecture and Next-Design teams.",
+      es: 'Ingeniero Informático por la UC3M y desarrollador en Sensia. Trabajo en el panel web de nuestras cámaras térmicas con IA; en mis proyectos, apps y webs completas, de la arquitectura al producto.',
+      en: 'Computer Engineer from UC3M and developer at Sensia. I work on the web panel for our AI thermal cameras; in my own projects, complete apps and websites, from architecture to product.',
     },
     ctaProjects: { es: 'Ver proyectos', en: 'See projects' },
     ctaCv: { es: 'Descargar CV', en: 'Download CV' },
@@ -43,27 +42,39 @@ export const ui = {
     kicker: { es: 'Sobre mí', en: 'About me' },
     title: { es: 'Código limpio, interfaces que se sienten vivas.', en: 'Clean code, interfaces that feel alive.' },
     p1: {
-      es: 'Soy Marcos, Ingeniero Informático (2022 – 2026) y desarrollador de software en Sensia. Lo que más disfruto es el desarrollo web y de apps: llevar una idea desde la arquitectura hasta un producto rápido, cuidado y agradable de usar.',
-      en: "I'm Marcos, a Computer Engineer (2022 – 2026) and software developer at Sensia. What I enjoy most is web and app development: taking an idea from architecture all the way to a fast, polished product people enjoy using.",
+      es: 'Soy Marcos, Ingeniero Informático por la UC3M (2022–2026). Hice las prácticas en Sensia, una scale-up que diseña y fabrica cámaras infrarrojas y de imagen térmica con IA, y desde septiembre de 2026 trabajo allí a jornada completa en los equipos de Web Panel, Arquitectura de Sistemas y Next-Design.',
+      en: "I'm Marcos, a Computer Engineer from UC3M (2022–2026). I did my internship at Sensia, a scale-up that designs and manufactures infrared and thermal-imaging cameras with AI, and since September 2026 I work there full time on the Web Panel, Systems Architecture and Next-Design teams.",
     },
     p2: {
-      es: 'Me considero competitivo, ambicioso y trabajador, pero también empático y muy de equipo. Fuera del código: videojuegos y deportes de motor.',
-      en: "I'm competitive, ambitious and hard-working, but also empathetic and a real team player. Away from code: video games and motorsport.",
+      es: 'Fuera del trabajo construyo apps y webs propias, y me encanta hacerlo con IA. La más reciente es Training Tracker. También me gustan los hackathons y, lejos del código, los videojuegos competitivos y el motor.',
+      en: "Outside work I build my own apps and websites, and I love doing it with AI. The latest is Training Tracker. I also enjoy hackathons and, away from code, competitive video games and motorsport.",
     },
+    line: { es: 'Software Developer en Sensia · Ingeniero Informático (UC3M)', en: 'Software Developer at Sensia · Computer Engineer (UC3M)' },
     focus: { es: 'Mi foco', en: 'My focus' },
-    focusText: { es: 'Desarrollo web & apps', en: 'Web & app development' },
-    basedIn: { es: 'Desde', en: 'Based in' },
+    focusWeb: { es: 'Web', en: 'Web' },
+    focusApps: { es: 'Apps', en: 'Apps' },
+    focusSystems: { es: 'Sistemas', en: 'Systems' },
+    location: { es: 'Ubicación', en: 'Location' },
+    locationValue: { es: 'Toledo · trabajo en Madrid', en: 'Toledo · working in Madrid' },
+    hybrid: { es: 'Modalidad híbrida', en: 'Hybrid work' },
+    available: { es: 'Abierto a proyectos freelance y colaboraciones', en: 'Open to freelance projects and collaborations' },
     localTime: { es: 'hora local', en: 'local time' },
     now: { es: 'Ahora mismo', en: 'Right now' },
     nowText: { es: 'Software Developer · Web Panel, Arquitectura de Sistemas y Next-Design', en: 'Software Developer · Web Panel, Systems Architecture and Next-Design' },
     languages: { es: 'Idiomas', en: 'Languages' },
     spanish: { es: 'Español · Nativo', en: 'Spanish · Native' },
     english: { es: 'Inglés · B2 First (Cambridge)', en: 'English · B2 First (Cambridge)' },
-    degree: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
   },
   experience: {
     kicker: { es: 'Trayectoria', en: 'Journey' },
     title: { es: 'Experiencia y formación', en: 'Experience and education' },
+    filtersLabel: { es: 'Filtrar la trayectoria', en: 'Filter the timeline' },
+    filters: {
+      all: { es: 'Todo', en: 'All' },
+      work: { es: 'Trabajo', en: 'Work' },
+      edu: { es: 'Formación', en: 'Education' },
+      hackathon: { es: 'Hackathons', en: 'Hackathons' },
+    },
   },
   projects: {
     kicker: { es: 'Trabajo seleccionado', en: 'Selected work' },
@@ -80,7 +91,6 @@ export const ui = {
   fun: {
     kicker: { es: 'Más allá del código', en: 'Beyond code' },
     title: { es: 'Curiosidades', en: 'Fun facts' },
-    flipHint: { es: 'Pasa el ratón o toca para girar', en: 'Hover or tap to flip' },
   },
   game: {
     title: { es: 'Test de reacción F1', en: 'F1 reaction test' },
@@ -91,16 +101,31 @@ export const ui = {
     jump: { es: '¡Salida en falso!', en: 'Jump start!' },
     again: { es: 'Otra vez', en: 'Try again' },
     best: { es: 'Mejor', en: 'Best' },
-    verdictPro: { es: 'Nivel piloto de F1', en: 'F1 driver level' },
-    verdictGood: { es: 'Muy buenos reflejos', en: 'Great reflexes' },
-    verdictOk: { es: 'Nada mal, ¡sigue entrenando!', en: 'Not bad, keep training!' },
+    average: { es: 'Media', en: 'Average' },
+    attempts: { es: 'Últimos intentos', en: 'Latest attempts' },
+    grid: { es: 'Parrilla de salida', en: 'Starting grid' },
+    you: { es: 'Tú', en: 'You' },
+    startFrom: { es: 'Saldrías', en: "You'd start" },
+    reference: { es: 'Tiempos de referencia orientativos, sin pilotos reales.', en: 'Indicative reference times, no real drivers.' },
+    share: { es: 'Copiar resultado', en: 'Copy result' },
+    shared: { es: 'Resultado copiado', en: 'Result copied' },
+    shareText: { es: 'Mi reacción en el test F1: {ms} ms, saldría {pos} ({tier}). ¿Y la tuya?', en: 'My reaction in the F1 test: {ms} ms, I would start {pos} ({tier}). What about yours?' },
+    tiers: {
+      pole: { es: 'Pole', en: 'Pole' },
+      podium: { es: 'Podio', en: 'Podium' },
+      points: { es: 'Puntos', en: 'Points' },
+      midfield: { es: 'Mitad de parrilla', en: 'Midfield' },
+      back: { es: 'Fondo de parrilla', en: 'Back of the grid' },
+      safety: { es: 'Te adelanta el safety car', en: 'The safety car passes you' },
+    },
   },
   contact: {
     kicker: { es: 'Contacto', en: 'Contact' },
     title: { es: '¿Hablamos?', en: "Let's talk" },
-    text: { es: 'Siempre abierto a conocer gente, ideas y proyectos interesantes. Escríbeme y te respondo.', en: "Always happy to meet people and hear about interesting ideas and projects. Drop me a line." },
+    text: { es: 'Siempre abierto a conocer gente, ideas y proyectos interesantes. Escríbeme y te respondo.', en: 'Always happy to meet people and hear about interesting ideas and projects. Drop me a line.' },
     copy: { es: 'Copiar email', en: 'Copy email' },
     copied: { es: 'Email copiado', en: 'Email copied' },
+    cvHandle: { es: 'Descargar PDF', en: 'Download PDF' },
   },
   footer: {
     made: { es: 'Hecho con React, Motion y anime.js', en: 'Built with React, Motion and anime.js' },
@@ -121,7 +146,9 @@ export type Experience = {
   org: string | T
   period: T
   current?: boolean
-  kind: 'work' | 'edu' | 'award'
+  kind: 'work' | 'edu' | 'hackathon'
+  /** YYYY-MM of the start date, used for reverse-chronological order */
+  date: string
   desc: T
   tags: string[]
 }
@@ -132,18 +159,20 @@ export const experience: Experience[] = [
     org: 'Sensia',
     period: { es: 'Sep 2026 — Actualidad', en: 'Sep 2026 — Present' },
     current: true,
+    date: '2026-09',
     kind: 'work',
     desc: {
-      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel construyo el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing), y trabajo en servirlo por HTTPS y en llevar el vídeo a WebRTC. En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con C++ y tecnologías web.',
-      en: 'I work across three teams: Web Panel, Systems Architecture and Next-Design. On Web Panel I build the web panel to configure and monitor AI thermal cameras (edge computing), and work on serving it over HTTPS and moving video to WebRTC. On the other two I define architecture patterns and tune application performance with C++ and web technologies.',
+      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel trabajo en el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing). En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con C++ y tecnologías web.',
+      en: 'I work across three teams: Web Panel, Systems Architecture and Next-Design. On Web Panel I work on the web panel to configure and monitor AI thermal cameras (edge computing). On the other two I define architecture patterns and tune application performance with C++ and web technologies.',
     },
-    tags: ['Web Panel', 'C++', 'JavaScript', 'HTML', 'CSS', 'HTTPS', 'Edge computing'],
+    tags: ['Web Panel', 'C++', 'JavaScript', 'HTML', 'CSS', 'Edge computing'],
   },
   {
     role: { es: 'Participante · Hack Finance 2026', en: 'Participant · Hack Finance 2026' },
     org: 'BEST UC3M',
     period: { es: '8 — 11 nov 2026', en: '8 — 11 Nov 2026' },
-    kind: 'award',
+    date: '2026-11',
+    kind: 'hackathon',
     desc: {
       es: 'Hackathon de 72 horas en equipo de cinco. Desarrollamos KAIROS, un copiloto que traduce eventos financieros (BCE, petróleo, resultados, divisas) a su impacto en euros sobre la cartera de un inversor particular. Un motor determinista calcula las cifras y un guardián valida cada texto que redacta la IA.',
       en: "A 72-hour hackathon with a team of five. We built KAIROS, a copilot that translates financial events (ECB decisions, oil, earnings, currencies) into their euro impact on a retail investor's portfolio. A deterministic engine computes every figure and a guardian validates each sentence the AI writes.",
@@ -154,6 +183,7 @@ export const experience: Experience[] = [
     role: { es: 'Prácticas de desarrollo de software', en: 'Software Development Intern' },
     org: 'Sensia',
     period: { es: 'Feb 2026 — Jul 2026', en: 'Feb 2026 — Jul 2026' },
+    date: '2026-02',
     kind: 'work',
     desc: {
       es: 'Implanté con Wiki.js la wiki corporativa del departamento de Software, el punto central de información sobre áreas, productos y proyectos. Desarrollé un servicio web que detecta enlaces rotos en la wiki (Node.js y Express sobre wikijs-cli, con un plan de 41 casos de prueba), base de mi TFG.',
@@ -165,7 +195,8 @@ export const experience: Experience[] = [
     role: { es: 'Participante', en: 'Participant' },
     org: 'BE.HACKATHON',
     period: { es: 'Abr 2026', en: 'Apr 2026' },
-    kind: 'award',
+    date: '2026-04',
+    kind: 'hackathon',
     desc: {
       es: 'Hackathon en el que desarrollé una solución en equipo y contrarreloj, desde la idea hasta un prototipo funcional.',
       en: 'A hackathon where I built a solution as a team against the clock, from idea to working prototype.',
@@ -176,6 +207,7 @@ export const experience: Experience[] = [
     role: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
     org: 'Universidad Carlos III de Madrid',
     period: { es: '2022 — 2026', en: '2022 — 2026' },
+    date: '2022-09',
     kind: 'edu',
     desc: {
       es: 'Formación en desarrollo de software, programación orientada a objetos, sistemas operativos y concurrencia, bases de datos, redes y criptografía. TFG: «Implantación de un sistema de gestión del conocimiento en el área de software de una scale-up tecnológica».',
@@ -187,7 +219,8 @@ export const experience: Experience[] = [
     role: { es: 'B2 First · Cambridge English', en: 'B2 First · Cambridge English' },
     org: 'Cambridge',
     period: { es: 'Jun 2023', en: 'Jun 2023' },
-    kind: 'award',
+    date: '2023-06',
+    kind: 'edu',
     desc: {
       es: 'Certificado oficial de inglés de nivel B2.',
       en: 'Official B2-level English certificate.',
@@ -195,6 +228,8 @@ export const experience: Experience[] = [
     tags: ['English'],
   },
 ]
+
+experience.sort((a, b) => b.date.localeCompare(a.date))
 
 export type Project = {
   id: string
@@ -292,10 +327,10 @@ export const projects: Project[] = [
     id: 'xmas',
     title: 'Santa Tracker · Web de Navidad',
     desc: {
-      es: 'Sitio navideño con registro de usuarios, cartas a Papá Noel, reserva de viajes, juegos, recetas, villancicos y un mapa con la ruta de Papá Noel (Leaflet). Prototipado en Figma, datos en LocalStorage y atención a contraste y usabilidad.',
-      en: "Christmas site with user sign-up, letters to Santa, trip booking, games, recipes, carols and a map with Santa's route (Leaflet). Prototyped in Figma, data in LocalStorage, with attention to contrast and usability.",
+      es: 'Sitio navideño con registro de usuarios, cartas a Papá Noel, reserva de viajes, galería, recetas, juegos, villancicos y un mapa interactivo con la ruta de Papá Noel (Leaflet). HTML, CSS y JavaScript sin frameworks, con los datos de usuario en LocalStorage.',
+      en: "Christmas site with user sign-up, letters to Santa, trip booking, gallery, recipes, games, carols and an interactive map with Santa's route (Leaflet). Plain HTML, CSS and JavaScript, with user data in LocalStorage.",
     },
-    tags: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'Figma', 'LocalStorage'],
+    tags: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'LocalStorage'],
     repo: 'https://github.com/marcosrdiaz/Web-Interactiva-Navidad',
     icon: 'snowflake',
     accent: '#60a5fa',
@@ -305,7 +340,7 @@ export const projects: Project[] = [
 export const skillGroups: { title: T; items: [string, string][] }[] = [
   {
     title: { es: 'Lenguajes', en: 'Languages' },
-    items: [['c', 'C'], ['cpp', 'C++'], ['py', 'Python'], ['js', 'JavaScript'], ['ts', 'TypeScript'], ['bash', 'Bash / PowerShell'], ['postgres', 'SQL']],
+    items: [['c', 'C'], ['cpp', 'C++'], ['py', 'Python'], ['js', 'JavaScript'], ['ts', 'TypeScript'], ['bash', 'Bash / PowerShell'], ['sql', 'SQL']],
   },
   {
     title: { es: 'Frontend y apps', en: 'Frontend & apps' },
@@ -321,29 +356,62 @@ export const skillGroups: { title: T; items: [string, string][] }[] = [
   },
 ]
 
-export const softSkills: { icon: IconKey; label: T }[] = [
-  { icon: 'handshake', label: { es: 'Trabajo en equipo', en: 'Teamwork' } },
-  { icon: 'message', label: { es: 'Comunicación empática', en: 'Empathetic communication' } },
-  { icon: 'puzzle', label: { es: 'Resolución de problemas', en: 'Problem solving' } },
-  { icon: 'swords', label: { es: 'Competitividad sana', en: 'Healthy competitiveness' } },
-  { icon: 'rocket', label: { es: 'Ambición y ganas de aprender', en: 'Ambition and eagerness to learn' } },
-  { icon: 'refresh', label: { es: 'Adaptabilidad', en: 'Adaptability' } },
+export const softSkills: { icon: IconKey; title: T; text: T }[] = [
+  {
+    icon: 'handshake',
+    title: { es: 'Trabajo en equipo', en: 'Teamwork' },
+    text: { es: 'Hackathon de 72 h en equipo de cinco: KAIROS se construyó entre todos, repartiendo tareas y fases.', en: 'A 72-hour hackathon in a team of five: KAIROS was built by all of us, splitting tasks and phases.' },
+  },
+  {
+    icon: 'message',
+    title: { es: 'Comunicación', en: 'Communication' },
+    text: { es: 'Implanté la wiki del departamento de Software de Sensia, un trabajo cuyo objetivo es que otros equipos encuentren la información.', en: "I rolled out the Software department's wiki at Sensia, a job whose goal is for other teams to find the information they need." },
+  },
+  {
+    icon: 'puzzle',
+    title: { es: 'Resolución de problemas', en: 'Problem solving' },
+    text: { es: 'Un detector de enlaces rotos con 41 casos de prueba, fruto de un problema real de la wiki.', en: 'A broken-link detector with 41 test cases, born from a real wiki problem.' },
+  },
+  {
+    icon: 'swords',
+    title: { es: 'Competitividad sana', en: 'Healthy competitiveness' },
+    text: { es: 'Videojuegos competitivos y hackathons: me motiva medirme, y aprendo de ello.', en: 'Competitive games and hackathons: I am driven by measuring myself, and I learn from it.' },
+  },
+  {
+    icon: 'rocket',
+    title: { es: 'Ambición y ganas de aprender', en: 'Ambition and eagerness to learn' },
+    text: { es: 'Las prácticas se convirtieron en contrato; hoy trabajo en tres equipos y sigo con proyectos propios.', en: 'My internship turned into a contract; today I work on three teams and keep building my own projects.' },
+  },
+  {
+    icon: 'refresh',
+    title: { es: 'Adaptabilidad', en: 'Adaptability' },
+    text: { es: 'Web, apps y C++ en la misma etapa: de Web Panel a Arquitectura de Sistemas y Next-Design.', en: 'Web, apps and C++ in the same stage: from Web Panel to Systems Architecture and Next-Design.' },
+  },
 ]
 
-export const funFacts: { icon: IconKey; front: T; back: T }[] = [
+export const funFacts: { icon: IconKey; accent: string; title: T; text: T }[] = [
   {
-    icon: 'code',
-    front: { es: 'Programador', en: 'Developer' },
-    back: { es: 'Me encanta experimentar con nuevos lenguajes y frameworks por pura diversión.', en: 'I love experimenting with new languages and frameworks just for fun.' },
+    icon: 'engine',
+    accent: '#ef4444',
+    title: { es: 'Motor y F1', en: 'Motorsport and F1' },
+    text: { es: 'Mi piloto favorito es Fernando Alonso y el circuito que quiero visitar es Suzuka.', en: 'My favourite driver is Fernando Alonso and the circuit I most want to visit is Suzuka.' },
   },
   {
     icon: 'gamepad',
-    front: { es: 'Gamer', en: 'Gamer' },
-    back: { es: 'Los juegos competitivos me enseñan lógica, estrategia y a decidir bajo presión.', en: 'Competitive games teach me logic, strategy and deciding under pressure.' },
+    accent: '#a855f7',
+    title: { es: 'Videojuegos competitivos', en: 'Competitive gaming' },
+    text: { es: 'Los juegos competitivos me enseñan lógica, estrategia y a decidir bajo presión.', en: 'Competitive games teach me logic, strategy and deciding under pressure.' },
   },
   {
-    icon: 'engine',
-    front: { es: 'Motor', en: 'Motorsport' },
-    back: { es: 'Sigo la tecnología del motor; su obsesión por la precisión y el rendimiento me inspira al programar.', en: "I follow motorsport tech; its obsession with precision and performance inspires how I code." },
+    icon: 'lightbulb',
+    accent: '#22d3ee',
+    title: { es: 'Proyectos con IA', en: 'Projects with AI' },
+    text: { es: 'Hago apps y webs propias con IA. La última es Training Tracker.', en: 'I build my own apps and websites with AI. The latest is Training Tracker.' },
+  },
+  {
+    icon: 'globe',
+    accent: '#f59e0b',
+    title: { es: 'Brighton', en: 'Brighton' },
+    text: { es: 'Dos semanas de homestay en Brighton, Inglaterra.', en: 'Two weeks of homestay in Brighton, England.' },
   },
 ]
