@@ -43,6 +43,21 @@ try {
       await page.waitForTimeout(1200)
       await page.screenshot({ path: `screenshots/${lang}-${name}-${id}.png` })
     }
+    // Project cards (lower rows) and detail modal
+    const cards = page.locator('#projects [role=button]')
+    await cards.nth(4).scrollIntoViewIfNeeded()
+    await page.waitForTimeout(1200)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-projects-more.png` })
+    for (const ci of [0, 3]) {
+      await cards.nth(ci).scrollIntoViewIfNeeded()
+      await cards.nth(ci).focus()
+      await page.keyboard.press('Enter')
+      await page.waitForTimeout(900)
+      await page.screenshot({ path: `screenshots/${lang}-${name}-modal-${ci}.png` })
+      await page.keyboard.press('Escape')
+      await page.waitForTimeout(500)
+    }
+
     // Soft skills cards (below the stack boxes)
     await page.locator('#skills h4').first().scrollIntoViewIfNeeded()
     await page.evaluate(() => window.scrollBy(0, 250))

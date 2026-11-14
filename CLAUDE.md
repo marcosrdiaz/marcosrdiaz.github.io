@@ -7,9 +7,10 @@ Comandos: `npm run dev`, `npm run build` (tsc -b + vite build).
 ## Mapa
 - `src/data.ts`: perfil, textos de UI (`ui`), `experience`, `projects`, `skillGroups`, `softSkills`, `funFacts`. Tipo `T = { es, en }`.
 - `src/i18n.tsx`: `useLang().t`. `src/toast.tsx`: toasts. `src/icons.tsx`: mapa clave -> icono lucide (`IconKey`, `<Icon name=... />`).
-- `src/components/`: `Hero`, `About` (bento), `Experience` (timeline con filtros), `Projects` (tilt 3D + `PhoneMock`), `Skills` (marquee + 4 cajas + tarjetas de soft skills), `Fun` (tarjetas fijas + `ReactionGame` con parrilla), `Contact`, `CommandPalette` (Ctrl+K), `Navbar`, `Footer`, `Konami` (race mode), `Background` (canvas), `Cursor`, `ui.tsx` (`Section`, `Reveal`, `Magnetic`, `Tag`, `spotlightMove`).
+- `src/components/`: `Hero`, `About` (bento), `Experience` (timeline con filtros), `Projects` (tilt 3D, capturas, modal de detalle; `PhoneMock` como placeholder), `Skills` (marquee + 4 cajas + tarjetas de soft skills), `Fun` (tarjetas fijas + `ReactionGame` con parrilla), `Contact`, `CommandPalette` (Ctrl+K), `Navbar`, `Footer`, `Konami` (race mode), `Background` (canvas), `Cursor`, `ui.tsx` (`Section`, `Reveal`, `Magnetic`, `Tag`, `spotlightMove`).
 - CSS propio en `index.css`: `glass`, `text-gradient`, `spotlight`, `marquee`, `race-mode`, `checkered`.
-- Estaticos en `public/`: `sources/` (cv, foto, sensia), `icons/` (SVG del stack, servidos en local).
+- Estaticos en `public/`: `sources/` (cv, foto, sensia), `icons/` (SVG del stack, servidos en local), `projects/<id>/*.webp` (capturas).
+- `scripts/`: `screenshots.ts` (`npm run shots`) y `project-shots.ts` (capturas de proyectos en local). Solo desarrollo.
 
 ## Convenciones
 - Todo texto visible va en ES y EN en `data.ts`, nunca hardcodeado en componentes. Espanol de Espana.

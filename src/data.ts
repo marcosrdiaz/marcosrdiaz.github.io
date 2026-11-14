@@ -82,6 +82,15 @@ export const ui = {
     private: { es: 'Privado', en: 'Private' },
     code: { es: 'Código', en: 'Code' },
     more: { es: 'Más en GitHub', en: 'More on GitHub' },
+    details: { es: 'Ver detalles', en: 'View details' },
+    close: { es: 'Cerrar', en: 'Close' },
+    problem: { es: 'El problema', en: 'The problem' },
+    role: { es: 'Qué hice', en: 'What I did' },
+    decisions: { es: 'Decisiones técnicas', en: 'Technical decisions' },
+    stack: { es: 'Stack', en: 'Stack' },
+    gallery: { es: 'Capturas', en: 'Screenshots' },
+    viewCode: { es: 'Ver el código en GitHub', en: 'View the code on GitHub' },
+    privateRepo: { es: 'Repositorio privado', en: 'Private repository' },
   },
   skills: {
     kicker: { es: 'Herramientas', en: 'Toolbox' },
@@ -231,6 +240,8 @@ export const experience: Experience[] = [
 
 experience.sort((a, b) => b.date.localeCompare(a.date))
 
+export type ProjectImage = { src: string; width: number; height: number; alt: T }
+
 export type Project = {
   id: string
   title: string
@@ -240,8 +251,10 @@ export type Project = {
   repo?: string
   private?: boolean
   featured?: boolean
-  /** Real screenshot (webp in public/projects/<id>/). Without it, featured cards show the PhoneMock placeholder. */
-  image?: { src: string; width: number; height: number; alt: T }
+  /** Real screenshots (webp in public/projects/<id>/); the first one is the card image. Without them, featured cards show the PhoneMock placeholder. */
+  images?: ProjectImage[]
+  /** Content of the detail modal. `role` is omitted when it has not been confirmed. */
+  detail: { problem: T; role?: T; decisions: T[] }
   icon: IconKey
   accent: string
 }
@@ -262,9 +275,28 @@ export const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Vite', 'Tailwind', 'Claude', 'Docker'],
     repo: 'https://github.com/marcosrdiaz/kairos',
     featured: true,
-    image: {
-      src: '/projects/kairos/home.webp', width: 1600, height: 900,
-      alt: { es: 'Pantalla de inicio de KAIROS con la evolución de la cartera, el estado actual, las noticias que más la mueven y el asistente', en: 'KAIROS home screen with portfolio evolution, current status, the news that move it most and the assistant' },
+    images: [
+      {
+        src: '/projects/kairos/home.webp', width: 1600, height: 900,
+        alt: { es: 'Pantalla de inicio de KAIROS con la evolución de la cartera, el estado actual, las noticias que más la mueven y el asistente', en: 'KAIROS home screen with portfolio evolution, current status, the news that move it most and the assistant' },
+      },
+    ],
+    detail: {
+      problem: {
+        es: 'Un inversor particular lee que el BCE mueve los tipos o que el petróleo sube, pero no sabe qué significa eso para su cartera. KAIROS lo traduce a euros, con un rango, un nivel de confianza y la traza de cada cifra.',
+        en: 'A retail investor reads that the ECB moves rates or that oil is up, but cannot tell what it means for their portfolio. KAIROS translates it into euros, with a range, a confidence level and the trace of every figure.',
+      },
+      role: {
+        es: 'Lo desarrollamos los cinco miembros del equipo en conjunto durante las 72 horas del hackathon Hack Finance (BEST UC3M), sin partes asignadas a nadie.',
+        en: 'The five of us built it together during the 72 hours of the Hack Finance hackathon (BEST UC3M), with no parts assigned to anyone.',
+      },
+      decisions: [
+        { es: 'La IA nunca calcula cifras: todo número sale del gestor de cartera o del motor de impacto, que son deterministas. Claude solo redacta.', en: 'The AI never computes figures: every number comes from the portfolio manager or the impact engine, both deterministic. Claude only writes.' },
+        { es: 'Un guardián revisa cada texto y bloquea las recomendaciones de compra o venta: contexto, no órdenes.', en: 'A guardian checks every text and blocks buy or sell recommendations: context, not orders.' },
+        { es: 'Cada cifra enlaza a su traza, con sus entradas, su fórmula y sus fuentes.', en: 'Every figure links to its trace, with inputs, formula and sources.' },
+        { es: 'Funciona sin claves de IA: en ese caso usa plantillas con los mismos datos del motor.', en: 'It works without AI keys: it then falls back to templates fed by the same engine data.' },
+        { es: 'Todo el sistema (PostgreSQL, backend y frontend) arranca con Docker Compose.', en: 'The whole system (PostgreSQL, backend and frontend) starts with Docker Compose.' },
+      ],
     },
     icon: 'trending',
     accent: '#f5b82e',
@@ -278,6 +310,21 @@ export const projects: Project[] = [
     },
     tags: ['Wiki.js', 'Node.js', 'Express', 'Documentación', 'Testing'],
     private: true,
+    detail: {
+      problem: {
+        es: 'El departamento de Software necesitaba un punto central de información sobre sus áreas, productos y proyectos, y una forma de detectar los enlaces rotos que aparecen en una wiki con el tiempo.',
+        en: 'The Software department needed a central hub for information on its areas, products and projects, and a way to detect the broken links that build up in a wiki over time.',
+      },
+      role: {
+        es: 'Implanté la wiki con Wiki.js durante mis prácticas y desarrollé el servicio de detección de enlaces rotos. Fue la base de mi TFG: «Implantación de un sistema de gestión del conocimiento en el área de software de una scale-up tecnológica».',
+        en: 'I rolled out the wiki on Wiki.js during my internship and built the broken-link detection service. It was the basis of my thesis: "Implementing a knowledge-management system in the software area of a tech scale-up".',
+      },
+      decisions: [
+        { es: 'Servicio web en Node.js y Express construido sobre wikijs-cli.', en: 'Web service in Node.js and Express built on top of wikijs-cli.' },
+        { es: 'wikijs-cli se ejecuta como proceso hijo con child_process.spawn.', en: 'wikijs-cli runs as a child process through child_process.spawn.' },
+        { es: 'Plan de pruebas de 41 casos.', en: 'A 41-case test plan.' },
+      ],
+    },
     icon: 'book',
     accent: '#22d3ee',
   },
@@ -296,6 +343,22 @@ export const projects: Project[] = [
     tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Supabase', 'PostgreSQL', 'Offline-first'],
     private: true,
     featured: true,
+    detail: {
+      problem: {
+        es: 'Quería una app para registrar mis entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcionara sin conexión.',
+        en: 'I wanted an app to log my workouts set by set, quick to use mid-session and working without a connection.',
+      },
+      role: {
+        es: 'Proyecto personal: lo desarrollo yo, apoyándome en IA. Es la app más reciente que he construido así.',
+        en: 'Personal project: I build it myself, with the help of AI. It is the latest app I have built this way.',
+      },
+      decisions: [
+        { es: 'Registro serie a serie a pantalla completa, pensado para usarse durante el entreno.', en: 'Full-screen set-by-set logging, designed to be used during the workout.' },
+        { es: 'Offline-first: el entreno activo se guarda en SQLite y no depende de la red.', en: 'Offline-first: the active workout is stored in SQLite and never depends on the network.' },
+        { es: 'Récords personales automáticos y sugerencia de peso a partir del histórico.', en: 'Automatic personal records and weight suggestions based on history.' },
+        { es: 'Rutinas compartidas protegidas con Row Level Security en Supabase.', en: 'Shared routines protected with Row Level Security on Supabase.' },
+      ],
+    },
     icon: 'dumbbell',
     accent: '#3b82f6',
   },
@@ -308,6 +371,22 @@ export const projects: Project[] = [
     },
     tags: ['Python', 'Flask', 'AES-GCM', 'RSA', 'Scrypt', 'OpenSSL'],
     repo: 'https://github.com/marcosrdiaz/Web-de-apuestas-cifrada',
+    images: [
+      { src: '/projects/bets/futbol.webp', width: 1200, height: 750, alt: { es: 'Página de apuestas de fútbol con tres partidos y el panel de apuestas del usuario', en: 'Football betting page with three matches and the user bet panel' } },
+      { src: '/projects/bets/home.webp', width: 1200, height: 750, alt: { es: 'Página de inicio con las secciones de fútbol, baloncesto, tenis e hípica', en: 'Home page with the football, basketball, tennis and horse-racing sections' } },
+    ],
+    detail: {
+      problem: {
+        es: 'Proyecto de criptografía: una plataforma de apuestas deportivas en la que el registro, los datos de los usuarios y las apuestas tienen que estar protegidos.',
+        en: 'Cryptography project: a sports-betting platform where sign-up, user data and bets must be protected.',
+      },
+      decisions: [
+        { es: 'Las contraseñas no se guardan: se deriva una clave con Scrypt.', en: 'Passwords are never stored: a key is derived with Scrypt.' },
+        { es: 'Los datos sensibles se cifran con AES en modo GCM, que además autentica el contenido.', en: 'Sensitive data is encrypted with AES in GCM mode, which also authenticates the content.' },
+        { es: 'Firma digital RSA-PSS con SHA-256 para garantizar integridad y autoría.', en: 'RSA-PSS digital signatures with SHA-256 to guarantee integrity and authorship.' },
+        { es: 'Certificados X.509 emitidos por una autoridad de certificación propia montada con OpenSSL.', en: 'X.509 certificates issued by a custom certificate authority set up with OpenSSL.' },
+      ],
+    },
     icon: 'lock',
     accent: '#6366f1',
   },
@@ -320,6 +399,21 @@ export const projects: Project[] = [
     },
     tags: ['JavaScript', 'Node.js', 'Express', 'Socket.IO', 'Leaflet', 'Web NFC'],
     repo: 'https://github.com/marcosrdiaz/AEKI-Prototipo-interactivo-para-tiendas-fisicas',
+    images: [
+      { src: '/projects/aeki/catalogo.webp', width: 1200, height: 750, alt: { es: 'Catálogo de productos con el modo de entrada por voz activo', en: 'Product catalogue with voice input mode active' } },
+      { src: '/projects/aeki/mapa.webp', width: 1200, height: 750, alt: { es: 'Localizador de productos con el plano del almacén', en: 'Product locator with the warehouse floor plan' } },
+    ],
+    detail: {
+      problem: {
+        es: 'Mejorar la experiencia de compra en una tienda física: consultar el catálogo, gestionar el carrito y encontrar cada producto en el almacén.',
+        en: 'Improving the shopping experience in a physical store: browsing the catalogue, managing the cart and finding each product in the warehouse.',
+      },
+      decisions: [
+        { es: 'Tres modos de entrada: voz (SpeechRecognition), gestos con los sensores del móvil (DeviceMotion) y NFC (Web NFC).', en: 'Three input modes: voice (SpeechRecognition), gestures through phone sensors (DeviceMotion) and NFC (Web NFC).' },
+        { es: 'Plano del almacén con Leaflet y rutas hasta los productos calculadas con A*.', en: 'Warehouse floor plan with Leaflet and routes to the products computed with A*.' },
+        { es: 'Comunicación en tiempo real con Socket.IO sobre un servidor Node.js y Express.', en: 'Real-time communication with Socket.IO on a Node.js and Express server.' },
+      ],
+    },
     icon: 'shopping',
     accent: '#0ea5e9',
   },
@@ -332,6 +426,21 @@ export const projects: Project[] = [
     },
     tags: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'LocalStorage'],
     repo: 'https://github.com/marcosrdiaz/Web-Interactiva-Navidad',
+    images: [
+      { src: '/projects/xmas/home.webp', width: 1200, height: 750, alt: { es: 'Portada de la web con el menú de secciones y el titular Sigue a Papá Noel', en: 'Site home with the section menu and the headline Follow Santa' } },
+      { src: '/projects/xmas/carta.webp', width: 1200, height: 750, alt: { es: 'Formulario para escribir la carta a Papá Noel', en: 'Form to write the letter to Santa' } },
+    ],
+    detail: {
+      problem: {
+        es: 'Una web navideña interactiva con muchas secciones distintas en una sola página: seguir a Papá Noel, escribirle, reservar un viaje, jugar o escuchar villancicos.',
+        en: 'An interactive Christmas site with many different sections on a single page: follow Santa, write to him, book a trip, play or listen to carols.',
+      },
+      decisions: [
+        { es: 'HTML, CSS y JavaScript sin frameworks, con un script por sección.', en: 'Plain HTML, CSS and JavaScript, with one script per section.' },
+        { es: 'Mapa interactivo con Leaflet para la ruta de Papá Noel.', en: "Interactive map with Leaflet for Santa's route." },
+        { es: 'Usuarios, cartas y reservas guardados en LocalStorage, sin backend.', en: 'Users, letters and bookings stored in LocalStorage, with no backend.' },
+      ],
+    },
     icon: 'snowflake',
     accent: '#60a5fa',
   },
