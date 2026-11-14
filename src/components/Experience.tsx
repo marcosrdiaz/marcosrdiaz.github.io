@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Trophy } from 'lucide-react'
+import { Briefcase, ExternalLink, GraduationCap, Trophy } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { motion, useScroll, useSpring } from 'motion/react'
 import { experience, ui, type Experience as Entry } from '../data'
@@ -67,6 +67,16 @@ export default function Experience() {
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <span className="font-mono text-xs text-brand-2">{t(e.period)}</span>
                     {e.current && <span aria-hidden className="h-2 w-2 animate-pulse rounded-full bg-emerald-400" />}
+                    {e.repo && (
+                      <a
+                        href={e.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10 transition hover:bg-brand hover:text-white"
+                      >
+                        {t(ui.experience.code)} <ExternalLink size={12} aria-hidden />
+                      </a>
+                    )}
                   </div>
                   <h3 className="mt-2 font-display text-xl font-semibold text-white">{t(e.role)}</h3>
                   <p className="text-sm font-medium text-blue-300">{t(e.org)}</p>

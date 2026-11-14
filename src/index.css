@@ -123,4 +123,7 @@ body {
   .marquee-track, .text-gradient, .animate-ping, .animate-pulse, [class*="animation:"] { animation: none !important; }
   .marquee-mask { mask-image: none; }
   .marquee { overflow-x: auto; }
+  /* small hero chip: static, clipped, still with soft edges */
+  .marquee-chip.marquee { overflow: hidden; }
+  .marquee-chip.marquee-mask { mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent); }
 }

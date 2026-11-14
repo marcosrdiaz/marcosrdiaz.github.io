@@ -3,9 +3,12 @@ import { GithubIcon, LinkedinIcon } from '../icons'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useTransform } from 'motion/react'
 import { animate, stagger } from 'animejs'
-import { profile, ui } from '../data'
+import { profile, skillGroups, ui } from '../data'
 import { useLang } from '../i18n'
 import { Magnetic } from './ui'
+
+// every technology of the stack section, without repeats, so the chip never drifts from it
+const stackNames = [...new Set(skillGroups.flatMap(g => g.items.map(([, name]) => name)))]
 
 const GLYPHS = '!<>-_\\/[]{}—=+*^?#01'
 
@@ -165,9 +168,14 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-            className="glass absolute -top-8 left-2 hidden rounded-2xl px-3 py-2 text-xs whitespace-nowrap text-white sm:block"
+            className="glass marquee marquee-mask marquee-chip absolute -top-8 left-2 hidden w-48 overflow-hidden rounded-2xl py-2 text-xs text-white sm:block"
+            aria-hidden
           >
-            <span className="font-mono">React · TypeScript · C++</span>
+            <div className="marquee-track flex w-max font-mono" style={{ ['--dur' as string]: '70s' }}>
+              {[...stackNames, ...stackNames].map((name, i) => (
+                <span key={i} className="px-3 whitespace-nowrap">{name}<span className="pl-6 text-brand-2">·</span></span>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
       </motion.div>

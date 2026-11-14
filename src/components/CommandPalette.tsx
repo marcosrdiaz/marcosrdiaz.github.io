@@ -1,5 +1,5 @@
 import type { ComponentType } from 'react'
-import { Briefcase, Copy, FileText, FolderGit2, Languages, Layers, Mail, Search, Sparkles, Timer, User } from 'lucide-react'
+import { Briefcase, Copy, FileText, FolderGit2, Languages, Layers, Mail, Search, Sparkles, Timer, User, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { profile, ui } from '../data'
@@ -95,6 +95,14 @@ export default function CommandPalette({ open, setOpen }: { open: boolean; setOp
                 className="h-14 flex-1 bg-transparent text-sm text-white outline-none placeholder:text-slate-400"
               />
               <kbd className="rounded bg-white/5 px-1.5 py-0.5 font-mono text-[10px] text-slate-400">ESC</kbd>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label={t(ui.palette.close)}
+                title={t(ui.palette.close)}
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-slate-300 transition hover:bg-white/10 hover:text-white"
+              >
+                <X size={16} aria-hidden />
+              </button>
             </div>
             <div ref={listRef} className="max-h-[60vh] overflow-y-auto p-2">
               {filtered.length === 0 && <p className="px-3 py-6 text-center text-sm text-slate-400">{t(ui.palette.empty)}</p>}

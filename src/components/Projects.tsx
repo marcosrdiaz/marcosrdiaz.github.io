@@ -1,5 +1,5 @@
 import { ArrowRight, Flame, Lock, Trophy, Users } from 'lucide-react'
-import { lazy, Suspense, useRef, useState, type MouseEvent } from 'react'
+import { lazy, Suspense, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useSpring } from 'motion/react'
 import { profile, projects, ui, type Project, type ProjectImage } from '../data'
 import { useLang } from '../i18n'
@@ -9,7 +9,7 @@ import { Section, Tag } from './ui'
 // The detail dialog is only fetched the first time a card is opened
 const ProjectModal = lazy(() => import('./ProjectModal'))
 
-/** Mini animated "stats" visual: placeholder for the featured app card until real screenshots exist. */
+/** Mini animated "stats" visual: placeholder for a feature card until it has real screenshots (see `images` in data.ts). */
 function PhoneMock() {
   const bars = [40, 65, 52, 80, 70, 95, 88]
   return (
@@ -74,6 +74,81 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
   }
   const leave = () => { rx.set(0); ry.set(0) }
   const cover = p.images?.[0]
+  const visual = cover ? <Shot img={cover} className="shadow-2xl shadow-black/40" /> : <PhoneMock />
+
+  const iconBox = (
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
+      <Icon name={p.icon} size={24} style={{ color: p.accent }} />
+    </span>
+  )
+  const privateBadge = p.private && (
+    <span className="flex shrink-0 items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10"><Lock size={12} aria-hidden /> {t(ui.projects.private)}</span>
+  )
+  const highlights = p.highlights && (
+    <ul className="space-y-1.5">
+      {p.highlights.map((h, i) => (
+        <li key={i} className="flex items-start gap-2 text-sm text-slate-300"><span aria-hidden className="text-brand-2">▹</span>{t(h)}</li>
+      ))}
+    </ul>
+  )
+  const tags = <div className="flex flex-wrap gap-1.5">{p.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
+  const more = (
+    <p className="flex items-center gap-1.5 text-sm font-medium text-blue-300 transition-colors group-hover:text-white">
+      {t(ui.projects.details)} <ArrowRight size={14} aria-hidden className="transition-transform group-hover:translate-x-1" />
+    </p>
+  )
+
+  let body: ReactNode
+  if (p.layout === 'feature') {
+    // text 3/4 + visual top-right 1/4; highlights, tags and "details" run full width underneath.
+    // On mobile the visual goes last (order-last), as before.
+    body = (
+      <div className="grid gap-x-6 gap-y-5 lg:grid-cols-4">
+        <div className="flex flex-col lg:col-span-3 lg:row-start-1">
+          <div className="flex items-start justify-between gap-3">{iconBox}{privateBadge}</div>
+          <h3 className="mt-5 font-display text-2xl font-semibold text-white sm:text-3xl">{p.title}</h3>
+          <p className="mt-2 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+          {/* the phone placeholder is tall: the highlights fill the text column beside it instead of leaving a gap */}
+          {!cover && <div className="mt-4">{highlights}</div>}
+        </div>
+        <div className="order-last mx-auto w-full max-w-sm lg:order-none lg:col-start-4 lg:row-start-1 lg:max-w-none lg:self-start">{visual}</div>
+        <div className="space-y-5 lg:col-span-4 lg:row-start-2">
+          {cover && highlights}
+          {tags}
+          {more}
+        </div>
+      </div>
+    )
+  } else if (p.layout === 'strip') {
+    // compact full-width row: it only takes the height of its content
+    body = (
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:gap-6">
+        <div className="flex items-start justify-between gap-3 lg:block">{iconBox}<span className="lg:hidden">{privateBadge}</span></div>
+        <div className="flex-1">
+          <div className="flex items-center gap-3">
+            <h3 className="font-display text-xl font-semibold text-white">{p.title}</h3>
+            <span className="hidden lg:block">{privateBadge}</span>
+          </div>
+          <p className="mt-2 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+          <div className="mt-3">{more}</div>
+        </div>
+        <div className="lg:w-72 lg:shrink-0">{tags}</div>
+      </div>
+    )
+  } else {
+    body = (
+      <div className="flex h-full flex-col gap-6">
+        {cover && <Shot img={cover} className="aspect-[16/10] object-cover object-top" />}
+        <div className="flex flex-1 flex-col">
+          <div className="flex items-start justify-between gap-3">{iconBox}{privateBadge}</div>
+          <h3 className="mt-5 font-display text-xl font-semibold text-white">{p.title}</h3>
+          <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
+          <div className="mt-5">{tags}</div>
+          <div className="mt-5">{more}</div>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <motion.div
@@ -94,36 +169,10 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
         onMouseMove={move}
         onMouseLeave={leave}
         style={{ rotateX: rx, rotateY: ry, transformStyle: 'preserve-3d' }}
-        className="group glass relative flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl p-6 transition-colors hover:border-blue-400/30"
+        className="group glass relative h-full cursor-pointer overflow-hidden rounded-3xl p-6 transition-colors hover:border-blue-400/30"
       >
         <motion.div style={{ background: glow }} className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-        <div className={`relative flex h-full gap-6 ${p.featured ? 'flex-col lg:flex-row lg:items-center' : 'flex-col'}`} style={{ transform: 'translateZ(30px)' }}>
-          {!p.featured && cover && <Shot img={cover} className="aspect-[16/10] object-cover object-top" />}
-          <div className="flex flex-1 flex-col">
-            <div className="flex items-start justify-between gap-3">
-              <span className="flex h-12 w-12 items-center justify-center rounded-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
-                <Icon name={p.icon} size={24} style={{ color: p.accent }} />
-              </span>
-              {p.private && (
-                <span className="flex items-center gap-1 rounded-full bg-white/5 px-2.5 py-1 text-[11px] text-slate-300 ring-1 ring-white/10"><Lock size={12} aria-hidden /> {t(ui.projects.private)}</span>
-              )}
-            </div>
-            <h3 className={`mt-5 font-display font-semibold text-white ${p.featured ? 'text-2xl sm:text-3xl' : 'text-xl'}`}>{p.title}</h3>
-            <p className="mt-2 flex-1 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
-            {p.highlights && (
-              <ul className="mt-4 space-y-1.5">
-                {p.highlights.map((h, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-slate-300"><span aria-hidden className="text-brand-2">▹</span>{t(h)}</li>
-                ))}
-              </ul>
-            )}
-            <div className="mt-5 flex flex-wrap gap-1.5">{p.tags.map(tag => <Tag key={tag}>{tag}</Tag>)}</div>
-            <p className="mt-5 flex items-center gap-1.5 text-sm font-medium text-blue-300 transition-colors group-hover:text-white">
-              {t(ui.projects.details)} <ArrowRight size={14} aria-hidden className="transition-transform group-hover:translate-x-1" />
-            </p>
-          </div>
-          {p.featured && (cover ? <Shot img={cover} className="shadow-2xl shadow-black/40 lg:w-[48%] lg:shrink-0" /> : <PhoneMock />)}
-        </div>
+        <div className="relative h-full" style={{ transform: 'translateZ(30px)' }}>{body}</div>
       </motion.div>
     </motion.div>
   )
@@ -137,11 +186,10 @@ export default function Projects() {
 
   return (
     <Section id="projects" kicker={t(ui.projects.kicker)} title={t(ui.projects.title)}>
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-6">
+      {/* feature and strip cards are full width; the regular ones share a row in thirds (similar heights) */}
+      <div className="grid grid-cols-1 items-start gap-5 md:grid-cols-6">
         {projects.map((p, i) => {
-          // featured cards take 4/6; the next two regular cards fill the row (2/6), the rest share rows in halves
-          const regular = projects.slice(0, i).filter(x => !x.featured).length
-          const span = p.featured ? 'md:col-span-4' : regular < 2 ? 'md:col-span-2' : 'md:col-span-3'
+          const span = p.layout === 'card' ? 'md:col-span-2 md:h-full' : 'md:col-span-6'
           return <ProjectCard key={p.id} p={p} index={i} span={span} onOpen={el => { opener.current = el; setOpen(p) }} />
         })}
       </div>

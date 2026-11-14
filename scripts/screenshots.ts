@@ -45,6 +45,12 @@ try {
     }
     // Project cards (lower rows) and detail modal
     const cards = page.locator('#projects [role=button]')
+    await cards.nth(1).scrollIntoViewIfNeeded()
+    await page.waitForTimeout(1000)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-projects-r17.png` })
+    await cards.nth(2).scrollIntoViewIfNeeded()
+    await page.waitForTimeout(1000)
+    await page.screenshot({ path: `screenshots/${lang}-${name}-projects-wiki.png` })
     await cards.nth(4).scrollIntoViewIfNeeded()
     await page.waitForTimeout(1200)
     await page.screenshot({ path: `screenshots/${lang}-${name}-projects-more.png` })

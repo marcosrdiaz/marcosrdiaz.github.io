@@ -30,8 +30,8 @@ export const ui = {
       en: ['web experiences', 'mobile apps', 'web panels for AI cameras', 'software architecture', 'high-performance C++'],
     },
     blurb: {
-      es: 'Ingeniero Informático por la UC3M y desarrollador en Sensia. Trabajo en el panel web de nuestras cámaras térmicas con IA; en mis proyectos, apps y webs completas, de la arquitectura al producto.',
-      en: 'Computer Engineer from UC3M and developer at Sensia. I work on the web panel for our AI thermal cameras; in my own projects, complete apps and websites, from architecture to product.',
+      es: 'Ingeniero Informático por la UC3M y desarrollador en Sensia. Trabajo en el panel web de nuestras cámaras térmicas con IA y en la arquitectura de los distintos sistemas desplegados. Fuera del trabajo: centrado en mis proyectos, apps y webs. De la arquitectura al producto.',
+      en: 'Computer Engineer from UC3M and developer at Sensia. I work on the web panel for our AI thermal cameras and on the architecture of the different deployed systems. Outside work: focused on my own projects, apps and websites. From architecture to product.',
     },
     ctaProjects: { es: 'Ver proyectos', en: 'See projects' },
     ctaCv: { es: 'Descargar CV', en: 'Download CV' },
@@ -41,12 +41,12 @@ export const ui = {
     kicker: { es: 'Sobre mí', en: 'About me' },
     title: { es: 'Código limpio, interfaces que se sienten vivas.', en: 'Clean code, interfaces that feel alive.' },
     p1: {
-      es: 'Soy Marcos, Ingeniero Informático por la UC3M (2022–2026). Hice las prácticas en Sensia, una scale-up que diseña y fabrica cámaras infrarrojas y de imagen térmica con IA, y desde septiembre de 2026 trabajo allí a jornada completa en los equipos de Web Panel, Arquitectura de Sistemas y Next-Design.',
-      en: "I'm Marcos, a Computer Engineer from UC3M (2022–2026). I did my internship at Sensia, a scale-up that designs and manufactures infrared and thermal-imaging cameras with AI, and since September 2026 I work there full time on the Web Panel, Systems Architecture and Next-Design teams.",
+      es: 'Soy Marcos, Ingeniero Informático por la UC3M (2022–2026). Hice las prácticas en Sensia, una empresa que diseña y fabrica cámaras infrarrojas y de imagen térmica con IA, y desde septiembre de 2026 trabajo allí a jornada completa en los equipos de Web Panel, Arquitectura de Sistemas y Next-Design.',
+      en: "I'm Marcos, a Computer Engineer from UC3M (2022–2026). I did my internship at Sensia, a company that designs and manufactures infrared and thermal-imaging cameras with AI, and since September 2026 I work there full time on the Web Panel, Systems Architecture and Next-Design teams.",
     },
     p2: {
-      es: 'Fuera del trabajo construyo apps y webs propias, y me encanta hacerlo con IA. La más reciente es Training Tracker. También me gustan los hackathons y, lejos del código, los videojuegos competitivos y el motor.',
-      en: "Outside work I build my own apps and websites, and I love doing it with AI. The latest is Training Tracker. I also enjoy hackathons and, away from code, competitive video games and motorsport.",
+      es: 'Fuera del trabajo construyo apps y webs propias, apoyándome en las herramientas que existen hoy en día. La más reciente es R17, una app de seguimiento de entrenamientos: rutinas, progreso y estadísticas. También me gustan los hackathons y, lejos del código, los videojuegos competitivos y el motor.',
+      en: 'Outside work I build my own apps and websites, leaning on the tools available today. The latest is R17, a workout-tracking app: routines, progress and stats. I also enjoy hackathons and, away from code, competitive video games and motorsport.',
     },
     line: { es: 'Software Developer en Sensia · Ingeniero Informático (UC3M)', en: 'Software Developer at Sensia · Computer Engineer (UC3M)' },
     focus: { es: 'Mi foco', en: 'My focus' },
@@ -67,6 +67,7 @@ export const ui = {
   experience: {
     kicker: { es: 'Trayectoria', en: 'Journey' },
     title: { es: 'Experiencia y formación', en: 'Experience and education' },
+    code: { es: 'Código', en: 'Code' },
     filtersLabel: { es: 'Filtrar la trayectoria', en: 'Filter the timeline' },
     filters: {
       all: { es: 'Todo', en: 'All' },
@@ -145,6 +146,7 @@ export const ui = {
     goTo: { es: 'Ir a', en: 'Go to' },
     lang: { es: 'Switch to English', en: 'Cambiar a español' },
     race: { es: 'Arrancar el test de reacción F1', en: 'Start the F1 reaction test' },
+    close: { es: 'Cerrar la paleta de comandos', en: 'Close the command palette' },
     groups: {
       nav: { es: 'Navegación', en: 'Navigation' },
       actions: { es: 'Acciones', en: 'Actions' },
@@ -163,6 +165,8 @@ export type Experience = {
   kind: 'work' | 'edu' | 'hackathon'
   /** YYYY-MM of the start date, used for reverse-chronological order */
   date: string
+  /** Public repository, shown as a "Code" link on the card */
+  repo?: string
   desc: T
   tags: string[]
 }
@@ -212,10 +216,11 @@ export const experience: Experience[] = [
     date: '2026-04',
     kind: 'hackathon',
     desc: {
-      es: 'Hackathon en el que desarrollé una solución en equipo y contrarreloj, desde la idea hasta un prototipo funcional.',
-      en: 'A hackathon where I built a solution as a team against the clock, from idea to working prototype.',
+      es: 'Hackathon cuyo reto era desarrollar un plugin que ayudara a los desarrolladores a programar mejor. Hicimos GhostCommit, un plugin de IntelliJ IDEA (Kotlin) que muestra en el editor la actividad de los compañeros en tiempo real: ediciones «fantasma», solapamientos en las mismas líneas o archivos y un panel de colaboradores. Los eventos de edición pasan por un servidor WebSocket en Node.js, desplegado en Railway, que los redistribuye entre los clientes conectados. Reduce choques de trabajo y mejora la coordinación en sesiones de pair o mob programming.',
+      en: 'A hackathon whose challenge was to build a plugin that helps developers code better. We made GhostCommit, an IntelliJ IDEA plugin (Kotlin) that shows teammates\' activity in the editor in real time: "ghost" edits, overlaps on the same lines or files and a collaborators panel. Edit events go through a Node.js WebSocket server, deployed on Railway, that redistributes them to the connected clients. It reduces clashing work and improves coordination in pair or mob programming sessions.',
     },
-    tags: ['Teamwork', 'Prototyping'],
+    tags: ['Kotlin', 'IntelliJ Platform', 'Node.js', 'WebSocket', 'Railway'],
+    repo: 'https://github.com/mroldanmatea/GhostCommitPlugin',
   },
   {
     role: { es: 'Grado en Ingeniería Informática', en: "Bachelor's in Computer Engineering" },
@@ -256,8 +261,9 @@ export type Project = {
   tags: string[]
   repo?: string
   private?: boolean
-  featured?: boolean
-  /** Real screenshots (webp in public/projects/<id>/); the first one is the card image. Without them, featured cards show the PhoneMock placeholder. */
+  /** feature: full-width card with image/placeholder top-right; strip: compact full-width row; card: regular third-width card */
+  layout: 'feature' | 'strip' | 'card'
+  /** Real screenshots (webp in public/projects/<id>/); the first one is the card image. Without them, feature cards show the PhoneMock placeholder: to swap in real screenshots, drop the WebP files in public/projects/<id>/ and list them here. */
   images?: ProjectImage[]
   /** Content of the detail modal. `role` is omitted when it has not been confirmed. */
   detail: { problem: T; role?: T; decisions: T[] }
@@ -268,6 +274,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'kairos',
+    layout: 'feature',
     title: 'KAIROS · Hack Finance 2026',
     desc: {
       es: 'Copiloto financiero que traduce eventos de mercado (BCE, petróleo, resultados, divisas) a su impacto en euros sobre la cartera de un inversor particular, con rango, nivel de confianza y la traza de cada cifra. Proyecto de equipo (5 personas, 72 h).',
@@ -280,7 +287,6 @@ export const projects: Project[] = [
     ],
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'React', 'TypeScript', 'Vite', 'Tailwind', 'Claude', 'Docker'],
     repo: 'https://github.com/marcosrdiaz/kairos',
-    featured: true,
     images: [
       {
         src: '/projects/kairos/home.webp', width: 1600, height: 900,
@@ -308,7 +314,42 @@ export const projects: Project[] = [
     accent: '#f5b82e',
   },
   {
+    id: 'training',
+    layout: 'feature',
+    title: 'R17',
+    desc: {
+      es: 'App de entrenamiento para registrar cada serie a pantalla completa, con récords personales automáticos y sugerencia de peso según tu histórico. Incluye rutinas, calendario, estadísticas, logros y amigos.',
+      en: 'Workout app that logs every set full-screen, with automatic personal records and weight suggestions based on your history. Includes routines, calendar, stats, achievements and friends.',
+    },
+    highlights: [
+      { es: 'Funciona offline con SQLite: el entreno activo no depende de la red', en: 'Works offline with SQLite: an active workout never depends on the network' },
+      { es: 'Rutinas compartidas con Row Level Security en Supabase', en: 'Shared routines with Row Level Security on Supabase' },
+      { es: 'React Native + Expo (SDK 57)', en: 'React Native + Expo (SDK 57)' },
+    ],
+    tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Supabase', 'PostgreSQL', 'Offline-first'],
+    private: true,
+    detail: {
+      problem: {
+        es: 'Quería una app para registrar mis entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcionara sin conexión.',
+        en: 'I wanted an app to log my workouts set by set, quick to use mid-session and working without a connection.',
+      },
+      role: {
+        es: 'Proyecto personal: diseño y desarrollo completos.',
+        en: 'Personal project: full design and development.',
+      },
+      decisions: [
+        { es: 'Registro serie a serie a pantalla completa, pensado para usarse durante el entreno.', en: 'Full-screen set-by-set logging, designed to be used during the workout.' },
+        { es: 'Offline-first: el entreno activo se guarda en SQLite y no depende de la red.', en: 'Offline-first: the active workout is stored in SQLite and never depends on the network.' },
+        { es: 'Récords personales automáticos y sugerencia de peso a partir del histórico.', en: 'Automatic personal records and weight suggestions based on history.' },
+        { es: 'Rutinas compartidas protegidas con Row Level Security en Supabase.', en: 'Shared routines protected with Row Level Security on Supabase.' },
+      ],
+    },
+    icon: 'dumbbell',
+    accent: '#3b82f6',
+  },
+  {
     id: 'wiki',
+    layout: 'strip',
     title: 'Wiki corporativa · Sensia',
     desc: {
       es: 'Implanté con Wiki.js la wiki del departamento de Software de Sensia, punto central de información sobre áreas, productos y proyectos. Desarrollé además un servicio web que detecta enlaces rotos en la wiki, base de mi TFG.',
@@ -335,41 +376,8 @@ export const projects: Project[] = [
     accent: '#22d3ee',
   },
   {
-    id: 'training',
-    title: 'Training Tracker App',
-    desc: {
-      es: 'App de entrenamiento para registrar cada serie a pantalla completa, con récords personales automáticos y sugerencia de peso según tu histórico. Incluye rutinas, calendario, estadísticas, logros y amigos.',
-      en: 'Workout app that logs every set full-screen, with automatic personal records and weight suggestions based on your history. Includes routines, calendar, stats, achievements and friends.',
-    },
-    highlights: [
-      { es: 'Funciona offline con SQLite: el entreno activo no depende de la red', en: 'Works offline with SQLite: an active workout never depends on the network' },
-      { es: 'Rutinas compartidas con Row Level Security en Supabase', en: 'Shared routines with Row Level Security on Supabase' },
-      { es: 'React Native + Expo (SDK 57)', en: 'React Native + Expo (SDK 57)' },
-    ],
-    tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Supabase', 'PostgreSQL', 'Offline-first'],
-    private: true,
-    featured: true,
-    detail: {
-      problem: {
-        es: 'Quería una app para registrar mis entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcionara sin conexión.',
-        en: 'I wanted an app to log my workouts set by set, quick to use mid-session and working without a connection.',
-      },
-      role: {
-        es: 'Proyecto personal: diseño y desarrollo completos.',
-        en: 'Personal project: full design and development.',
-      },
-      decisions: [
-        { es: 'Registro serie a serie a pantalla completa, pensado para usarse durante el entreno.', en: 'Full-screen set-by-set logging, designed to be used during the workout.' },
-        { es: 'Offline-first: el entreno activo se guarda en SQLite y no depende de la red.', en: 'Offline-first: the active workout is stored in SQLite and never depends on the network.' },
-        { es: 'Récords personales automáticos y sugerencia de peso a partir del histórico.', en: 'Automatic personal records and weight suggestions based on history.' },
-        { es: 'Rutinas compartidas protegidas con Row Level Security en Supabase.', en: 'Shared routines protected with Row Level Security on Supabase.' },
-      ],
-    },
-    icon: 'dumbbell',
-    accent: '#3b82f6',
-  },
-  {
     id: 'bets',
+    layout: 'card',
     title: 'Web de apuestas cifrada',
     desc: {
       es: 'Plataforma web de apuestas deportivas con criptografía aplicada: derivación de claves con Scrypt, cifrado AES-GCM de datos sensibles, firma digital RSA y certificados X.509 gestionados con OpenSSL. Backend en Flask.',
@@ -402,6 +410,7 @@ export const projects: Project[] = [
   },
   {
     id: 'aeki',
+    layout: 'card',
     title: 'AEKI · Prototipo para tiendas',
     desc: {
       es: 'Prototipo para mejorar la compra en tienda física: catálogo y carrito controlables por voz, gestos con los sensores del móvil y NFC, más un mapa interactivo del almacén con rutas calculadas con A*. Tiempo real con Socket.IO sobre Node.js y Express.',
@@ -433,6 +442,7 @@ export const projects: Project[] = [
   },
   {
     id: 'xmas',
+    layout: 'card',
     title: 'Santa Tracker · Web de Navidad',
     desc: {
       es: 'Sitio navideño con registro de usuarios, cartas a Papá Noel, reserva de viajes, galería, recetas, juegos, villancicos y un mapa interactivo con la ruta de Papá Noel (Leaflet). HTML, CSS y JavaScript sin frameworks, con los datos de usuario en LocalStorage.',
@@ -534,7 +544,7 @@ export const funFacts: { icon: IconKey; accent: string; title: T; text: T }[] = 
     icon: 'lightbulb',
     accent: '#22d3ee',
     title: { es: 'Proyectos con IA', en: 'Projects with AI' },
-    text: { es: 'Hago apps y webs propias con IA. La última es Training Tracker.', en: 'I build my own apps and websites with AI. The latest is Training Tracker.' },
+    text: { es: 'Hago apps y webs propias con IA. La última es R17.', en: 'I build my own apps and websites with AI. The latest is R17.' },
   },
   {
     icon: 'globe',
