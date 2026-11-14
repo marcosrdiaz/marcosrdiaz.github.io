@@ -54,7 +54,7 @@ try {
     await cards.nth(4).scrollIntoViewIfNeeded()
     await page.waitForTimeout(1200)
     await page.screenshot({ path: `screenshots/${lang}-${name}-projects-more.png` })
-    for (const ci of [0, 2, 3]) {
+    for (const ci of [0, 1, 2, 3]) {
       await cards.nth(ci).scrollIntoViewIfNeeded()
       await cards.nth(ci).focus()
       await page.keyboard.press('Enter')

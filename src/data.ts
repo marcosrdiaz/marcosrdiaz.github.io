@@ -85,7 +85,7 @@ export const ui = {
     details: { es: 'Ver detalles', en: 'View details' },
     close: { es: 'Cerrar', en: 'Close' },
     problem: { es: 'El problema', en: 'The problem' },
-    role: { es: 'Qué hice', en: 'What I did' },
+    role: { es: 'Contexto', en: 'Context' },
     decisions: { es: 'Decisiones técnicas', en: 'Technical decisions' },
     stack: { es: 'Stack', en: 'Stack' },
     gallery: { es: 'Capturas', en: 'Screenshots' },
@@ -300,8 +300,8 @@ export const projects: Project[] = [
         en: 'A retail investor reads that the ECB moves rates or that oil is up, but cannot tell what it means for their portfolio. KAIROS translates it into euros, with a range, a confidence level and the trace of every figure.',
       },
       role: {
-        es: 'Lo desarrollamos los cinco miembros del equipo en conjunto durante las 72 horas del hackathon Hack Finance (BEST UC3M), sin partes asignadas a nadie.',
-        en: 'The five of us built it together during the 72 hours of the Hack Finance hackathon (BEST UC3M), with no parts assigned to anyone.',
+        es: 'Proyecto de equipo de cinco personas, desarrollado entre todos durante las 72 horas del hackathon Hack Finance (BEST UC3M), sin partes asignadas a nadie.',
+        en: 'Team project by five people, built together during the 72 hours of the Hack Finance hackathon (BEST UC3M), with no parts assigned to anyone.',
       },
       decisions: [
         { es: 'La IA nunca calcula cifras: todo número sale del gestor de cartera o del motor de impacto, que son deterministas. Claude solo redacta.', en: 'The AI never computes figures: every number comes from the portfolio manager or the impact engine, both deterministic. Claude only writes.' },
@@ -337,8 +337,8 @@ export const projects: Project[] = [
     ],
     detail: {
       problem: {
-        es: 'Quería una app para registrar mis entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcionara sin conexión.',
-        en: 'I wanted an app to log my workouts set by set, quick to use mid-session and working without a connection.',
+        es: 'Una app para registrar los entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcione sin conexión.',
+        en: 'An app to log workouts set by set, quick to use mid-session and working without a connection.',
       },
       role: {
         es: 'Proyecto personal: diseño y desarrollo completos.',
