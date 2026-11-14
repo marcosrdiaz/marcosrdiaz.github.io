@@ -79,7 +79,7 @@ export default function About() {
               <p>{t(ui.about.p2)}</p>
             </div>
             <div className="flex items-center gap-4 border-t border-white/5 pt-5">
-              <img src={profile.photo} alt="" className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-blue-500/40" />
+              <img src="/sources/foto-96.webp" width={96} height={96} loading="lazy" decoding="async" alt="" className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-blue-500/40" />
               <div>
                 <p className="font-display font-semibold text-white">{profile.name}</p>
                 <p className="text-sm text-slate-400">{t(ui.about.line)}</p>
@@ -126,7 +126,7 @@ export default function About() {
               <p className="mt-3 font-display text-xl font-semibold text-white">Sensia</p>
               <p className="mt-1 text-sm text-slate-400">{t(ui.about.nowText)}</p>
             </div>
-            <img src="/sources/sensia.png" alt="Sensia" className="h-14 w-14 rounded-2xl bg-white object-contain p-2" />
+            <img src="/sources/sensia.webp" width={224} height={224} loading="lazy" decoding="async" alt="Sensia" className="h-14 w-14 rounded-2xl bg-white object-contain p-2" />
           </div>
         </Cell>
 

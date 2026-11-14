@@ -28,6 +28,7 @@ export default function Konami() {
       const on = document.body.classList.toggle('race-mode')
       if (!on || !layer.current) return
       toast(t(ui.konami))
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
       const root = layer.current
       root.innerHTML = ''
       const car = document.createElement('div')

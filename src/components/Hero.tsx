@@ -51,6 +51,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 160])
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const hintFade = useTransform(scrollYProgress, [0, 0.12], [1, 0])
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
@@ -110,7 +111,7 @@ export default function Hero() {
           </h1>
 
           <p className="mt-6 min-h-[2lh] font-mono text-base text-slate-300 sm:min-h-0 sm:text-2xl">
-            <span className="text-slate-500">{t(ui.hero.iBuild)} </span>
+            <span className="text-slate-400">{t(ui.hero.iBuild)} </span>
             <span className="text-white">{role}</span>
             <span className="ml-1 inline-block h-6 w-[2px] translate-y-1 bg-brand-2 [animation:blink_1s_steps(1)_infinite]" />
           </p>
@@ -153,7 +154,7 @@ export default function Hero() {
         >
           <div className="absolute -inset-1 rounded-full bg-[conic-gradient(from_0deg,#3b82f6,#22d3ee,#6366f1,#3b82f6)] [animation:spin-slow_8s_linear_infinite] blur-[2px]" />
           <div className="absolute -inset-6 rounded-full bg-blue-500/20 blur-3xl" />
-          <img src={profile.photo} alt={profile.name} className="relative h-full w-full rounded-full border-4 border-ink object-cover" />
+          <img src="/sources/foto-640.webp" srcSet="/sources/foto-320.webp 320w, /sources/foto-640.webp 640w" sizes="(min-width: 1024px) 288px, (min-width: 640px) 224px, 144px" width={640} height={640} fetchPriority="high" alt={profile.name} className="relative h-full w-full rounded-full border-4 border-ink object-cover" />
           <motion.div
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
@@ -171,18 +172,20 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
+      <motion.div style={{ opacity: hintFade }} className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 sm:block">
       <motion.a
         href="#about"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 sm:flex flex-col items-center gap-2 font-mono text-[10px] tracking-[0.3em] text-slate-500 uppercase"
+        className="flex flex-col items-center gap-2 font-mono text-[10px] tracking-[0.3em] text-slate-400 uppercase"
       >
         {t(ui.hero.scroll)}
         <span className="flex h-8 w-5 justify-center rounded-full border border-slate-600 pt-1.5">
           <motion.span animate={{ y: [0, 10, 0], opacity: [1, 0, 1] }} transition={{ duration: 1.8, repeat: Infinity }} className="h-1.5 w-1 rounded-full bg-brand-2" />
         </span>
       </motion.a>
+      </motion.div>
     </section>
   )
 }

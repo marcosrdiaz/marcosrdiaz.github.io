@@ -1,9 +1,12 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/jetbrains-mono";
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Space Grotesk", "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Space Grotesk Variable", "Space Grotesk", "Inter Variable", sans-serif;
+  --font-mono: "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
   --color-ink: #050816;
   --color-ink-2: #0a1128;
   --color-brand: #3b82f6;
@@ -108,4 +111,16 @@ body {
 .checkered {
   background-image: conic-gradient(#fff 25%, #000 0 50%, #fff 0 75%, #000 0);
   background-size: 16px 16px;
+}
+
+/* Keyboard focus: visible on every interactive element */
+@layer base {
+  :focus-visible { outline: 2px solid var(--color-brand-2); outline-offset: 3px; border-radius: 6px; }
+}
+
+/* Reduced motion: stop CSS-driven loops (framer-motion is covered by MotionConfig, anime.js by explicit checks) */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .text-gradient, .animate-ping, .animate-pulse, [class*="animation:"] { animation: none !important; }
+  .marquee-mask { mask-image: none; }
+  .marquee { overflow-x: auto; }
 }

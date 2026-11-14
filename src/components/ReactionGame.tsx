@@ -35,7 +35,7 @@ function loadHistory(): number[] {
 }
 
 /** F1-style start lights: 5 reds come on one by one, go out after a random delay, click as fast as possible. */
-export default function ReactionGame() {
+export default function ReactionGame({ autoStart = false }: { autoStart?: boolean }) {
   const { t } = useLang()
   const toast = useToast()
   const [state, setState] = useState<State>('idle')
@@ -61,7 +61,9 @@ export default function ReactionGame() {
   useEffect(() => {
     const handler = () => { rootRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(start, 600) }
     window.addEventListener('start-race', handler)
+    if (autoStart) handler()
     return () => { window.removeEventListener('start-race', handler); clear() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [start])
 
   // Pop the light that just turned on

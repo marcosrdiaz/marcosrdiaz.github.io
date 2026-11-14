@@ -20,5 +20,7 @@ Comandos: `npm run dev`, `npm run build` (tsc -b + vite build).
 - Escribir "Sensia" (no SENSIA) en todo el texto. Web Panel se describe en generico, sin detalles internos ni clientes.
 - Comprobacion visual: `npm run build && npm run shots [-- en]` (Playwright, capturas en `screenshots/`, ignorada por git). Cerrar solo procesos propios, por PID.
 - `assets/` son originales sin optimizar (ignorada por git); en el repo solo van los WebP de `public/projects/<id>/`.
+- Rendimiento: `CommandPalette`, `Konami`, `ReactionGame` y `ProjectModal` se cargan con `React.lazy`; fuentes autoalojadas con `@fontsource-variable`; fotos/logos en WebP (`public/sources/`).
+- SEO en `index.html` (OG con URL absoluta, JSON-LD Person), `public/robots.txt`, `public/sitemap.xml`, `public/og.png` (generado con `scripts/og-image.ts`).
 - Un commit por fase; `npm run build` limpio antes de cada commit.
 - El CV (`public/sources/cv.pdf`) lo actualiza Marcos a mano.

@@ -1,12 +1,28 @@
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
 import { motion } from 'motion/react'
 import { funFacts, ui } from '../data'
 import { useLang } from '../i18n'
 import { Icon } from '../icons'
-import ReactionGame from './ReactionGame'
 import { Reveal, Section } from './ui'
+
+const ReactionGame = lazy(() => import('./ReactionGame'))
 
 export default function Fun() {
   const { t } = useLang()
+  const slot = useRef<HTMLDivElement>(null)
+  const [load, setLoad] = useState(false)
+  const [autoStart, setAutoStart] = useState(false)
+
+  useEffect(() => {
+    if (load) return
+    const io = new IntersectionObserver(es => es.some(e => e.isIntersecting) && setLoad(true), { rootMargin: '600px' })
+    if (slot.current) io.observe(slot.current)
+    // a race requested from the palette / Konami before the chunk is loaded
+    const onRace = () => { setAutoStart(true); setLoad(true) }
+    window.addEventListener('start-race', onRace)
+    return () => { io.disconnect(); window.removeEventListener('start-race', onRace) }
+  }, [load])
+
   return (
     <Section id="fun" kicker={t(ui.fun.kicker)} title={t(ui.fun.title)}>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -27,9 +43,13 @@ export default function Fun() {
           </Reveal>
         ))}
       </div>
-      <Reveal className="mt-4">
-        <ReactionGame />
-      </Reveal>
+      <div ref={slot} className="mt-4 min-h-[22rem]">
+        {load && (
+          <Suspense fallback={<div className="glass h-[22rem] rounded-3xl" />}>
+            <ReactionGame autoStart={autoStart} />
+          </Suspense>
+        )}
+      </div>
     </Section>
   )
 }

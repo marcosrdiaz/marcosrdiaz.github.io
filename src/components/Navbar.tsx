@@ -61,7 +61,7 @@ export default function Navbar({ onOpenPalette }: { onOpenPalette: () => void })
               aria-label="Change language"
             >
               {(['es', 'en'] as const).map(l => (
-                <span key={l} className={`relative z-10 w-8 text-center uppercase transition-colors ${lang === l ? 'text-white' : 'text-slate-500'}`}>
+                <span key={l} className={`relative z-10 w-8 text-center uppercase transition-colors ${lang === l ? 'text-white' : 'text-slate-400'}`}>
                   {lang === l && <motion.span layoutId="lang-pill" className="absolute inset-0 -z-10 rounded-full bg-brand" transition={{ type: 'spring', stiffness: 500, damping: 35 }} />}
                   {l}
                 </span>

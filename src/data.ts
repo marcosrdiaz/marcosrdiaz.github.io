@@ -10,7 +10,6 @@ export const profile = {
   githubUser: 'marcosrdiaz',
   linkedin: 'https://linkedin.com/in/marcos-rodrigo-diaz',
   cv: '/sources/cv.pdf',
-  photo: '/sources/foto.jpg',
 }
 
 export const ui = {
@@ -146,7 +145,13 @@ export const ui = {
     goTo: { es: 'Ir a', en: 'Go to' },
     lang: { es: 'Switch to English', en: 'Cambiar a español' },
     race: { es: 'Arrancar el test de reacción F1', en: 'Start the F1 reaction test' },
+    groups: {
+      nav: { es: 'Navegación', en: 'Navigation' },
+      actions: { es: 'Acciones', en: 'Actions' },
+      links: { es: 'Enlaces', en: 'Links' },
+    },
   },
+  skip: { es: 'Saltar al contenido', en: 'Skip to content' },
   konami: { es: '¡Código Konami! Modo carrera activado', en: 'Konami code! Race mode on' },
 } satisfies Record<string, unknown>
 
@@ -238,7 +243,8 @@ export const experience: Experience[] = [
   },
 ]
 
-experience.sort((a, b) => b.date.localeCompare(a.date))
+// current position pinned on top, the rest in reverse-chronological order (filters keep this order)
+experience.sort((a, b) => Number(!!b.current) - Number(!!a.current) || b.date.localeCompare(a.date))
 
 export type ProjectImage = { src: string; width: number; height: number; alt: T }
 
@@ -349,8 +355,8 @@ export const projects: Project[] = [
         en: 'I wanted an app to log my workouts set by set, quick to use mid-session and working without a connection.',
       },
       role: {
-        es: 'Proyecto personal: lo desarrollo yo, apoyándome en IA. Es la app más reciente que he construido así.',
-        en: 'Personal project: I build it myself, with the help of AI. It is the latest app I have built this way.',
+        es: 'Proyecto personal: diseño y desarrollo completos.',
+        en: 'Personal project: full design and development.',
       },
       decisions: [
         { es: 'Registro serie a serie a pantalla completa, pensado para usarse durante el entreno.', en: 'Full-screen set-by-set logging, designed to be used during the workout.' },
@@ -380,6 +386,10 @@ export const projects: Project[] = [
         es: 'Proyecto de criptografía: una plataforma de apuestas deportivas en la que el registro, los datos de los usuarios y las apuestas tienen que estar protegidos.',
         en: 'Cryptography project: a sports-betting platform where sign-up, user data and bets must be protected.',
       },
+      role: {
+        es: 'Práctica de la UC3M hecha en pareja.',
+        en: 'UC3M coursework done in a pair.',
+      },
       decisions: [
         { es: 'Las contraseñas no se guardan: se deriva una clave con Scrypt.', en: 'Passwords are never stored: a key is derived with Scrypt.' },
         { es: 'Los datos sensibles se cifran con AES en modo GCM, que además autentica el contenido.', en: 'Sensitive data is encrypted with AES in GCM mode, which also authenticates the content.' },
@@ -408,6 +418,10 @@ export const projects: Project[] = [
         es: 'Mejorar la experiencia de compra en una tienda física: consultar el catálogo, gestionar el carrito y encontrar cada producto en el almacén.',
         en: 'Improving the shopping experience in a physical store: browsing the catalogue, managing the cart and finding each product in the warehouse.',
       },
+      role: {
+        es: 'Práctica de la UC3M hecha en equipo.',
+        en: 'UC3M coursework done as a team.',
+      },
       decisions: [
         { es: 'Tres modos de entrada: voz (SpeechRecognition), gestos con los sensores del móvil (DeviceMotion) y NFC (Web NFC).', en: 'Three input modes: voice (SpeechRecognition), gestures through phone sensors (DeviceMotion) and NFC (Web NFC).' },
         { es: 'Plano del almacén con Leaflet y rutas hasta los productos calculadas con A*.', en: 'Warehouse floor plan with Leaflet and routes to the products computed with A*.' },
@@ -434,6 +448,10 @@ export const projects: Project[] = [
       problem: {
         es: 'Una web navideña interactiva con muchas secciones distintas en una sola página: seguir a Papá Noel, escribirle, reservar un viaje, jugar o escuchar villancicos.',
         en: 'An interactive Christmas site with many different sections on a single page: follow Santa, write to him, book a trip, play or listen to carols.',
+      },
+      role: {
+        es: 'Práctica de la UC3M hecha en equipo.',
+        en: 'UC3M coursework done as a team.',
       },
       decisions: [
         { es: 'HTML, CSS y JavaScript sin frameworks, con un script por sección.', en: 'Plain HTML, CSS and JavaScript, with one script per section.' },

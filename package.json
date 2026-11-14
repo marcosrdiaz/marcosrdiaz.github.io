@@ -10,6 +10,9 @@
     "shots": "tsx scripts/screenshots.ts"
   },
   "dependencies": {
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/jetbrains-mono": "^5.3.0",
+    "@fontsource-variable/space-grotesk": "^5.3.0",
     "animejs": "^4.5.0",
     "lucide-react": "^1.72.0",
     "motion": "^14.4.0",
