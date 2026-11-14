@@ -180,7 +180,7 @@ export const experience: Experience[] = [
     date: '2026-09',
     kind: 'work',
     desc: {
-      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel trabajo en el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing). En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con python, C++ y tecnologías web.',
+      es: 'Trabajo en tres equipos: Web Panel, Arquitectura de Sistemas y Next-Design. En Web Panel trabajo en el panel web para configurar y monitorizar cámaras térmicas con IA (edge computing). En los otros dos defino patrones de arquitectura y optimizo el rendimiento de las aplicaciones con Python, C++ y tecnologías web.',
       en: 'I work across three teams: Web Panel, Systems Architecture and Next-Design. On Web Panel I work on the web panel to configure and monitor AI thermal cameras (edge computing). On the other two I define architecture patterns and tune application performance with C++ and web technologies.',
     },
     tags: ['C++', 'JavaScript', 'HTML', 'CSS', 'Edge computing'],
@@ -544,7 +544,7 @@ export const funFacts: { icon: IconKey; accent: string; title: T; text: T }[] = 
     icon: 'lightbulb',
     accent: '#22d3ee',
     title: { es: 'Proyectos con IA', en: 'Projects with AI' },
-    text: { es: 'Hago apps y webs propias apoyandome con los avances de la IA. La última es R17.', en: 'I build my own apps and websites with the help of the AI. The latest is R17.' },
+    text: { es: 'Hago apps y webs propias apoyándome con los avances de la IA. La última es R17.', en: 'I build my own apps and websites with the help of the AI. The latest is R17.' },
   },
   {
     icon: 'globe',
