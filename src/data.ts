@@ -442,6 +442,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/marcosrdiaz/Web-Interactiva-Navidad',
     images: [
       { src: '/projects/xmas/home.webp', width: 1200, height: 750, alt: { es: 'Portada de la web con el menú de secciones y el titular Sigue a Papá Noel', en: 'Site home with the section menu and the headline Follow Santa' } },
+      { src: '/projects/xmas/mapa.webp', width: 1200, height: 750, alt: { es: 'Mapa interactivo con el trineo de Papá Noel sobre el mapamundi', en: "Interactive map with Santa's sleigh over the world map" } },
       { src: '/projects/xmas/carta.webp', width: 1200, height: 750, alt: { es: 'Formulario para escribir la carta a Papá Noel', en: 'Form to write the letter to Santa' } },
     ],
     detail: {
