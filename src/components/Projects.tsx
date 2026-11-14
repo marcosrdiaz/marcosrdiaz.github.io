@@ -1,4 +1,4 @@
-import { ArrowRight, Flame, Lock, Trophy, Users } from 'lucide-react'
+import { ArrowRight, Lock } from 'lucide-react'
 import { lazy, Suspense, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { AnimatePresence, motion, useMotionTemplate, useMotionValue, useSpring } from 'motion/react'
 import { profile, projects, ui, type Project, type ProjectImage } from '../data'
@@ -9,43 +9,33 @@ import { Section, Tag } from './ui'
 // The detail dialog is only fetched the first time a card is opened
 const ProjectModal = lazy(() => import('./ProjectModal'))
 
+/** Space between the phone frame and its screen, as a fraction of the frame width. */
+const BEZEL = 0.025
+
 /**
- * Mini animated "stats" visual: placeholder for a feature card until it has real screenshots (see `images` in data.ts).
- * It keeps a 9:19 phone ratio and sizes everything in `em` relative to its own width (6.2cqw), so it scales
- * proportionally: normal size on mobile, full card height (within the card padding) from `lg`.
+ * Phone frame around a portrait screenshot. The frame ratio is derived from the image (screen + bezel), so the
+ * screenshot is never cropped or stretched. Normal size on mobile; from `lg` it fills the card height (the
+ * card padding stays as margin) and its width follows from the ratio.
  */
-function PhoneMock() {
-  const bars = [40, 65, 52, 80, 70, 95, 88]
+function PhoneMock({ img }: { img: ProjectImage }) {
+  const { t } = useLang()
+  const ratio = 1 / ((1 - 2 * BEZEL) * (img.height / img.width) + 2 * BEZEL)
   return (
     <div
-      aria-hidden
-      className="relative mx-auto aspect-[9/19] w-36 shrink-0 rounded-[14%/6.6%] border border-white/15 bg-ink-2 shadow-2xl shadow-blue-500/20 [container-type:inline-size] lg:absolute lg:inset-y-0 lg:left-1/2 lg:mx-0 lg:w-auto lg:-translate-x-1/2"
+      className="relative mx-auto w-36 shrink-0 rounded-[14%/6.5%] border border-white/15 bg-black shadow-2xl shadow-blue-500/20 [container-type:inline-size] lg:absolute lg:inset-y-0 lg:left-1/2 lg:mx-0 lg:w-auto lg:-translate-x-1/2"
+      style={{ aspectRatio: String(ratio), padding: `${BEZEL * 100}%` }}
     >
-      <div className="flex h-full flex-col" style={{ fontSize: '6.2cqw', padding: '1.5em 1.3em' }}>
-        <div className="mx-auto rounded-full bg-white/15" style={{ height: '0.4em', width: '4.2em', marginBottom: '1em' }} />
-        <p className="font-mono text-slate-400" style={{ fontSize: '0.95em', lineHeight: 1.2 }}>PROGRESS</p>
-        <p className="font-display font-bold text-white" style={{ fontSize: '1.9em', lineHeight: 1.15 }}>+18%</p>
-        <div className="flex min-h-0 flex-1 items-end" style={{ margin: '0.8em 0', gap: '0.35em' }}>
-          {bars.map((b, i) => (
-            <motion.span
-              key={i}
-              initial={{ height: 0 }}
-              whileInView={{ height: `${b}%` }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 + i * 0.07, type: 'spring', stiffness: 120, damping: 14 }}
-              className="flex-1 bg-gradient-to-t from-brand to-brand-2"
-              style={{ borderRadius: '0.3em 0.3em 0 0' }}
-            />
-          ))}
-        </div>
-        <div className="grid" style={{ gap: '0.5em' }}>
-          {([[Flame, '7'], [Trophy, '12'], [Users, '5']] as const).map(([I, n]) => (
-            <div key={n} className="flex items-center justify-between bg-white/5 text-slate-300" style={{ padding: '0.4em 0.6em', borderRadius: '0.55em', fontSize: '0.95em' }}>
-              <I size="1.1em" strokeWidth={1.6} aria-hidden /><span className="font-mono">{n}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+      <img
+        src={img.src}
+        width={img.width}
+        height={img.height}
+        alt={t(img.alt)}
+        loading="lazy"
+        decoding="async"
+        className="block h-auto w-full rounded-[12.1%/5.45%]"
+      />
+      {/* notch / camera pill over the (empty) centre of the status bar */}
+      <span aria-hidden className="absolute left-1/2 -translate-x-1/2 rounded-full bg-black ring-1 ring-white/10" style={{ top: '4.4%', width: '26%', height: '2.1%' }} />
     </div>
   )
 }
@@ -84,6 +74,7 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
   }
   const leave = () => { rx.set(0); ry.set(0) }
   const cover = p.images?.[0]
+  const isPhone = !!cover?.phone
 
   const iconBox = (
     <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl" style={{ background: `${p.accent}22`, boxShadow: `inset 0 0 0 1px ${p.accent}55` }}>
@@ -120,19 +111,19 @@ function ProjectCard({ p, index, span, onOpen }: { p: Project; index: number; sp
     // All the text lives in the left column. The visual sits top-right: a screenshot takes ~5/12 of the card
     // (top-aligned), the phone placeholder 3/12 and stretches to the full card height. On mobile it goes last.
     body = (
-      <div className={`grid gap-x-8 gap-y-6 ${cover ? 'lg:grid-cols-[minmax(0,1fr)_42%]' : 'lg:grid-cols-12'}`}>
-        <div className={`flex min-w-0 flex-col ${cover ? '' : 'lg:col-span-9'}`}>
+      <div className={`grid gap-x-8 gap-y-6 ${isPhone ? 'lg:grid-cols-12' : cover ? 'lg:grid-cols-[minmax(0,1fr)_42%]' : ''}`}>
+        <div className={`flex min-w-0 flex-col ${isPhone ? 'lg:col-span-9' : ''}`}>
           {headerRow('text-2xl sm:text-3xl')}
           <p className="mt-4 text-sm leading-relaxed text-slate-400">{t(p.desc)}</p>
           {highlights && <div className="mt-5">{highlights}</div>}
           <div className="mt-5">{tags}</div>
           <div className="mt-5">{more}</div>
         </div>
-        {cover ? (
-          <div className="order-last mx-auto w-full max-w-sm lg:order-none lg:max-w-none lg:self-start"><Shot img={cover} className="shadow-2xl shadow-black/40" /></div>
+        {cover && (isPhone ? (
+          <div className="relative order-last flex justify-center lg:order-none lg:col-span-3 lg:block lg:min-h-80"><PhoneMock img={cover} /></div>
         ) : (
-          <div className="relative order-last flex justify-center lg:order-none lg:col-span-3 lg:block lg:min-h-80"><PhoneMock /></div>
-        )}
+          <div className="order-last mx-auto w-full max-w-sm lg:order-none lg:max-w-none lg:self-start"><Shot img={cover} className="shadow-2xl shadow-black/40" /></div>
+        ))}
       </div>
     )
   } else if (p.layout === 'strip') {

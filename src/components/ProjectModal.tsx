@@ -89,7 +89,7 @@ export default function ProjectModal({ p, onClose }: { p: Project; onClose: () =
           {p.images && (
             <section>
               <h4 className={h}>{t(ui.projects.gallery)}</h4>
-              <div className="mt-3 space-y-3">{p.images.map(img => <Shot key={img.src} img={img} />)}</div>
+              <div className="mt-3 space-y-3">{p.images.map(img => <Shot key={img.src} img={img} className={img.phone ? 'mx-auto max-w-[15rem]' : ''} />)}</div>
             </section>
           )}
         </div>

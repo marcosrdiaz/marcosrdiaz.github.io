@@ -251,7 +251,8 @@ export const experience: Experience[] = [
 // current position pinned on top, the rest in reverse-chronological order (filters keep this order)
 experience.sort((a, b) => Number(!!b.current) - Number(!!a.current) || b.date.localeCompare(a.date))
 
-export type ProjectImage = { src: string; width: number; height: number; alt: T }
+/** `phone`: portrait phone screenshot, shown inside the phone frame of a feature card */
+export type ProjectImage = { src: string; width: number; height: number; alt: T; phone?: boolean }
 
 export type Project = {
   id: string
@@ -263,7 +264,7 @@ export type Project = {
   private?: boolean
   /** feature: full-width card with image/placeholder top-right; strip: compact full-width row; card: regular third-width card */
   layout: 'feature' | 'strip' | 'card'
-  /** Real screenshots (webp in public/projects/<id>/); the first one is the card image. Without them, feature cards show the PhoneMock placeholder: to swap in real screenshots, drop the WebP files in public/projects/<id>/ and list them here. */
+  /** Real screenshots (webp in public/projects/<id>/); the first one is the card image. A `phone: true` image is rendered inside a phone frame (R17). */
   images?: ProjectImage[]
   /** Content of the detail modal. `role` is omitted when it has not been confirmed. */
   detail: { problem: T; role?: T; decisions: T[] }
@@ -328,6 +329,12 @@ export const projects: Project[] = [
     ],
     tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'Supabase', 'PostgreSQL', 'Offline-first'],
     private: true,
+    images: [
+      {
+        src: '/projects/training/home.webp', width: 480, height: 1066, phone: true,
+        alt: { es: 'Pantalla de inicio de R17: entreno de hoy, botón para empezarlo y accesos a calendario, progreso y perfil', en: 'R17 home screen: today\'s workout, a button to start it and shortcuts to calendar, progress and profile' },
+      },
+    ],
     detail: {
       problem: {
         es: 'Quería una app para registrar mis entrenamientos serie a serie, rápida de usar en mitad del entreno y que funcionara sin conexión.',
